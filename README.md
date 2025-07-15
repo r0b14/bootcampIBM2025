@@ -41,3 +41,6 @@ Então, aproveite o conteúdo, explore bastante e, sempre que possível, experim
 ⚠️ Este repositório é público apenas para fins de visualização.
 A clonagem, redistribuição ou modificação não autorizada deste código é expressamente proibida.
 
+
+
+[SETUP INICIAL - COMEÇAR POR AQUI](usecases/setup.md)<br>
