@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "https://ce-financial-research-analyst.1uu0zy3atytl.us-south.codeengine.appdomain.cloud/"
+            "url": "https://financial-analyst-app.1xukhcvtguqs.us-south.codeengine.appdomain.cloud/"
           }
     ],
     "paths": {

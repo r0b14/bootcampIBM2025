@@ -28,10 +28,7 @@ Então, aproveite o conteúdo, explore bastante e, sempre que possível, experim
   <a href="docs/req/turma1/labs.md" target="_blank">
     <img src="https://img.shields.io/badge/👩‍🎓👨‍🎓 TURMA01%20-blue?style=for-the-badge" alt="Grupo 1">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="docs/req/turma2/labs.md" target="_blank">
-    <img src="https://img.shields.io/badge/👩‍🎓👨‍🎓 TURMA02%20-green?style=for-the-badge" alt="Grupo 2">
-  </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</p>
+
 
 
 
