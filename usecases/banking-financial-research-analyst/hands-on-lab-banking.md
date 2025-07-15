@@ -331,7 +331,7 @@ Este agente pode pesquisar na web para recuperar informações relacionadas à c
 
 ![wxo web search agent tool import openapi](images/wxo-web-search-agent-tool-import-openapi.png) 
 
-30- Em seguida, marque as caixas de seleção para a operação **Get DuckDuckGo Search Results**  (anotado com seta vermelha)e clique **Done**.
+30- Em seguida, marque as caixas de seleção para a operação **Obter Resultados de busca com o Tavily**  e clique **Done**
 
 ![wxo web search agent tool import operations](images/websearch-duckduckgo.png) 
 
