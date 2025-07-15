@@ -45,6 +45,10 @@ Este sistema aproveita o poder combinado de um agente do watsonx Orchestrate e d
 
 Este caso de uso utiliza as capacidades de um agente do watsonx Orchestrate para extrair informações específicas dos produtos (como nomes e características) do catálogo de produtos e realizar comparações de produtos. Esses agentes são apoiados por um agente especializado desenvolvido no Agent Lab do watsonx.ai, e todos estão integrados dentro do watsonx Orchestrate. Por meio do assistente de chat do watsonx Orchestrate, os agentes colaboram
 
+      - Agente de Produto: Este agente serve como ponto de entrada para todas as consultas e foi projetado para pesquisar um produto específico, recuperando seus detalhes e características em um formato estruturado do catálogo de produtos. Ele garante clareza e organização ao apresentar sistematicamente as principais informações do produto, facilitando sua compreensão e utilização. Além disso, delega tarefas ao Agente de Comparação para processamento posterior.
+
+      - Agente de Comparação: Este agente gerencia todo o processo de comparação de produtos. Primeiramente, ele identifica e coleta URLs de produtos semelhantes com base em características correspondentes. Em seguida, usando esses links, analisa as ofertas dos concorrentes, extrai insights importantes e gera uma análise SWOT detalhada para cada produto. Os resultados são apresentados em um formato de tabela claro e estruturado para permitir uma comparação rápida e eficaz.
+
 ## 📝 Laboratório Prático Passo a Passo
 Você encontra instruções passo a passo aqui:
 

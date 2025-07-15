@@ -39,7 +39,7 @@ Então, aproveite o conteúdo, explore bastante e, sempre que possível, experim
 [1. Assistente Inteligente](usecases/intelligent-assistant/README.md)<br>
 [2. AskRH](usecases/ask-hr/README.md)<br>
 [3. Automação de Negócio](usecases/business-automation/README.md)<br>
-[4. Agente Financeiro - Opcional](usecases/banking-financial-research-analyst/README.md)<br>
+[4. Agente Financeiro](usecases/banking-financial-research-analyst/README.md)<br>
 <br><br>
 ⚠️ Este repositório é público apenas para fins de visualização.
 A clonagem, redistribuição ou modificação não autorizada deste código é expressamente proibida.

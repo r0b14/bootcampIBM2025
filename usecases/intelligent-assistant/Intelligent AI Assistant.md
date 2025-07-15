@@ -445,7 +445,6 @@ Agora você pode testar o roteamento para os outros agentes, possivelmente usand
   
 ![alt text](images/image28.png)
 
-Once you are satisfied with the answer, deploy this agent using the `Deploy` button as with the other agents before. Since we left the `Show agent` option checked, we can now go back to the home screen to see it there. Simply click on `watsonx Orchestrate` at the very top of the window.
 Quando estiver satisfeito com a resposta, implante este agente usando o botão `Deploy`, como fez com os outros agentes anteriores. Como deixamos a opção `Show agent`  marcada, agora podemos retornar à tela inicial para vê-lo. Basta clicar em `watsonx Orchestrate` no topo da janela.
 
 ![alt text](images/image29.png)

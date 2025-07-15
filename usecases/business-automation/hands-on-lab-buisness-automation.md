@@ -30,9 +30,8 @@ O departamento de vendas da ABC Motor Corp, uma grande empresa automotiva, ao pr
 
 ## Pre-requisites
 
-- Verifique com seu instrutor se **todos os sistemas** estão funcionando antes de continuar.
-- Consulte o guia [environment-setup](/environment-setup) para obter as etapas de criação da chave de API, configuração do projeto e configurações relacionadas.
-- Se você for um instrutor que ministra este laboratório, consulte os **Guias do instrutor** para configurar todos os ambientes e sistemas.
+- Todos os requisitos foram atendidos.
+
 
 ## Agent Lab - watsonx.ai
 
@@ -151,7 +150,12 @@ Este agente foi projetado para pesquisar um produto específico e recuperar seus
    ```
    ![Create from scratch](assets/product_scratch.png)
 
-4. Após a criação do agente, navegue até a página Configuração do agente.
+
+4. Após a criação do agente, altere o modelo e escolha o estilo
+![Create Agent](assets/wxo_product_config_1.png)
+
+
+5. Após a criação do agente, navegue até a página Configuração do agente.
 
 Descrição:
    ```
@@ -159,21 +163,21 @@ Descrição:
    ```
    ![Knowledge](assets/product_knowledge.png)
 
-5. Role para baixo até a seção Conhecimento e, na seção Documento, clique no botão Carregar arquivo e carregue [o catálogo de produtos](../../anexos/businessautomation/ABC_Motor_Product_Catalog_ptbr.pdf).
+6. Role para baixo até a seção Conhecimento e, na seção Documento, clique no botão Carregar arquivo e carregue [o catálogo de produtos](../../anexos/businessautomation/ABC_Motor_Product_Catalog_ptbr.pdf).
 ![Upload file](assets/upload_file.png)
 
-6. Role para baixo até a seção Conjunto de ferramentas e, na seção Agentes, clique no botão Adicionar agente.
+7. Role para baixo até a seção Conjunto de ferramentas e, na seção Agentes, clique no botão Adicionar agente.
 ![Add Agent](assets/add_agent_pa.png)
 
-7. No menu pop-up, selecione Importar.
+8. No menu pop-up, selecione Importar.
 ![Add from local instance](assets/import_ca.png)
 
 > **Observação:** agora estamos adicionando o Agente de Comparação (um agente externo) ao Agente de Produto, permitindo que ele delegue tarefas a eles.
 
-8. Na próxima página, certifique-se de que a opção Agente Externo esteja selecionada (como mostrado na imagem 1 abaixo). Se ainda não estiver selecionada, selecione-a e clique no botão Avançar (como mostrado na imagem 2).
+9. Na próxima página, certifique-se de que a opção Agente Externo esteja selecionada (como mostrado na imagem 1 abaixo). Se ainda não estiver selecionada, selecione-a e clique no botão Avançar (como mostrado na imagem 2).
 ![Select External Agent](assets/external_agent_select.png)
 
-9. Na próxima página, insira as seguintes informações:
+10. Na próxima página, insira as seguintes informações:
       1. Fornecer: No menu selecione watsonx.ai.
       2. API key: Enter the watsonx.ai API key.
       3. Service instance URL: Insira a URL do ponto de extremidade público do agente que copiamos na etapa 6.
@@ -187,10 +191,10 @@ Descrição:
    ```
    ![External Agent](assets/external_agent_setup.png)
 
-10. Depois que os agentes delegados forem adicionados, eles aparecerão conforme mostrado na imagem abaixo.
+11. Depois que os agentes delegados forem adicionados, eles aparecerão conforme mostrado na imagem abaixo.
 ![Delegation Agent](assets/agent_appear_delegation.png)
 
-11. Role para baixo até a seção Behavior, adicione a descrição mostrada na imagem como 1 e clique no botão Implantar, conforme mostrado na imagem como 2.
+12. Role para baixo até a seção Behavior, adicione a descrição mostrada na imagem como 1 e clique no botão Implantar, conforme mostrado na imagem como 2.
 
       Para o Agente do Produto, use a descrição abaixo na Seção Behavior.
 

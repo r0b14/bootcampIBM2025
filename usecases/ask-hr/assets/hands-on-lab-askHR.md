@@ -61,7 +61,15 @@ Clique em **Create**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step4.png">
 
-5. Role a tela para baixo até a seção **Knowledge**. Copie a seguinte descrição na seção **Knowledge Description**:
+5. Clique na seta para baixo ao lado do Modelo. Selecione o Modelo "llama-3-405b-instruct".
+
+<img width="1000" alt="image" src="hands-on-lab-assets/step_4_v2.png">
+
+6. Selecione "Default" na seção Agent style.
+
+<img width="1000" alt="image" src="hands-on-lab-assets/step_5_v2.png">
+
+6. Role a tela para baixo até a seção **Knowledge**. Copie a seguinte descrição na seção **Knowledge Description**:
 
 ```
 Esta base de conhecimento aborda os benefícios dos funcionários da empresa, incluindo licenças-maternidade, política de animais de estimação, acordos de trabalho flexíveis e pagamento de empréstimos estudantis.
@@ -71,31 +79,31 @@ Clique em  **Upload files**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step5.png">
 
-6. Drag and drop the [Benefícios para funcionários](../../../anexos/rh/Employee-Benefits_ptbr.pdf) e clique em **Upload**:
+7. Drag and drop the [Benefícios para funcionários](../../../anexos/rh/Employee-Benefits_ptbr.pdf) e clique em **Upload**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step6.png">  
 
-7. Aguarde até que o arquivo seja carregado com sucesso e verifique novamente se ele agora é exibido na seção Knowledge:
+8. Aguarde até que o arquivo seja carregado com sucesso e verifique novamente se ele agora é exibido na seção Knowledge:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step7.png">  
 
-8. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
+9. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step8.png">
 
-9. Selecione **Import**:
+10. Selecione **Import**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step13.png">
 
-10. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (fornecido a você pelo instrutor), então clique em **Next**:
+11. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (fornecido a você pelo instrutor), então clique em **Next**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step10.png">    
 
-11. Selecione todas as operações e clique em **Done**:
+12. Selecione todas as operações e clique em **Done**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step11.png">
 
-12. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
+13. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
 
 ```
 Use sua base de conhecimento para responder a perguntas gerais sobre benefícios para funcionários.
@@ -109,7 +117,7 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 
  <img width="1000" alt="image" src="hands-on-lab-assets/hr_step12.png">
 
-13. Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
+14. Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
 
 > IMPORTANTE: Quando o agente perguntar seu nome você deve utilizar qualquer um disponível em [Planilha de usuários](../../../anexos/rh/users_data.xlsx).
 
@@ -137,14 +145,14 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
-14. Depois de validar as respostas, clique em **Deploy** no canto superior direito para implantar seu agente:
+15. Depois de validar as respostas, clique em **Deploy** no canto superior direito para implantar seu agente:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step14.png">
 
-15. Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
+16. Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step15.png">
 
-16. Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente:
+17. Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step16.png">
