@@ -335,13 +335,13 @@ Este agente pode pesquisar na web para recuperar informações relacionadas à c
 
 ![wxo web search agent tool import operations](images/websearch-duckduckgo.png) 
 
-31- ANeste ponto, você verá a ferramenta importada na subseção Ferramentas, o que significa que ela está disponível para o **Agente de Pesquisa na Web** usar essas ferramentas na execução de tarefas que exigem pesquisas na web e recuperação de dados relacionados à consulta do usuário.
+31- Neste ponto, você verá a ferramenta importada na subseção Ferramentas, o que significa que ela está disponível para o **Agente de Pesquisa na Web** usar essas ferramentas na execução de tarefas que exigem pesquisas na web e recuperação de dados relacionados à consulta do usuário.
 
 32- Role mais para baixo até a seção **Behavior** da página de configuração do agente e adicione as seguintes **Instruções** para ajudar a orientar o comportamento do agente.
 
 Instruções: 
 ```
-Para informações sobre notícias recentes ou mais recentes, use a ferramenta de busca Brave. Além disso, para consultas gerais, onde as informações estão disponíveis online e podem ser recuperadas por meio de uma busca na web, use a ferramenta de busca DuckDuckGo.
+Para informações sobre notícias recentes ou mais recentes, use a ferramenta de busca Brave. Além disso, para consultas gerais, onde as informações estão disponíveis online e podem ser recuperadas por meio de uma busca na web, use a ferramenta de busca Tavily.
 ```
 
 Em seguida, teste a funcionalidade do agente fazendo uma pergunta como ```Você pode mostrar os principais executivos da Amazon?``` e observe a resposta do agente. Clique no link **Show Reasoning** (indicado pela seta vermelha) e observe como o agente está invocando corretamente a **DuckDuckGo Search Tool**  para recuperar informações relevantes.
