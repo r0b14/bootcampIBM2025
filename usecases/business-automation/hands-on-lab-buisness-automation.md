@@ -17,8 +17,6 @@
 
 
 
-[![Botão PDF](https://img.shields.io/badge/Clique%20aqui%20para%20abrir%20em%20PDF-red?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](../../anexos/businessautomation/AgenticAI-BusinessAutomation-LabGuide.pdf)
-
 
 ## 🏛 Arquitetura  
 
