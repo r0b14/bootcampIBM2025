@@ -14,7 +14,7 @@ https://ibm.biz/BdeEFb
 
 - Será gerada uma estrutura de diretórios conforme figura abaixo. Cada pasta contém os arquivos necessários para os laboratórios correspondentes.
 
-<img width="1000" alt="image" src="estrutura.png">
+<img width="1000" alt="image" src="estrutura1.png">
 
 3. Anote as informações abaixo ou deixe está página aberta para poder copiar os dados necessários durante a execução dos labs <br>
 
