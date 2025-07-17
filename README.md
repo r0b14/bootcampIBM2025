@@ -24,14 +24,16 @@ O objetivo é simples: te deixar à vontade com o Watson Orchestrate, entendendo
 
 Então, aproveite o conteúdo, explore bastante e, sempre que possível, experimente por conta própria. Bora começar?
 
+PASSO 1: Clique no botão abaixo para obter as informações necessárias durante a execução dos laboratórios<br>
 <p>
   <a href="docs/req/turma1/labs.md" target="_blank">
-    <img src="https://img.shields.io/badge/👩‍🎓👨‍🎓 TURMA01%20-blue?style=for-the-badge" alt="Grupo 1">
+    <img src="https://img.shields.io/badge/👩‍🎓👨‍🎓 LABS%20-blue?style=for-the-badge" alt="Grupo 1">
   </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
+PASSO 2: Faça o setup inicial <br>
 [SETUP INICIAL - COMEÇAR POR AQUI](usecases/setup.md)<br>
 
+PASSO 3: Escolha o caso de uso e mãos a obra <br>
 
 [1. Assistente Inteligente](usecases/intelligent-assistant/README.md)<br>
 [2. AskRH](usecases/ask-hr/README.md)<br>
