@@ -76,7 +76,7 @@ O agente de informações buscará notícias e diferentes artigos e usará essas
   - Clique **Create** 
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/information-agent/1-ia.png">
 
-- Escolha o `model` do `information_agent`, Deixe os padrões para **Profile** e **Knowledge**. .
+- Escolha o `model` Llama-3-2-90b-vision-instruct do `information_agent` , Deixe os padrões para **Profile** e **Knowledge**. .
 
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/information-agent/2-ia.png">
 
@@ -148,7 +148,7 @@ O agente de Reclamações do Cliente permitirá que os clientes consultem o stat
 <img width="1000" alt="image" src="./screenshots_hands_on_lab/customer/customer-1.png">
   - Clique **Create**
 
-- Selecione `Model`. Altere o modelo ou mantenha-o como padrão.
+- Selecione `Model`. Mantenha-o como llama-3-2-90b-vision-instruct.
 
 <img width="1000" alt="image" src="./screenshots_hands_on_lab/customer/customer-2.png">
 

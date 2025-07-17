@@ -56,11 +56,8 @@ Clique em **Create**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step4.png">
 
-5. Clique na seta para baixo ao lado do Modelo. Selecione o Modelo "llama-3-405b-instruct".
 
-<img width="1000" alt="image" src="hands-on-lab-assets/step_4_v2.png">
-
-6. Selecione "Default" na seção Agent style.
+5. Selecione "Default" na seção Agent style.
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_5_v2.png">
 
