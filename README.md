@@ -1,5 +1,6 @@
-# 🤖 watsonx Agentic AI Bootcamp
-📍 Brasília, Brazil - 22/07/2025
+# 🤖 watsonx Agentic AI Bootcamp 
+![alt text](image-1.png) Banco do Brasil
+📍 Brasília, Brazil - 24/07/2025
 
 
 
