@@ -69,7 +69,7 @@ Clique em **Create**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_7_v3.png">
 
-8. Clique e arraste o arquivo de Benefícios para funcionários (Arquivo "Employee-Benefits_ptbr.pdf" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) e clique em **Upload**:
+8. Clique e arraste o arquivo de Benefícios para funcionários (Arquivo "Employee-Benefits_ptbr.pdf" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) e clique em **Next**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_8_v3.png">  
 
@@ -77,33 +77,29 @@ Clique em **Create**:
 
 ```
 Esta base de conhecimento aborda os benefícios dos funcionários da empresa, incluindo licenças-maternidade, política de animais de estimação, acordos de trabalho flexíveis e pagamento de empréstimos estudantis.
-```
+``` 
 
+10. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
 
+<img width="1000" alt="image" src="hands-on-lab-assets/step_9_v3.png">
 
-
-
-
-
- 
-
-9. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
-
-<img width="1000" alt="image" src="hands-on-lab-assets/hr_step8.png">
-
-10. Selecione **Import**:
+11. Selecione **Import**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step13.png">
 
-11. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (Arquivo "hr.yaml" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) , então clique em **Next**:
+12. Selecione **Import from file**:
+
+<img width="1000" alt="image" src="hands-on-lab-assets/step_11_v3.png">
+
+13. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (Arquivo "hr.yaml" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) , então clique em **Next**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step10.png">    
 
-12. Selecione todas as operações e clique em **Done**:
+14. Selecione todas as operações e clique em **Done**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step11.png">
 
-13. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
+15. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
 
 ```
 Use sua base de conhecimento para responder a perguntas gerais sobre benefícios para funcionários.
@@ -117,7 +113,7 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 
  <img width="1000" alt="image" src="hands-on-lab-assets/hr_step12.png">
 
-14. Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
+16. Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
 
 > IMPORTANTE: Quando o agente perguntar seu nome você deve utilizar qualquer um disponível em na planilha de usuários (Arquivo "users_data.xlsx" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) 
 
@@ -145,14 +141,14 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
-15. Depois de validar as respostas, clique em **Deploy** no canto superior direito para implantar seu agente:
+17. Depois de validar as respostas, clique em **Deploy** no canto superior direito para implantar seu agente:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step14.png">
 
-16. Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
+18. Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step15.png">
 
-17. Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente:
+19. Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step16.png">
