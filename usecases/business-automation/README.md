@@ -53,3 +53,7 @@ Este caso de uso utiliza as capacidades de um agente do watsonx Orchestrate para
 Você encontra instruções passo a passo aqui:
 
 [Guia prático passo a passo](./hands-on-lab-buisness-automation.md)
+
+## Demo Video
+
+https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/453165/79bf26c4-69c8-4096-ab88-5f9fc38791e5
