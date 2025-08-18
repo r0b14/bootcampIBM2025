@@ -1,5 +1,6 @@
 # 🤖 watsonx Agentic AI Bootcamp 
-📍 Banco do Brasil - 13/08/2025
+# <img src="docs/images/crist.png" width="20" height="20"> Rio de Janeiro - 26/08/2025
+
 
 
 
