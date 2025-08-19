@@ -4,31 +4,30 @@
 
 - [🔍Introdução](#-introdução)
 - [📊 Operações Bancárias](#-operações-bancárias)
-  - [Cenário do Usuário Atual](#current-user-scenario)
-  - [Futuro com IA Agentic](#future-with-agentic-ai)
-- [🏗️ Target Architecture with Agentic AI](#%EF%B8%8F-target-architecture-with-agentic-ai)
-- [🔧 Lab Instructions](#-lab-instructions)
-  - [Prerequisites](#prerequisites)
-  - [Lab Steps Overview](#lab-steps-overview)
-- [Connect to your assigned Watsonx Orchestrate instance](#connect-to-your-assigned-watsonx-orchestrate-instance)
-- [GFM Back Office Agent](#gfm-back-office-agent)
-  - [Create the GFM Back Office Agent](#create-the-gfm-back-office-agent)
-  - [Test and deploy the GFM Back Office Agent](#test-and-deploy-the-gfm-back-office-agent)
-- [GFM Teller Agent](#gfm-teller-agent)
-  - [Create GFM Teller Agent](#create-gfm-teller-agent)
-  - [Test and deploy the GFM Teller Agent](#test-and-deploy-the-gfm-teller-agent)
-- [GFM Product Information Agent](#gfm-product-information-agent)
-  - [Create GFM Product Information Agent](#create-gfm-product-information-agent)
-  - [Test and deploy the GFM Product Information Agent](#test-and-deploy-the-gfm-product-information-agent)
-- [GFM Bank Orchestrator Agent](#gfm-bank-orchestrator-agent)
-  - [Create GFM Bank Orchestrator Agent](#create-gfm-bank-orchestrator-agent)
-  - [Add collaborative Agents](#add-collaborative-agents)
-  - [Test and deploy the GFM Bank Orchestrator Agent](#test-and-deploy-the-gfm-bank-orchestrator-agent)
-- [Test Your Agentic AI Banking Solution](#test-your-agentic-ai-banking-solution)
-- [🎉 Congratulations! You have completed the lab!](#-congratulations-you-have-completed-the-lab)
-- [🔄 Challenge Extensions](#-challenge-extensions)
-- [📚 Resources](#-resources)
-- [📄 IBM Sample Code Disclaimer](#-ibm-sample-code-disclaimer)
+  - [Cenário do Usuário Atual](#Cenário-do-Usuário-Atual)
+  - [Futuro com Agentic AI](#Futuro-com-Agenticai)
+- [🏗️ Target Architecture with Agentic AI](#%EF%B8%8F-arquitetura-de-destino-com-agentic-ai)
+- [🔧 Instruções de Laboratório](#-Instruções-de-Laboratório)
+  - [Pré-requisitos](#pré-requisitos)
+  - [Visão Geral das Etapas do Laboratório](#Visão-Geral-das-Etapas-do-Laboratório)
+- [Conecte-se à sua instância atribuída do Watsonx Orchestrate](#Conecte-se-à-sua-instância-atribuída-do-Watsonx-Orchestrate)
+- [Agente de Back Office GFM](#Agente-de-Back-Office-GFM)
+  - [Crie o Agente de Back Office GFM](#Crie-o-Agente-de-Back-Office-GFM)
+  - [Teste e implante o Agente de Back Office GFM](#Teste-e-implante-o-Agente-de-Back-Office-GFM)
+- [Agente de caixa GFM](#Agente-de-caixa-GFM)
+  - [Criar Agente de Caixa GFM](#Criar-Agente-de-Caixa-GFM)
+  - [Teste e implante o Agente de Caixa GFM](#Teste-e-implante-o-Agente-de-Caixa-GFM)
+- [Agente de Informações sobre Produtos GFM](#Agente-de-Informações-sobre-Produtos-GFM)
+  - [Criar Agente de Informações do Produtos GFM](#Criar-Agente-de-Informações-sobre-Produtos-GFM)
+  - [Teste e implante o Agente de Informações do Produto GFM](#Teste-e-implante-o-Agente-de-Informações-do-Produto-GFM)
+- [Agente Orquestrador do Banco GFM](#Agente-Orquestrador-do-Banco-GFM)
+  - [Criar Agente de Orquestra do Banco GFM](#Crie-o-Agente-Orquestrador-do-Banco-GFM)
+  - [Adicione Agentes colaborativos](#Adicione-Agentes-colaborativos)
+  - [Teste e implante o Agente Orquestrador do Banco GFM](#Teste-e-implante-o-Agente-Orquestrador-do-Banco-GFM)
+- [Teste Sua Solução Bancária De Agentic IA](#Teste-Sua-Solução-Bancária-De-Agentic-AI)
+- [🎉 Parabéns. Você completou o laboratório](#-Parabéns)
+- [📚 Recursos](#-recursos)
+- [📄 Isenção de responsabilidade do código de amostra da IBM](#-ibm-sample-code-disclaimer)
 
 ## 🔍 Introdução
 
@@ -54,776 +53,776 @@ In this lab, you'll build a system of collaborating AI agents that can handle ba
 
 *Currently, GFM Bank relies on human tellers for basic transactions and back-office staff for approvals, leading to delays and inconsistent customer experiences in peak season.*
 
-### Current User Scenario
-John, a GFM Bank customer, needs to make an urgent payment of €8,000, but he only has €5,000 in his account. 
+### Cenário do Usuário Atual
+John, um cliente do GFM Bank, precisa fazer um pagamento urgente de €8.000, mas ele só tem €5.000 em sua conta. 
 
-1. John visits the bank branch and waits in line to speak with a teller
-2. The teller checks his balance and informs him he has insufficient funds
-3. John requests an overdraft of €3,000
-4. The teller must escalate the request to a back-office manager
-5. John waits again for approval
-6. Once approved, he returns to the teller to complete the transfer
-7. If John realizes he sent too much money, he needs to request a reversal, which requires another approval process
+1. John visita a agência bancária e espera na fila para falar com um caixa
+2. O caixa verifica seu saldo e o informa que ele não tem fundos suficientes
+3. John solicita um cheque especial de €3.000
+4. O caixa deve encaminhar a solicitação para um gerente de back-office
+5. John espera novamente pela aprovação
+6. Uma vez aprovado, ele retorna ao caixa para concluir a transferência
+7. Se John perceber que enviou muito dinheiro, ele precisa solicitar uma reversão, o que requer outro processo de aprovação
 
-This process typically takes 1-2 hours of John's time and involves multiple staff members.
+Esse processo normalmente leva de 1 a 2 horas do tempo de John e envolve vários membros da equipe.
 
-### Future with Agentic AI
-With the AI-powered system you'll build today:
+### Futuro com IA Agentic
+Com o sistema alimentado por IA, você construirá hoje:
 
-1. John messages the GFM Bank Orchestrator Agent
-2. He requests to transfer €8,000
-3. The Teller Agent checks his balance and informs him of insufficient funds
-4. John requests an overdraft
-5. The Teller Agent routes this request to the Back Office Agent
-6. Upon approval (if the request is less than €10,000) from the Back Office Agent, the Teller Agent completes the transfer
-7. If John needs a reversal, it's handled quickly within the same conversation
+1. John envia uma mensagem para o Agente Orquestrador do Banco GFM
+2. Ele pede para transferir €8.000
+3. O Agente de Caixa verifica seu saldo e o informa sobre fundos insuficientes
+4. John solicita um cheque especial
+5. O Agente de Caixa encaminha esta solicitação para o Agente de Back Office
+6. Após a aprovação (se a solicitação for inferior a € 10.000) do Agente de Back Office, o Agente de Caixa conclui a transferência
+7. Se John precisar de uma reversão, ela é tratada rapidamente dentro da mesma conversa. 
 
-The entire process takes minutes instead of hours, and John never has to leave his home.
+Todo o processo leva minutos em vez de horas, e John nunca precisa sair de casa.
 
-## 🏗️ Target Architecture with Agentic AI
+## 🏗️ Arquitetura de destino com Agentic AI
 
 ![Architecture](banking-backoffice-architecture.png)
 
-## 🔧 Lab Instructions
+## 🔧 Instruções de Laboratório
 
-In this lab, you'll build a complete Agentic AI solution for GFM Bank using watsonx Orchestrate. You'll create multiple specialized agents that work together to handle customer requests.
+Neste laboratório, você construirá uma solução completa de IA Agentic para o GFM Bank usando o watsonx Orchestrate. Você criará vários agentes especializados que trabalham juntos para lidar com solicitações de clientes.
 
-### Prerequisites
-- Check with your instructor to ensure all systems are up and running before you continue
-- Validate that you have access to the right TechZone environment for this lab
-- Validate that you have access to a credentials file that your instructor will share with you before starting the labs
-- If you're an instructor running this lab, check the Instructor's guides to set up all environments and systems
-- Basic understanding of banking operations (e.g., transfer, balance check, overdraft...)
-- Familiarity with AI agent concepts (e.g., instructions, tools, collaborators...)
+### Pré-requisitos
+- Compreensão básica das operações bancárias (por exemplo, transferência, verificação de saldo, cheque especial...)
+- Familiaridade com conceitos de agentes de IA (por exemplo, instruções, ferramentas, colaboradores...)
 
-### Lab Steps Overview
+### Visão Geral das Etapas do Laboratório
 
-1. Connect to **watsonx Orchestrate**
-1. Create the GFM Back Office Agent
-1. Create the GFM Teller Agent
-1. Create the GFM Product Information Agent
-1. Create the GFM Bank Orchestrator Agent
-1. Test the complete solution
+1. Conecte-se ao **watsonx Orchestrate**
+2. Crie o Agente de Back Office GFM
+3. Crie o Agente de Caixa GFM
+4. Crie o Agente de Informações do Produto GFM
+5. Crie o Agente Orquestrador do Banco GFM
+6. Teste a solução completa
 
-### 🚀🚀🚀 Let's get started! 🚀🚀🚀 <!-- omit in toc -->
+### 🚀🚀🚀 Vamos começar! 🚀🚀🚀 <!-- omit in toc -->
 
-### Connect to your assigned Watsonx Orchestrate instance
+### Conecte-se à sua instância atribuída do Watsonx Orchestrate
 
-- Log in to IBM Cloud (cloud.ibm.com). Navigate to the top-left hamburger menu, then to the Resource List. Open the AI/Machine Learning section. You should see a **watsonx Orchestrate** service, click to open
+- Faça login no IBM Cloud (cloud.ibm.com). Navegue até o menu de hambúrguer superior esquerdo e, em seguida, até a Lista de Recursos. Abra a seção AI/Aprendizagem de Máquina. Você deve ver um serviço **watsonx Orchestrate**, clique para abrir
 
   ![Watsonx Orchestrate service](./images/i1.png)
 
-- Click the **Launch watsonx Orchestrate** button
+- Clique no botão **Launch watsonx Orchestrate** 
 
   ![Launch Watsonx Orchestrate](./images/i2.png)
 
-- Welcome to watsonx Orchestrate. Open the hamburger menu, click on **Build** -> **Agent Builder**
+- Bem-vindo ao watsonx Orchestrate. Abra o menu de hambúrguer, clique em **Build** -> **Agent Builder**
 
   ![Agent Builder](./images/i3.png)
 
-### GFM Back Office Agent
+### Agente de Back Office GFM
 
-This Agent handles special banking operations for GFM Bank that require elevated privileges, such as approving overdrafts and processing fee reversals. Operates from the GFM Bank operations center.
+Este Agente lida com operações bancárias especiais para o GFM Bank que exigem privilégios elevados, como aprovação de cheque especial e processamento de reversões de taxas. Opera a partir do centro de operações do GFM Bank.
 
-#### Create the GFM Back Office Agent
+#### Crie o Agente de Back Office GFM
 
-- Click on **Create Agent**
+- Clique em **Create Agent**
 
   ![Create Agent](./backoffice_ag_imgs/i1.png)
 
-- Follow the steps according to the screenshot below.
-  - Select **Create from scratch**
-  - Name the Agent:
+- Siga os passos de acordo com a captura de tela abaixo.
+  - Selecione **Create from scratch**
+  - Nomeie o Agente:
     ```
     GFM Backoffice
     ```
-  - Add the following to **Description**:
+  - Adicione o seguinte ao **Description**:
     ```
-    You are the GFM Bank Back Office Agent, responsible for handling special banking operations that require elevated privileges. You work for GFM Bank operations center and have the authority to approve overdrafts and process fee reversals.
+  Você é o Agente de Back Office do GFM Bank, responsável por lidar com operações bancárias especiais que exigem privilégios elevados. Você trabalha no centro de operações do GFM Bank e tem autoridade para aprovar saques a descoberto e processar estornos de taxas.
 
-    Your Capabilities:
-    1. Approve overdraft limits using the `approve-overdraft` tool with an IBAN and amount (0-10,000 EUR)
-    2. Process fee reversals using the `fee-reversal` tool with an IBAN and amount
-    3. Special exceptions or adjustments
-    4. Any operations requiring elevated privileges
-    5. Provide refunds if requested
+  Suas competências:
+1. Aprovar limites de saque a descoberto usando a ferramenta `approve-overdraft` com IBAN e valor (0-10.000 EUR)
+2. Processar estornos de taxas usando a ferramenta `fee-reversal` com IBAN e valor
+3. Exceções ou ajustes especiais
+4. Quaisquer operações que exijam privilégios elevados
+5. Fornecer reembolsos, se solicitado
     ```
-  - Click **Create**
+    
+  - Clique **Create**
  
     ![Back Office Agent Description](./backoffice_ag_imgs/i2.png)
 
-- On the GFM Back Office page, select the "llama-3-405b-instruct" model from the dropdown menu at the top middle of the page.
+- Na página GFM Back Office, selecione o modelo "llama-3-405b-instruct" no menu suspenso no meio superior da página.
 
   ![Select Model](./backoffice_ag_imgs/i15.png)
 
-- Take the defaults for **Profile**, **Voice modality**, and **Knowledge** sections.
-- Under the **Toolset** section, click on the **Add tool** button.
+- Mantenha os padrões para as seções **Profile**, **Voice modality**, and **Knowledge**.
+- Na seção **Toolset**, clique no botão **Add tool**.
 
   ![Add Tool](./backoffice_ag_imgs/i3.png)
 
-- Click on **Import**.
+- Clique em **Import**.
 
   ![Import file](./backoffice_ag_imgs/i4.png)
 
-- Click on **Import from file**
+- Clique em  **Import from file**
 
   ![Import from file](./backoffice_ag_imgs/i16.png)
 
-- Upload the `bank.json` API spec provided by the instructor.
+- Faça Upload do arquivo de API `bank.json` API (o arquivo está disponível na pasta "6. Banking Backoffice" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
 
   ![Upload spec file](./images/i38.png)
 
-- Once the file is uploaded, select **Next**. Select the "Process a fee reversal to an account" and "Approve or modify overdraft limit for an account" **Operations** and click **Done**
+- Assim que o arquivo for carregado, selecione **Next**. Seleciona as **Operações**  the "Processar uma reversão de taxa para uma conta" and Aprovar ou modificar o limite de cheque especial para uma conta" **Operations** e clique em **Done**
 
   ![Select Tools](./backoffice_ag_imgs/i7.png)
 
-- You should see the following under **Tools**:
+- Você deve ver o seguinte em **Tools**:
 
   ![Loaded tools](./backoffice_ag_imgs/i9.png)
 
-- In the **Behavior** section. Add the following text to the **Instructions**:
-  ```    
-  Key Instructions:
-  - Only execute operations that customers explicitly request
-  - Verify details before performing any operation
-  - Confirm all completed operations
-  - Explain any errors or limitations clearly
-  
-  Rules and Limitations:
-  - Overdraft limits must be between 1000 and 10,000 EUR
-  - Only process fee reversals when the customer provides a clear business reason
-  - Always verify the IBAN before processing any operation
-  - Maintain a professional and efficient demeanor
-  
-  Response Guidelines:
-  - For overdraft approvals: Confirm when overdraft has been approved or denied and display new limit and account details
-    Sample response:
-    Your overdraft for the amount of 2,000 EUR has been approved
-  - For fee reversals: Confirm the amount reversed and the new account balance
-  - For errors: Explain the issue clearly and suggest alternative solutions when appropriate
-  - Always use clear, concise language that explains what was done
-  
-  Maintain a professional tone with appropriate formality for a banking representative with elevated privileges.
-  ```
+- Na seção **Behavior** . Adicione o seguinte texto às **Instruções**: 
+```
+  Instruções Principais:
+- Execute somente operações explicitamente solicitadas pelos clientes
+- Verifique os detalhes antes de realizar qualquer operação
+- Confirme todas as operações concluídas
+- Explique quaisquer erros ou limitações claramente
 
-- Since this agent will be a collaborator agent and will be invoked by GFM Bank Orchestrator, we don't want to enable it for direct chat on the chat homepage. Disable the **Show agent** feature in the **Channels** section.
+Regras e Limitações:
+- Os limites de cheque especial devem estar entre 1.000 e 10.000 euros
+- Processe estornos de taxas somente quando o cliente apresentar uma justificativa comercial clara
+- Sempre verifique o IBAN antes de processar qualquer operação
+- Mantenha uma postura profissional e eficiente
+
+Diretrizes de Resposta:
+- Para aprovações de cheque especial: Confirme quando o cheque especial foi aprovado ou negado e exiba o novo limite e os detalhes da conta
+Exemplo de resposta:
+Seu cheque especial no valor de 2.000 euros foi aprovado
+- Para estornos de taxas: Confirme o valor estornado e o novo saldo da conta
+- Em caso de erros: Explique o problema claramente e sugira soluções alternativas quando apropriado
+- Sempre use uma linguagem clara e concisa que explique o que foi feito
+
+Mantenha um tom profissional com a formalidade apropriada para um representante bancário com privilégios elevados.
+```
+
+  
+- Como este agente será um agente colaborador e será invocado pelo GFM Bank Orchestrator, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desatile o recurso **Show agent** na seção **Channels**.
 
   ![Instructions](./backoffice_ag_imgs/i11.png)
 
-#### Test and deploy the GFM Back Office Agent
+#### Teste e implante o Agente de Back Office GFM
 
-- In the preview window on the right, test with the following query:
+- Na janela de visualização à direita, teste com a seguinte consulta:
   ```
-  I want to request an overdraft of 1000 EURO for my account IBAN DE89320895326389021994
+  Quero solicitar um saldo negativo de 1000 EUROS para minha conta IBAN DE89320895326389021994
   ```
 
-- Click on **Deploy** to deploy the agent
+- Clique em **Deploy** 
 
   ![Deploy](./backoffice_ag_imgs/i10.png)
 
-- On the **Deploy Agent** page, click on **Deploy**
+- Na página **Deploy Agent**, clique em **Deploy**
 
   ![Deploy agent](./backoffice_ag_imgs/i13.png)
 
-### GFM Teller Agent
+### Agente de caixa GFM
 
-This Agent assists customers with everyday banking tasks such as balance inquiries and money transfers. Responds only to what is asked, avoiding assumptions or proactive actions.
+Este Agente auxilia os clientes com tarefas bancárias diárias, como consultas de saldo e transferências de dinheiro. Responde apenas ao que é perguntado, evitando suposições ou ações proativas.
 
-#### Create GFM Teller Agent
+#### Criar Agente de Caixa GFM
 
-- Click on hamburger menu, then **Build** -> **Agent Builder**
+- Clique no menu de hambúrguer, depois em  **Build** -> **Agent Builder**
 
   ![Agent Builder](./images/i3.png)
 
-- Click on **Create Agent**
+- Clique em **Create Agent**
 
   ![Create Agent](./teller_ag_imgs/i2.png)
 
-- Follow the steps according to the screenshot below.
-  - Select **Create from scratch**
-  - Name the Agent
+- Siga os passos de acordo com a captura de tela abaixo.
+  - Selecione **Create from scratch**
+  - Nomeie o Agente
     ```
-    GFM Teller
+    Agente de caixa GFM
     ```
-  - Add the following to **Description**:
+  - Adicione o seguinte à Descrição: **Description**:
     ```
-    You are a GFM Bank Teller Agent, responsible for providing accurate, professional assistance with banking transactions such as balance inquiries and transfers. You respond strictly to what the customer asks, without assumptions or suggestions.
-    
-    You can:
-    
-    Check account balances using the balance-inquiry tool with an IBAN
-    
-    Process money transfers using the iban-transfer tool with source IBAN, destination IBAN, and amount
-    
-    You format the balance responses using structured output, including a clean list or table of recent transactions to improve readability.
-    
-    Route to Back Office Agent when:
-    Customer requests overdraft approval or changes
-    
-    Customer asks for fee reversals or refunds
-    
-    Customer needs special exceptions or adjustments
-    
-    Intent involves operations requiring elevated privileges
-    
-    Customer uses example phrases: "need an overdraft," "reverse a fee," "request a refund"
+    Você é um Agente de Caixa do Banco GFM, responsável por fornecer assistência precisa e profissional em transações bancárias, como consultas de saldo e transferências. Você responde estritamente às solicitações do cliente, sem suposições ou sugestões.
+
+    Você pode:
+
+    Verificar saldos de contas usando a ferramenta de consulta de saldo com um IBAN
+
+    Processar transferências de dinheiro usando a ferramenta de transferência iban com IBAN de origem, IBAN de destino e valor
+
+    Você formata as respostas de saldo usando uma saída estruturada, incluindo uma lista ou tabela limpa de transações recentes para melhorar a legibilidade.
+
+    Encaminhar para o Agente de Back Office quando:
+    O cliente solicitar aprovação ou alterações de cheque especial
+
+    O cliente solicitar estornos ou reembolsos de taxas
+
+    O cliente precisar de exceções ou ajustes especiais
+
+    A intenção envolve operações que exigem privilégios elevados
+
+    O cliente usa frases de exemplo: "precisa de um cheque especial", "estornar uma taxa", "solicitar um reembolso"
     ```
-  - Click **Create**
+  - Clique **Create**
  
     ![Create agent](./teller_ag_imgs/i5.png)
 
-- On the `GFM Teller` page, select the "llama-3-405b-instruct" model from the dropdown menu at the top middle of the page.
+- Na página do `Agente de Caixa GFM`, selecione o modelo "llama-3-405b-instruct" no menu suspenso no meio superior da página.
 
   ![Select model](./teller_ag_imgs/i20.png)
 
-- Take the defaults for **Profile**, **Voice modality**, and **Knowledge** sections. Under the **Toolset** section, click on the **Add tool** button.
+- Use os padrões para as seções **Profile**, **Voice modality**, e **Knowledge**. Na seção **Toolset**, clique no botão **Add tool**.
 
   ![Add Tool](./teller_ag_imgs/i6.png)
 
-- Click on **Import**.
+- Clique em **Import**.
 
   ![Import](./teller_ag_imgs/i7.png)
 
-- Click on **Import from file**.
+- Clique em **Import from file**.
 
   ![Import from file](./teller_ag_imgs/i21.png)
 
-- Upload the `bank.json` API spec provided by the instructor. Once the file is uploaded, select **Next**.
+- Faça Upload do arquivo de API `bank.json` API (o arquivo está disponível na pasta "6. Banking Backoffice" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada e clique em **Next**.
   
   ![Upload spec file](./images/i38.png)
 
-- Select the "Check account balance by IBAN" and "Transfer Money between IBANs" **Operations** and click **Done**.
+- Selecione as **operações** "Verificar saldo da conta por IBAN" e "Transferir dinheiro entre IBANs" e clique **Done**.
 
   ![Select Operations](./teller_ag_imgs/i10.png)
 
-- You should see the following under **Tools**:
+- Você deve ver o seguinte em  **Tools**:
   
   ![Uploaded tools](./teller_ag_imgs/i12.png)
 
-- In the **Agents** section, click on **Add Agent**
+- Na seção **Agents**, clique em **Add Agent**
 
   ![Uploaded tools](./teller_ag_imgs/i16.png)
 
-- Click **Add from local instance**
+- Clique **Add from local instance**
 
   ![Uploaded tools](./teller_ag_imgs/i17.png)
 
-- Select **GFM Backoffice** and then the **Add to Agent button**
+- Selecione **GFM Backoffice** e depois **Add to Agent button**
 
   ![Uploaded tools](./teller_ag_imgs/i18.png)
 
   ![Uploaded tools](./teller_ag_imgs/i19.png)
 
-- Go to the **Behavior** section. Add the following to the **Instructions**:
+- Vá para a seção **Behavior**. Adicione o seguinte em **Instructions**:
 
   ```
-  Respond only to what the customer explicitly asks for — never anticipate or suggest next steps
-  
-  For balance inquiries:
-  
-  Display the current balance
-  
-  Display overdraft limit if available
-  
-  Display recent transactions formatted as a table or bulleted list
-  
-  End the response — do not suggest further actions
-  
-  For transfer requests:
-  
-  Confirm and process the transfer
-  
-  Report success or failure, including the new balance if successful
-  
-  For insufficient funds, report failure without suggesting overdrafts unless explicitly asked
-  
-  Do not assume intent — ask for clarification if the request is unclear
-  
-  Use clear, concise language with a professional tone
-  
-  When presenting recent transactions, use the following format:
-  
-  Sample Response Format (for Balance Inquiry)
-  Customer: "What's my account balance for IBAN DE12345678?"
-  Agent:
-  Your current balance is 500 EUR.
-  Your overdraft limit is 200 EUR.
-  
-  Recent Transactions:
-  | Date       | Type     | Amount  | Description         |
+  Responda apenas ao que o cliente solicitar explicitamente — nunca antecipe ou sugira os próximos passos.
+
+  Para consultas de saldo:
+
+  Exiba o saldo atual
+
+  Exiba o limite de cheque especial, se disponível
+
+  Exiba as transações recentes formatadas como uma tabela ou lista com marcadores
+
+  Encerre a resposta — não sugira outras ações
+
+  Para solicitações de transferência:
+
+  Confirme e processe a transferência
+
+  Relate o sucesso ou a falha, incluindo o novo saldo, se bem-sucedido
+
+  Em caso de fundos insuficientes, informe a falha sem sugerir cheque especial, a menos que explicitamente solicitado
+
+  Não presuma intenção — peça esclarecimentos se a solicitação não for clara
+
+  Use linguagem clara e concisa, com um tom profissional
+
+  Ao apresentar transações recentes, use o seguinte formato:
+
+  Formato de Resposta de Exemplo (para Consulta de Saldo)
+  Cliente: "Qual é o saldo da minha conta para o IBAN DE12345678?"
+  Agente:
+  Seu saldo atual é de 500 EUR.
+  Seu limite de cheque especial é de 200 EUR.
+
+Transações Recentes:
+  | Data       | Tipo     | Total   | Descrição         |
   |------------|----------|---------|----------------------|
   | May 16     | Withdrawal | -50 EUR | ATM Withdrawal       |
   | May 15     | Deposit   | +200 EUR | Direct Deposit       |
   | May 13     | Purchase  | -30 EUR | Grocery Store        |
-  ```
+    ```
 
-- Since this agent will be a collaborator agent and will be invoked by GFM Bank Orchestrator Agent, we don't want to enable it for direct chat on the chat homepage. Disable the **Show agent** feature.
+- Como este agente será um agente colaborador e será invocado pelo Agente Orquestrador do GFM Bank, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desatile o recurso **Show agent**.
 
   ![Show agent toggle](./teller_ag_imgs/i14.png)
 
-#### Test and deploy the GFM Teller Agent
+#### Teste e implante o Agente de Caixa GFM
 
-- In the preview window on the right, test with the following query:
+- Na janela de visualização à direita, teste com a seguinte consulta:
 ```
-What's the balance of my account IBAN DE89320895326389021994
+Qual é o saldo do IBAN da minha conta DE89320895326389021994
 ```
 
-- Click on **Deploy** to deploy the agent
+- Clique em **Deploy** 
 
   ![Deploy](./teller_ag_imgs/i13.png)
 
-- On the **Deploy Agent** screen, click on **Deploy**. The Agent is now available for others to interact with.
+- Na tela de **Deploy Agent**, clique em **Deploy**. O Agente agora está disponível para que outras pessoas interajam.
 
   ![Deploy agent](./teller_ag_imgs/i1.png)
   
-### GFM Product Information Agent
+### Agente de Informações sobre Produtos GFM
 
-This Agent acts as the trusted expert on all banking products and services offered by GFM Bank. It helps customers explore and understand available financial solutions with clarity and precision.
+Este Agente atua como especialista confiável em todos os produtos e serviços bancários oferecidos pelo GFM Bank. Ajuda os clientes a explorar e entender as soluções financeiras disponíveis com clareza e precisão.
 
-#### Create GFM Product Information Agent
+#### Criar Agente de Informações sobre Produtos GFM
 
-- Click on hamburger menu, then **Build** -> **Agent Builder**
+- Clique no menu de hambúrguer, depois em **Build** -> **Agent Builder**
 
   ![Agent Builder](./images/i3.png)
 
-- On the next screen, click on **Create Agent**
+- Na próxima tela, clique em **Create Agent**
 
   ![Create Agent](./prod_info_ag_imgs/i1.png)
 
-- Follow the steps according to the screenshot below
-  - Select **Create from scratch**
-  - Name the agent
+- Siga os passos de acordo com a captura de tela abaixo
+  - Selecione **Create from scratch**
+  - Nomeie o agente
     ```
-    GFM Product Information
+    Informações do Produto GFM
     ```
-  - Add the following to **Description**:
+  - Adicione o seguinte em **Description**:
     
     ```
-    You are the GFM Bank Products Specialist, the expert resource for all banking products and services offered by GFM Bank. Your role is to provide accurate, helpful information about banking solutions while delivering an exceptional customer experience.
-    
-    Your Expertise Covers:
-    1. Account Products – Features, fees, interest rates, and requirements for checking, savings, CDs, money market, and youth accounts.
-    
-    2. Lending Products – Info on personal loans, mortgages, auto loans, home equity, and credit builder loans including terms, rates, and eligibility.
-    
-    3. Card Services – Details about credit, debit, secured, and business cards, plus overdraft protection options.
-    
-    4. Digital Banking – Mobile and online banking tools, digital wallets, alerts, and security features.
-    
-    5. Specialized Services – International banking, wealth management, business banking, insurance, and financial planning.
+    Você é o Especialista em Produtos do GFM Bank, o recurso especializado para todos os produtos e serviços bancários oferecidos pelo GFM Bank. Sua função é fornecer informações precisas e úteis sobre soluções bancárias, proporcionando uma experiência excepcional ao cliente.
+
+Sua expertise abrange:
+1. Produtos de Conta – Recursos, tarifas, taxas de juros e requisitos para contas correntes, poupança, CDBs, mercado monetário e contas para jovens.
+
+2. Produtos de Empréstimo – Informações sobre empréstimos pessoais, financiamentos imobiliários, financiamentos para veículos, financiamento imobiliário e empréstimos para construção de crédito, incluindo termos, taxas e elegibilidade.
+
+3. Serviços de Cartão – Detalhes sobre cartões de crédito, débito, com garantia e empresariais, além de opções de proteção contra cheque especial.
+
+4. Banco Digital – Ferramentas bancárias móveis e online, carteiras digitais, alertas e recursos de segurança.
+
+5. Serviços Especializados – Serviços bancários internacionais, gestão de patrimônio, serviços bancários para empresas, seguros e planejamento financeiro.
     ```
     
-  - Click **Create**
+  - Clique **Create**
   ![Prod Agent Description](./prod_info_ag_imgs/i2.png)
 
-- On the `GFM Product Information` page, select the "llama-3-405b-instruct" model from the dropdown menu at the top middle of the page.
+- Na página do `Informações do Produto GFMe, selecione o modelo "llama-3-405b-instruct" no menu suspenso na parte superior central da página.
 
   ![Select model](./prod_info_ag_imgs/i14.png)
 
-- In the **Knowledge** section. click on **Choose knowledge**.
+- Na seção **Knowledge**. clique em **Choose knowledge**.
 
   ![Choose knowledge](./prod_info_ag_imgs/i13.png)
 
-- Click on **Upload files** and then **Next**.
+- Clique em **Upload files** e depois **Next**.
 
   ![Choose knowledge](./prod_info_ag_imgs/i12.png)
 
-- Upload the listed documents below provided by the instructor and click **Next**
+- Carregue os documentos listados abaixo fornecidos pelo instrutor e clique **Next**
 
   ```
-  list-of-prices-and-Services.pdf
-  ser-terms-conditions-debit-cards.pdf
-  Overdraft Services FAQ
+  lista-de-precos-e-servicos.pdf
+  ser-termos-condicoes-cartoes-de-debito.pdf
+  FAQ sobre serviços de cheque especial.docx
   ```
   
   ![Upload Documents](./prod_info_ag_imgs/i11.png)
 
-- In the **Description** section, add the following, then click **Save**:
+- Na seção **Description**, adicione o seguinte e depois  **Save**:
 
-  ```
-  This comprehensive knowledge base contains detailed information on GFM Bank's products, services, fees, and operational procedures, organized into the following categories:
-  
-  1. Personal Banking Accounts
-  - Checking Accounts: Types, features, minimum balances, monthly fees, fee waiver conditions
-  - Savings Accounts: Interest rates, withdrawal limitations, minimum deposit requirements
-  - Personal Account Overdraft: Eligibility, limits, application process, fees, repayment terms
-  - Youth & Student Accounts: Age requirements, special features, transition to adult accounts
-  - Account Opening Requirements: Documentation, eligibility criteria, online vs. in-branch processes
-  
-  2. Card Products & Services
-  - Debit Cards: Features, security measures, contactless payment capabilities
-  - Debit Card Terms & Conditions: Complete cardholder agreement, liabilities, dispute resolution
-  - Card Overdraft Protection: Opt-in requirements, coverage limits, associated fees
-  - Card Transaction Limits: Daily ATM withdrawal limits, purchase limits, adjustment procedures
-  - Card Security: PIN management, card replacement, fraud protection measures
-  Lost/Stolen Card Procedures: Reporting process, emergency replacement, liability limitations
-  
-  3. Digital Banking Services
-  - Mobile Banking: App features, device compatibility, security measures
-  - Online Banking: Account management, bill pay services, transfer capabilities
-  - Security Features: Authentication methods, fraud prevention, customer protection guarantees
-  
-  4. Fees & Pricing Structure
-  - Comprehensive Fee Schedule: Service charges, transaction fees, penalty fees
-  - Fee Waiver Programs: Requirements for avoiding monthly maintenance fees
-  - ATM Fee Structure: In-network vs. out-of-network fees, international ATM usage costs
-  - Investment Services Pricing: Commission schedules, management fees, account minimums
-  - Special Fee Considerations: Military discounts, senior citizen benefits, student exemptions
-  
-  5. Lending Products
-  - Personal Loans: Rates, terms, application requirements, approval timelines
-  - Home Loans: Mortgage options, equity lines, refinancing opportunities
-  - Auto Loans: New and used vehicle financing, rate structures, pre-approval process
-  - Credit Builder Products: Secured credit options, credit improvement programs
-  
-  6. International Banking
-  - Foreign Currency Services: Exchange rates, currency availability, ordering procedures
-  - International Wire Transfers: Fees, processing times, required information
-  - Foreign Transaction Policies: Card usage abroad, international fees, currency conversion rates
-  - Foreign ATM Access: Global ATM network partnerships, withdrawal limits, and associated fees
-  
-  7. Investment Services
-  - Investment Account Options: Individual accounts, retirement accounts, education savings
-  - Investment Products: Mutual funds, bonds, stocks, certificates of deposit
-  - Advisory Services: Managed account options, financial planning resources
-  - Investment Fee Structure: Management fees, transaction costs, minimum balance requirements
-  
-  8. Customer Support Resources
-  - Service Center Information: Contact numbers, operating hours, escalation procedures
-  - Branch Banking Details: Locations, hours of operation, available services
-  - Appointment Scheduling: Process for meeting with specialists, required preparation
+```
+  Esta base de conhecimento abrangente contém informações detalhadas sobre os produtos, serviços, taxas e procedimentos operacionais do GFM Bank, organizados nas seguintes categorias:
 
-  Each topic includes up-to-date information, regulatory disclosures where applicable, and internal cross-references to related products or services to facilitate comprehensive customer assistance.
-  ```
+1. Contas Bancárias Pessoais
+- Contas Correntes: Tipos, recursos, saldos mínimos, taxas mensais, condições de isenção de taxas
+- Contas Poupança: Taxas de juros, limites de saque, requisitos de depósito mínimo
+- Conta Pessoal para Cheque Especial: Elegibilidade, limites, processo de solicitação, taxas, condições de pagamento
+- Contas para Jovens e Estudantes: Requisitos de idade, recursos especiais, transição para contas para adultos
+- Requisitos para Abertura de Conta: Documentação, critérios de elegibilidade, processos online vs. na agência
+
+2. Produtos e Serviços de Cartão
+- Cartões de Débito: Recursos, medidas de segurança, recursos de pagamento por aproximação
+- Termos e Condições do Cartão de Débito: Contrato completo do titular do cartão, responsabilidades, resolução de disputas
+- Proteção contra Cheque Especial do Cartão: Requisitos de adesão, limites de cobertura, taxas associadas
+- Limites de Transações do Cartão: Limites diários de saque em caixas eletrônicos, limites de compra, procedimentos de ajuste
+- Segurança do Cartão: Gerenciamento de PIN, substituição do cartão, medidas de proteção contra fraudes
+Cartão Perdido/Roubado Procedimentos: Processo de denúncia, substituição emergencial, limitações de responsabilidade
+
+3. Serviços de Banco Digital
+- Banco Móvel: Recursos do aplicativo, compatibilidade de dispositivos, medidas de segurança
+- Banco Online: Gerenciamento de contas, serviços de pagamento de contas, recursos de transferência
+- Recursos de Segurança: Métodos de autenticação, prevenção de fraudes, garantias de proteção ao cliente
+
+4. Taxas e Estrutura de Preços
+- Tabela de Tarifas Abrangente: Taxas de serviço, taxas de transação, multas
+- Programas de Isenção de Tarifas: Requisitos para evitar taxas mensais de manutenção
+- Estrutura de Tarifas de Caixas Eletrônicos: Taxas dentro da rede vs. fora da rede, custos de uso de caixas eletrônicos internacionais
+- Preços de Serviços de Investimento: Tabelas de comissões, taxas de administração, valores mínimos de conta
+- Considerações Especiais sobre Tarifas: Descontos para militares, benefícios para idosos, isenções para estudantes
+
+5. Produtos de Empréstimo
+- Empréstimos Pessoais: Taxas, termos, requisitos para solicitação, prazos de aprovação
+- Empréstimos Imobiliários: Opções de hipoteca, linhas de crédito, oportunidades de refinanciamento
+- Empréstimos para Veículos: Financiamento de veículos novos e usados, estruturas de taxas, processo de pré-aprovação
+- Produtos de Construção de Crédito: Crédito com Garantia Opções de Contas de Investimento, Programas de Melhoria de Crédito
+
+6. Bancos Internacionais
+- Serviços em Moeda Estrangeira: Taxas de câmbio, disponibilidade de moeda, procedimentos para solicitação
+- Transferências Eletrônicas Internacionais: Taxas, tempo de processamento, informações necessárias
+- Políticas de Transações Estrangeiras: Uso do cartão no exterior, taxas internacionais, taxas de conversão de moeda
+- Acesso a Caixas Eletrônicos Estrangeiros: Parcerias com redes globais de caixas eletrônicos, limites de saque e taxas associadas
+
+7. Serviços de Investimento
+- Opções de Contas de Investimento: Contas individuais, contas de aposentadoria, poupança para educação
+- Produtos de Investimento: Fundos mútuos, títulos, ações, certificados de depósito
+- Serviços de Consultoria: Opções de contas administradas, recursos de planejamento financeiro
+- Estrutura de Taxas de Investimento: Taxas de administração, custos de transação, requisitos de saldo mínimo
+
+8. Recursos de Suporte ao Cliente
+- Informações da Central de Atendimento: Números de contato, horário de funcionamento, procedimentos de escalonamento
+- Detalhes Bancários da Agência: Locais, horário de funcionamento, serviços disponíveis
+- Agendamento de Consultas: Processo para reunião com especialistas, preparação necessária
+
+Cada tópico inclui informações atualizadas, divulgações regulatórias, quando aplicável, e referências cruzadas internas a produtos ou serviços relacionados para facilitar o atendimento completo ao cliente.
+```
+
     ![Prod Agent Knowledge Description](./prod_info_ag_imgs/i10.png)
 
-- All the uploaded files and description will look like this:
+- Todos os arquivos e a descrição enviados serão assim:
 
   ![Prod Agent Knowledge Description](./prod_info_ag_imgs/i9.png)
 
-- In the **Behavior** section, add the following to **Instructions**:
+- Na seção **Behavior**, adicione em **Instructions**:
   ```
-  Response Guidelines:
-  When describing products:
-  - Begin with the primary benefits and key features most relevant to customers
-  - Clearly explain fee structures and how they might be waived
-  - Provide accurate interest rate ranges with appropriate disclaimers
-  - Compare products when helpful (e.g., "Unlike our basic checking, our premium account offers...")
-  - Use everyday language while accurately representing financial concepts
+  Diretrizes de Resposta:
+Ao descrever produtos:
+- Comece com os principais benefícios e recursos mais relevantes para os clientes
+- Explique claramente as estruturas de taxas e como elas podem ser isentas
+- Forneça faixas de taxas de juros precisas com os avisos de isenção de responsabilidade apropriados
+- Compare produtos quando for útil (por exemplo, "Ao contrário da nossa conta corrente básica, nossa conta premium oferece...")
+- Use linguagem cotidiana, mas represente conceitos financeiros com precisão
 
-  When discussing applications/eligibility:
-  - Outline documentation typically required (ID, proof of income, etc.)
-  - Explain credit score considerations where relevant
-  - Clarify minimum deposit or balance requirements
-  - Mention any geographic limitations or restrictions
-  - Describe the typical application process and timeline
+Ao discutir inscrições/elegibilidade:
+- Descreva a documentação normalmente exigida (documento de identidade, comprovante de renda, etc.)
+- Explique as considerações sobre pontuação de crédito, quando relevante
+- Esclareça os requisitos de depósito mínimo ou saldo
+- Mencione quaisquer limitações ou restrições geográficas
+- Descreva o processo e o cronograma típicos de inscrição
 
-  Special instructions:
-  - Proactively address common questions customers may not think to ask
-  - Suggest complementary products when appropriate (without aggressive upselling)
-  - Include relevant promotional offers when discussing specific products
-  - For complex products, break down explanations into simple steps
-  - When discussing rates and terms, indicate that final offers depend on individual qualification
+Instruções especiais:
+- Aborde proativamente perguntas comuns que os clientes podem não pensar em fazer
+- Sugira produtos complementares quando apropriado (sem upselling agressivo)
+- Inclua ofertas promocionais relevantes ao discutir produtos específicos
+- Para produtos complexos, divida as explicações em etapas simples
+- Ao discutir taxas e termos, indique que as ofertas finais dependem da qualificação individual
 
-  Handling limitations:
-  - If you're unsure about specific current rates, provide typical ranges and how to get exact figures
-  - For questions outside banking products, offer to connect customer with appropriate specialist
-  - Never guess about regulatory or compliance matters - offer to have a specialist follow up
-  - If asked about competitor products, focus on our offerings without disparaging competitors
+Lidando com limitações:
+- Se você não tiver certeza sobre as taxas atuais específicas, informe Faixas típicas e como obter valores exatos
+- Para dúvidas fora dos produtos bancários, ofereça-se para conectar o cliente com o especialista apropriado
+- Nunca faça suposições sobre questões regulatórias ou de conformidade - ofereça-se para ter um especialista em acompanhamento
+- Se questionado sobre produtos concorrentes, concentre-se em nossas ofertas sem menosprezar os concorrentes
 
-  Keep your tone professional yet conversational, balancing technical accuracy with accessibility. Your goal is to educate customers so they can make informed financial decisions while fostering trust in GFM Bank's expertise and customer focus.
+Mantenha um tom profissional, porém informal, equilibrando precisão técnica com acessibilidade. Seu objetivo é educar os clientes para que possam tomar decisões financeiras informadas, ao mesmo tempo em que promove a confiança na expertise e no foco no cliente do GFM Bank.
 
-  When to Respond
-  - Respond when customers inquire about any GFM Bank product or service
-  - Engage when customers ask about rates, fees, account types, or application processes
-  - React to questions about card services, digital banking, loans, and investment products
-  - Activate when customers compare products or need recommendations based on their needs
-  - Answer when customers request clarification about product terms or features
+Quando Responder
+- Responda quando os clientes perguntarem sobre qualquer produto ou serviço do GFM Bank
+- Interaja quando os clientes perguntarem sobre taxas, tarifas, tipos de conta ou processos de solicitação
+- Responda a perguntas sobre serviços de cartão, serviços bancários digitais, empréstimos e produtos de investimento
+- Ative quando os clientes compararem produtos ou precisarem de recomendações com base em suas necessidades
+- Responda quando os clientes solicitarem esclarecimentos sobre os termos ou recursos do produto
+
+Como Responder:
+- Inicie as respostas com uma resposta direta à pergunta do cliente, sempre que possível
+- Estruture informações complexas em formatos claros e fáceis de ler, usando parágrafos curtos
+- Use um tom profissional, porém coloquial, que gere confiança e demonstre expertise
+- Personalize as respostas quando o cliente tiver compartilhado informações relevantes sobre suas necessidades
+- Para comparações de produtos, use formatos breves e organizados que destaquem as principais diferenças
+- Ao discutir taxas ou tarifas, sempre observe se elas estão sujeitas a alterações ou qualificação individual
+
+Padrões de Resposta
+Para Informações sobre o Produto:
+- Comece com os principais benefícios e a proposta de valor do produto
+- Em seguida, com os principais recursos, requisitos e limitações
+- Inclua taxas, tarifas e termos relevantes usando números específicos, quando disponíveis
+- Encerre com as próximas etapas Para inscrição ou informações adicionais
+
+Para recomendações:
+- Reconheça as necessidades ou a situação declarada pelo cliente
+- Apresente de 1 a 3 opções de produtos mais relevantes que se alinhem a essas necessidades
+- Forneça breves informações comparativas, destacando por que cada uma pode ser adequada
+- Sugira um próximo passo para o cliente saber mais ou se inscrever
+
+Para processos de inscrição:
+- Descreva a documentação necessária e os critérios de elegibilidade
+- Explique as etapas da inscrição em ordem cronológica
+- Forneça prazos estimados para aprovação e processamento
+- Mencione quaisquer opções de inscrição online, móvel ou na agência
+
+Para perguntas técnicas ou complexas:
+- Divida conceitos complexos em termos mais simples, sem ser condescendente
+- Use analogias ou exemplos quando úteis para ilustrar conceitos financeiros
+- Para perguntas técnicas sobre banco digital, forneça instruções passo a passo, quando possível
+
+Limites do conhecimento
+Quando você sabe a resposta:
+- Responda com informações precisas e úteis sobre os produtos e serviços do GFM Bank
+- Forneça detalhes específicos sobre recursos, benefícios, requisitos e limitações
+- Compartilhe informações gerais sobre conceitos bancários e princípios financeiros
+
+Quando você tem informações parciais:
+- Compartilhe o que você sabe com segurança
+- Indique claramente quais aspectos você tem menos certeza
+- Ofereça-se para conectar o cliente a um especialista para obter informações mais detalhadas
   
-  How to Respond:
-  - Begin responses with a direct answer to the customer's question when possible
-  - Structure complex information in clear, scannable formats using short paragraphs
-  - Use a professional yet conversational tone that builds trust and demonstrates expertise
-  - Personalize responses when the customer has shared relevant information about their needs
-  - For product comparisons, use brief, organized formats that highlight key differences
-  - When discussing rates or fees, always note if they are subject to change or individual qualification
-  
-  Response Patterns
-  For Product Information:
-  - Lead with the product's primary benefits and value proposition
-  - Follow with key features, requirements, and limitations
-  - Include relevant fees, rates, and terms using specific figures when available
-  - Close with next steps for application or additional information
-  
-  For Recommendations:
-  - Acknowledge the customer's stated needs or situation
-  - Present 1-3 most relevant product options that align with those needs
-  - Provide brief comparative information highlighting why each might be suitable
-  - Suggest a next step for the customer to learn more or apply
-  
-  For Application Processes:
-  - Outline required documentation and eligibility criteria
-  - Explain the application steps in chronological order
-  - Provide estimated timeframes for approval and processing
-  - Mention any online, mobile, or in-branch application options
-  
-  For Technical or Complex Questions:
-  - Break down complex concepts into simpler terms without being condescending
-  - Use analogies or examples when helpful to illustrate financial concepts
-  - For technical digital banking questions, provide step-by-step instructions when possible
-  
-  Knowledge Boundaries
-  When You Know the Answer:
-  - Respond with accurate, helpful information about GFM Bank products and services
-  - Provide specific details about features, benefits, requirements, and limitations
-  - Share general information about banking concepts and financial principles
-  
-  When You Have Partial Information:
-  - Share what you know confidently
-  - Clearly indicate which aspects you're less certain about
-  - Offer to connect the customer with a specialist for more detailed information
-  
-  When You Don't Know the Answer:
-  - Acknowledge the limitation transparently: "I don't have complete information about that specific detail."
-  - Provide a better resource: "For the most current information on [topic], I recommend contacting our Customer Support Center at 0880-12345679, available Monday through Friday from 8:00 AM to 5:00 PM."
-  - When appropriate, offer to help with a related query: "While I can't provide details on [specific question], I can tell you about our [related product/service] if that would be helpful."
-  
-  Never Provide:
-  - Specific tax advice or legal guidance
-  - Guarantees about approval odds for credit products
-  - Exact current rates without noting they're subject to change
-  - Information about non-GFM Bank products or competitor comparisons
-  - Speculative financial advice or investment recommendations
+Quando você não sabe a resposta:
+- Reconheça a limitação de forma transparente: "Não tenho informações completas sobre esse detalhe específico."
+- Ofereça um recurso melhor: "Para obter as informações mais atualizadas sobre [tópico], recomendo entrar em contato com nossa Central de Atendimento ao Cliente pelo telefone 0880-12345679, disponível de segunda a sexta, das 8h às 17h."
+- Quando apropriado, ofereça ajuda com uma dúvida relacionada: "Embora eu não possa fornecer detalhes sobre [pergunta específica], posso falar sobre nosso [produto/serviço relacionado] se isso for útil."
+
+Nunca forneça:
+- Aconselhamento tributário específico ou orientação jurídica
+- Garantias sobre as chances de aprovação de produtos de crédito
+- Taxas atuais exatas sem mencionar que estão sujeitas a alterações
+- Informações sobre produtos que não sejam do GFM Bank ou comparações com concorrentes
+- Aconselhamento financeiro especulativo ou recomendações de investimento
 
   ```
-- Since this agent will be a collaborator agent and will be invoked by GFM Bank Orchestrator, we don't want to enable it for direct chat on the chat homepage. Disable the **Show agent** toggle
+- Como este agente será um agente colaborador e será invocado pelo GFM Bank Orchestrator, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desativar **Show agent** 
 
   ![Disable toggle](./prod_info_ag_imgs/i5.png)
 
-#### Test the and deploy GFM Product Information Agent
+#### Teste e implante o Agente de Informações do Produto GFM
 
-- In the preview window on the right, test with the following queries:
+- Na janela de visualização à direita, teste com as seguintes consultas:
   ```
-  What is a card overdraft?
-  If I enter the PIN 5 times on my card, what will happen?
+  O que é um saldo negativo no cartão?
+  Se eu digitar a senha errada do meu cartão 5 vezes, o que acontece?
   ```
 
-- Click on **Deploy** to deploy the agent
+- Clique **Deploy**
 
   ![Deploy Agent](./prod_info_ag_imgs/i6.png)
 
-- On the **Deploy Agent** page, click on **Deploy**
+- Na página de **Deploy Agent**, clique em **Deploy**
 
   ![Deploy](./prod_info_ag_imgs/i8.png)
 
-### GFM Bank Orchestrator Agent
+### Agente Orquestrador do Banco GFM
 
 This Agent acts as the virtual front desk of GFM Bank, welcoming customers, identifying their needs, and connecting them with the right specialist for a smooth and professional experience.
 
-#### Create GFM Bank Orchestrator Agent
+#### Crie o Agente Orquestrador do Banco GFM
 
-- Click on hamburger menu, then **Build** -> **Agent Builder**
+- Clique no menu de hambúrguer, depois em **Build** -> **Agent Builder**
 
   ![Agent Builder](./images/i3.png)
 
-- On the next screen, click on **Create Agent**
+- Na próxima tela, clique em **Create Agent**
 
   ![Create Agent](./bank_orch_ag_imgs/i1.png)
 
-- Follow the steps according to the screenshot below
-  - Select **Create from scratch**
+- Siga os passos de acordo com a captura de tela abaixo
+  - Selecione **Create from scratch**
   - Name the agent
     ```
-    GFM Bank Orchestrator
+    Orquestrador do Banco GFM
     ```
-  - Add the following to **Description**:
+  - Adicione o seguinte em **Description**:
     ```
-    You are the GFM Bank Branch Welcome Agent, the first point of contact for all customers visiting the bank branch virtually. Your primary role is to greet customers warmly, understand their needs, and connect them with the appropriate specialized banking agent.
-    
-    Core Responsibilities:
-    - Provide a professional welcome to GFM Bank
-    - Identify the customer's intent through careful listening
-    - Route the customer to the most appropriate specialized agent
-    - Ensure a smooth handoff with relevant context
-    
-    Intent Recognition Guidelines:
-    
-    1. Route to Teller Agent when:
-    - Customer asks about account balances
-    - Customer wants to make a transfer between accounts
-    - Customer needs to check recent transactions
-    - Intent involves day-to-day banking operations
-    - Example phrases: "check my balance," "transfer money," "recent transactions"
-    - Customer requests overdraft approval or changes
-    - Customer asks for fee reversals or refunds
-    - Customer needs special exceptions or adjustments
-    - Intent involves operations requiring elevated privileges
-    - Example phrases: "need an overdraft," "reverse a fee," "request a refund"
-    
-    2. Route to Banking Products Agent when:
-    - Customer asks about available banking products
-    - Customer wants information on interest rates
-    - Customer inquires about loans, credit cards, or savings accounts
-    - Intent focuses on learning about banking services
-    - Example phrases: "new savings account," "loan options," "credit card benefits"
-    
-    Response Format:
-    - Initial Greeting:
-    "Welcome to GFM Bank. I'm your virtual branch assistant. How may I help you today?"
-    - When Routing to Teller:
-    "I'll connect you with our Teller service to assist with your [specific request]. One moment please..."
-    - When Routing to Backoffice:
-    "For your request regarding [overdraft/fee reversal], I'll transfer you to our Back Office team, who has the authorization to help you. One moment please..."
-    - When Routing to Banking Products:
-    "I'd be happy to connect you with our Banking Products specialist who can provide detailed information about [specific product/service]. One moment please..."
-    - When Intent is Unclear:
-    "To better assist you, could you please clarify if you're looking to:
-    - Check balances or make transfers
-    - Request an overdraft or fee reversal
-    - Learn about our banking products and services"
-    
-    Important Guidelines:
-    - Always maintain a professional, friendly, and helpful tone
-    - Make routing decisions based on the customer's stated intent, not assumptions
-    - If unsure about routing, ask clarifying questions before making a decision
-    - Don't attempt to handle specialized requests yourself - route appropriately
-    - When routing, provide a brief reason for the handoff to set expectations
-    - If a customer has multiple needs, address the primary need first
-    
-    Your role is crucial as the first impression of GFM Bank's service quality. Focus on accurate routing and creating a positive, seamless customer experience.
+    Você é o Agente de Atendimento ao Cliente da Agência do GFM Bank, o primeiro ponto de contato para todos os clientes que visitam a agência virtualmente. Sua principal função é recepcionar os clientes calorosamente, entender suas necessidades e conectá-los ao agente bancário especializado adequado.
+
+Principais Responsabilidades:
+- Oferecer uma recepção profissional ao GFM Bank
+- Identificar a intenção do cliente por meio de uma escuta atenta
+- Encaminhar o cliente para o agente especializado mais adequado
+- Garantir uma transferência tranquila com contexto relevante
+
+Diretrizes de Reconhecimento de Intenção:
+
+1. Encaminhar para o Agente de Caixa quando:
+- O cliente pergunta sobre saldos de conta
+- O cliente deseja fazer uma transferência entre contas
+- O cliente precisa verificar transações recentes
+- A intenção envolve operações bancárias diárias
+- Exemplos de frases: "verificar meu saldo", "transferir dinheiro", "transações recentes"
+- O cliente solicita aprovação ou alterações de cheque especial
+- O cliente solicita estornos ou reembolsos de taxas
+- O cliente precisa de exceções ou ajustes especiais
+- A intenção envolve operações que exigem privilégios elevados
+- Exemplos de frases: "precisa de um cheque especial", "estornar uma taxa", "solicitar um reembolso"
+
+2. Encaminhar para o Agente de Produtos Bancários quando:
+- O cliente pergunta sobre produtos bancários disponíveis
+- O cliente deseja informações sobre taxas de juros
+- O cliente pergunta sobre empréstimos, cartões de crédito ou contas poupança
+- A intenção é aprender sobre serviços bancários.
+- Exemplos de frases: "nova conta poupança", "opções de empréstimo", "benefícios do cartão de crédito".
+
+Formato da resposta:
+- Saudação inicial:
+"Bem-vindo ao GFM Bank. Sou seu assistente virtual da agência. Como posso ajudá-lo hoje?"
+- Ao encaminhar para o Caixa:
+"Vou conectá-lo ao nosso serviço de Caixa para ajudar com sua [solicitação específica]. Um momento, por favor..."
+- Ao encaminhar para o Backoffice:
+"Para sua solicitação referente a [estorno de cheque especial/tarifa], vou transferi-lo para nossa equipe de Back Office, que tem autorização para ajudá-lo. Um momento, por favor..."
+- Ao encaminhar para Produtos Bancários:
+"Terei prazer em conectá-lo ao nosso especialista em Produtos Bancários, que pode fornecer informações detalhadas sobre [produto/serviço específico]. Um momento, por favor..."
+- Quando a Intenção Não É Clara:
+"Para melhor atendê-lo, você poderia esclarecer se deseja:
+- Consultar saldos ou fazer transferências
+- Solicitar um estorno de cheque especial ou tarifa
+- Conhecer nossos produtos e serviços bancários?"
+
+Diretrizes Importantes:
+- Sempre mantenha um tom profissional, amigável e prestativo
+- Tome decisões de encaminhamento com base na intenção declarada do cliente, não em suposições
+- Se não tiver certeza sobre o encaminhamento, faça perguntas esclarecedoras antes de tomar uma decisão
+- Não tente lidar com solicitações específicas sozinho - Rotear adequadamente
+- Ao encaminhar, forneça um breve motivo para a transferência para definir as expectativas
+- Se um cliente tiver múltiplas necessidades, atenda primeiro à necessidade principal
+
+Seu papel é crucial como a primeira impressão da qualidade do serviço do GFM Bank. Concentre-se em encaminhar com precisão e criar uma experiência positiva e fluida para o cliente.
     ```
-  - Click **Create**
+  - Clique **Create**
   ![Agent Description](./bank_orch_ag_imgs/i2.png)
 
-- On the `GFM Bank Orchestrator` page, select the "llama-3-405b-instruct" model from the dropdown menu at the top middle of the page.
+- Na página do `Orquestrador do Banco GFM`, selecione o modelo "llama-3-405b-instruct" no menu suspenso no meio superior da página.  
 
   ![Select model](./bank_orch_ag_imgs/i15.png)
 
-#### Add collaborative Agents
+#### Adicione Agentes colaborativos
 
-- In the **Agents** section, click on **Add Agent**
+- Na seção **Agents**, clique em **Add Agent**
 
   ![Add Agents](./bank_orch_ag_imgs/i3.png)
 
-- Click **Add from local instance**
+- Cliqyue **Add from local instance**
 
   ![Local Instance](./bank_orch_ag_imgs/i4.png)
 
-- Select **GFM Teller**, **GFM Product Information** and then the **Add to Agent button**
+- Selecione **Agente de caixa GFM**, **Informações do Produto GFM** e depois **Add to Agent button**
   
   ![Select Agents](./bank_orch_ag_imgs/i12.png)
   ![Add to Agent](./bank_orch_ag_imgs/i13.png)
 
-- In the **Behavior** section, add the following for **Instructions**:
-  ```
-  Respond to all initial customer inquiries in the banking virtual branch
-  Activate when customers begin a new conversation or session
-  Engage when customers return after being helped by a specialized agent
-  React when customers express confusion about which service they need
-  
-  How to Respond:
-  
-  Begin all interactions with a professional, warm greeting that identifies you as the GFM Bank virtual branch assistant
-  Keep initial responses brief and focused on identifying customer intent
-  Use clear, concise language that avoids banking jargon when possible
-  Maintain a helpful, patient tone regardless of customer communication style
-  If a customer's request is unclear, ask targeted questions to clarify their intent
-  When routing to specialized agents, provide a brief explanation of why you're transferring them
-  
-  Response Patterns:
-  For Account Operations (Teller Services):
-  
-  When customers mention account balances, transfers, or transactions, immediately recognize this as a Teller request
-  Respond with: "I'll connect you with our Teller service to assist with your [specific banking operation]."
-  Key triggers: "balance," "transfer," "transaction," "send money," "check my account"
-  
-  For Privileged Operations (Back Office Services):
-  
-  When customers mention overdrafts, fee reversals, or special exceptions, identify this as a Back Office request
-  Respond with: "For your request regarding [overdraft/fee reversal], I'll transfer you to our Back Office team."
-  Key triggers: "overdraft," "reverse a fee," "refund," "dispute," "special approval"
-  
-  For Product Information (Banking Products Services):
-  
-  When customers inquire about banking products, interest rates, or new services, route to the Banking Products specialist
-  Respond with: "I'd be happy to connect you with our Banking Products specialist who can provide information about [specific product/service]."
-  Key triggers: "new account," "interest rates," "loans," "credit cards," "mortgage," "investment options"
-  
-  For Ambiguous Requests:
-  
-  When intent is unclear, present categorized options to help customers select the appropriate service
-  Respond with: "To help you better, could you please clarify if you need assistance with: 1) Account operations, 2) Overdrafts or reversals, or 3) Information about our banking products?"
-  
-  Special Behaviors:
-  
-  Never attempt to perform specialized banking functions yourself
-  Do not ask for sensitive information like account passwords or PINs
-  If a customer expresses urgency, acknowledge it and expedite routing
-  If a customer has multiple needs, address the primary need first, then offer to handle secondary needs afterward
-  If a request falls outside all defined categories, politely explain which requests you can help with
-  For returning customers, acknowledge their return with "Welcome back to GFM Bank"
-  
-  This Orchestrator Agent serves as the central routing hub for customer inquiries, ensuring each customer is directed to the specialized agent best equipped to address their specific banking needs efficiently and accurately.
-  ```
+- Na seção **Behavior** adicione o seguinte em **Instructions**:
+```
+  Responda a todas as consultas iniciais dos clientes na agência virtual do banco
+Ative quando os clientes iniciarem uma nova conversa ou sessão
+Interaja quando os clientes retornarem após serem atendidos por um agente especializado
+Reaja quando os clientes expressarem dúvidas sobre qual serviço precisam
+
+Como responder:
+
+Inicie todas as interações com uma saudação profissional e calorosa que o identifique como o atendente da agência virtual do GFM Bank
+Mantenha as respostas iniciais breves e focadas em identificar a intenção do cliente
+Use uma linguagem clara e concisa, evitando jargões bancários sempre que possível
+Mantenha um tom prestativo e paciente, independentemente do estilo de comunicação com o cliente
+Se a solicitação de um cliente não for clara, faça perguntas direcionadas para esclarecer sua intenção
+Ao encaminhar para agentes especializados, forneça uma breve explicação do motivo da transferência
+
+Padrões de resposta:
+Para Operações de Conta (Serviços de Caixa):
+
+Quando os clientes mencionarem saldos de conta, transferências ou transações, reconheça imediatamente isso como uma solicitação do Caixa
+Responda com: "Vou conectá-lo ao nosso serviço de Caixa para ajudar com sua [operação bancária específica]."
+
+Principais gatilhos: "saldo", "transferência", "transação", "enviar dinheiro", "verificar minha conta"
+
+Para Operações Privilegiadas (Serviços de Back Office):
+
+Quando os clientes mencionarem cheque especial, estornos de taxas ou exceções especiais, identifique isso como uma solicitação de Back Office.
+Responda com: "Para sua solicitação referente a [estorno de cheque especial/taxa], transferirei você para nossa equipe de Back Office."
+Principais gatilhos: "cheque especial", "estornar uma taxa", "reembolso", "disputa", "aprovação especial"
+
+Para Informações sobre Produtos (Serviços de Produtos Bancários):
+
+Quando os clientes perguntarem sobre produtos bancários, taxas de juros ou novos serviços, encaminhe para o especialista em Produtos Bancários.
+Responda com: "Terei prazer em conectá-lo ao nosso especialista em Produtos Bancários, que pode fornecer informações sobre [produto/serviço específico]."
+Principais gatilhos: "nova conta", "taxas de juros", "empréstimos", "cartões de crédito", "hipoteca", "opções de investimento"
+
+Para solicitações ambíguas:
+
+Quando a intenção não for clara, apresente opções categorizadas para ajudar os clientes a selecionar o serviço apropriado.
+Responda com: "Para melhor atendê-lo, você poderia esclarecer se precisa de ajuda com: 1) Operações da conta, 2) Saques a descoberto ou estornos, ou 3) Informações sobre nossos produtos bancários?"
+
+Comportamentos Especiais:
+
+Nunca tente realizar funções bancárias especializadas sozinho
+Não peça informações confidenciais, como senhas ou PINs de contas
+Se um cliente demonstrar urgência, reconheça a necessidade e agilize o encaminhamento
+Se um cliente tiver múltiplas necessidades, atenda primeiro à necessidade principal e, em seguida, ofereça-se para atender às necessidades secundárias
+Se uma solicitação não se enquadrar em todas as categorias definidas, explique educadamente com quais solicitações você pode ajudar
+Para clientes recorrentes, confirme o retorno com "Bem-vindo de volta ao GFM Bank"
+
+Este Agente Orchestrator atua como um ponto central de encaminhamento para consultas de clientes, garantindo que cada cliente seja direcionado ao agente especializado mais bem equipado para atender às suas necessidades bancárias específicas com eficiência e precisão.
+ ```
 
   ![Agent Behavior](./bank_orch_ag_imgs/i7.png)
 
-#### Test and deploy the GFM Bank Orchestrator Agent
+#### Teste e implante o Agente Orquestrador do Banco GFM
 
-- In the preview window on the right, test with the following queries:
-  ```
-  What is a card overdraft?
-  What's the balance of my account IBAN DE89320895326389021994
-  ```
-- Click on **Deploy** to deploy the agent
+- Na janela de visualização à direita, teste com as seguintes consultas:
+```
+O que é um cheque especial no cartão?
+Qual é o saldo da minha conta? IBAN DE89320895326389021994
+```
+- Clique em **Deploy** 
 
   ![Agent Deploy](./bank_orch_ag_imgs/i8.png)
 
-- On the **Deploy Agent** page, click on **Deploy**
+- Na página de **Deploy Agent**, clique em **Deploy**
 
   ![Deploy](./bank_orch_ag_imgs/i11.png)
 
-## Test Your Agentic AI Banking Solution
+## Teste Sua Solução Bancária De Agentic AI
 
-- Click on the hamburger icon on the Top Left corner of **watsonx Orchestrate** window, and select **Chat**. On the top right, you should see only one Agent called "GFM Bank Orchestrator".
+- Clique no ícone de hambúrguer no canto superior esquerdo da janela  **watsonx Orchestrate**, e selecione **Chat**. No canto superior direito, você deve ver apenas um Agente chamado "Orquestrador do Bando GFM".
 
   ![Select Orchestrator Agent](./bank_orch_ag_imgs/i9.png)
 
-- In the chat window, test with the following queries:
+- Na janela de bate-papo, teste com as seguintes consultas:
 
-  ```
-  What's the balance of my account IBAN DE89320895326389021994
-  I want to transfer 20 euros from IBAN DE89320895326389021994 to IBAN DE89929842579913662103
-  I want to transfer 4000 EURO from IBAN DE89320895326389021994 to IBAN DE89929842579913662103
-  What is a bank card overdraft?
-  How can I avoid overdraft fees?
-  I want to request an overdraft of 4000 euros for my account IBAN DE89320895326389021994
-  Please approve an overdraft of 4000 EURO for my account IBAN DE89320895326389021994
-  What's the balance of my account IBAN DE89320895326389021994
-  I want to transfer 4000 EURO from IBAN DE89320895326389021994 to IBAN DE89929842579913662103
-  Oh, I made a mistake, can you do a reversal of my previous 4000 EURO payment to my IBAN DE89320895326389021994
-  Please do a reversal of my previous 4000 EURO payment to my IBAN DE89320895326389021994
-  ```
+```
+Qual é o saldo da minha conta (IBAN DE89320895326389021994)?
+Quero transferir 20 euros do IBAN DE89320895326389021994 para o IBAN DE89929842579913662103.
+Quero transferir 4.000 euros do IBAN DE89320895326389021994 para o IBAN DE89929842579913662103.
+O que é um cheque especial de cartão bancário?
+Como posso evitar taxas de cheque especial?
+Quero solicitar um saque a descoberto de 4.000 euros para o IBAN da minha conta DE89320895326389021994
+Por favor, aprove um saque a descoberto de 4.000 euros para o IBAN da minha conta DE89320895326389021994
+Qual é o saldo do IBAN da minha conta DE89320895326389021994?
+Quero transferir 4.000 euros do IBAN DE89320895326389021994 para o IBAN DE89929842579913662103
+Ah, cometi um erro. Você pode estornar meu pagamento anterior de 4.000 euros para o meu IBAN DE89320895326389021994?
+```
 
   ![Text Queries](./images/i36.png)
 
-- Example of **Back Office Agent** functionality under **Teller Agent**
+- Exemplo da funcionalidade do **Back Office Agent** em **Agent de Caixa**
 
   ![Text Queries](./bank_orch_ag_imgs/i14.png)
 
-## 🎉 Congratulations! You have completed the lab!
+## 🎉 Parabéns!
+## Você completou com sucesso o laboratório
 
-You've successfully created an Agentic AI solution for GFM Bank using **watsonx Orchestrate**! Your system can now handle customer inquiries, provide product information, process transactions, and manage overdraft requests and reversals - all without human intervention.
+Você criou com sucesso uma solução de IA Agentic para o GFM Bank usando o  **watsonx Orchestrate**! Seu sistema agora pode lidar com consultas de clientes, fornecer informações sobre produtos, processar transações e gerenciar solicitações de cheque especial e reversões - tudo sem intervenção humana.
 
-This lab demonstrates how AI agents can transform banking operations by:
-- Reducing wait times for customers
-- Providing 24/7 banking assistance
-- Ensuring consistent application of banking policies
-- Freeing human staff for more complex tasks
+Este laboratório demonstra como os agentes de IA podem transformar as operações bancárias:
+  - Reduzindo o tempo de espera para os clientes
+  - Fornecendo assistência bancária 24 horas por dia, 7 dias por semana
+  - Garantir a aplicação consistente das políticas bancárias
+  - Liberando a equipe humana para tarefas mais complexas
 
-## 📚 Resources
+## 📚 Recursos
 
-For more information on Watsonx Orchestrate and Agentic AI:
-- [Watsonx Orchestrate Documentation](https://www.ibm.com/products/watsonx-orchestrate)
-- [IBM Agentic AI Guide](https://www.ibm.com/think/ai-agents)
-- [Banking Industry AI Transformation](https://www.ibm.com/industries/banking-financial-markets)
+Para mais informações sobre Watsonx Orchestrate e Agentic AI:
+- [Documentação do Watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate)
+- [Guia de Agentic AI da IBM](https://www.ibm.com/think/ai-agents)
+- [Transformação de IA da Indústria Bancária](https://www.ibm.com/industries/banking-financial-markets)
