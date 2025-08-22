@@ -41,12 +41,17 @@ PASSO 2: Faça o setup inicial <br>
 
 PASSO 3: Escolha o caso de uso e mãos a obra <br>
 
-[1. Assistente Inteligente para Gestão de Armazém](usecases/intelligent-assistant/README.md)<br>
-[2. AskRH](usecases/ask-hr/README.md)<br>
-[3. Automação de negócios para análise competitiva](usecases/business-automation/README.md)<br>
-[4. Agente Financeiro](usecases/banking-financial-research-analyst/README.md)<br>
-[5. Banking Backoffice](usecases/banking-backoffice/README.md)<br>
-[6. Agente de Sinistros de seguros](usecases/autoclaim-insurance/README.md)<br>
+[1. AskRH](usecases/ask-hr/README.md)<br>
+[2. Agente Financeiro](usecases/banking-financial-research-analyst/README.md)<br>
+[3. Banking Backoffice](usecases/banking-backoffice/README.md)<br>
+[4. Order to Cash (O2C)](usecases/order-to-cash/README.md)<br>
+
+OPCIONAIS:
+[5. Assistente Inteligente para Gestão de Armazém](usecases/intelligent-assistant/README.md)<br>
+[6. Automação de negócios para análise competitiva](usecases/business-automation/README.md)<br>
+
+
+
 <br><br>
 ⚠️ Este repositório é público apenas para fins de visualização.
 A clonagem, redistribuição ou modificação não autorizada deste código é expressamente proibida.

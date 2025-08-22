@@ -380,7 +380,7 @@ Em seguida, teste a funcionalidade do agente fazendo uma pergunta como
 
 ```Mostrar todos os pedidos```
   
-  e suas perguntas subsequentes, e observe a resposta do agente. Clique no link **Show Reasoning** e observe como o agente está invocando corretamente as funções **Obter Todos os Detalhes da PO**, **Obter Detalhes da PO**, **Obter Detalhes da Cotação**, **Obter Detalhes da Correspondência** e **Exibir Confirmação** para recuperar informações relevantes.
+  -->> Selecione um pedido, cotinue conversando com o agente e observe a resposta do agente. Clique no link **Show Reasoning** e observe como o agente está invocando corretamente as funções **Obter Todos os Detalhes da PO**, **Obter Detalhes da PO**, **Obter Detalhes da Cotação**, **Obter Detalhes da Correspondência** e **Exibir Confirmação** para recuperar informações relevantes.
 
 ![wxo order management agent behavior](./images/img16.png) 
 ![wxo order management agent behavior](./images/img17.png)
