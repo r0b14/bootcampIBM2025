@@ -1,59 +1,59 @@
-# 💼 Order-to-Cash Automation Agent
+# 💼 Agente de Pedido ao Recebimento (O2C: Order-to-Cash)
 
 <img alt="Order-to-Cash" src="./practitioner_docs/images/o2c.png" width="1000">
 
-## 🔍 Problem Statement
+## 🔍 Problema
 
-In today’s fast-paced business environment, enterprises face increasing pressure to deliver seamless customer experiences while maintaining efficient internal operations. One of the most critical yet often overlooked functions is the Order-to-Cash (O2C) process — the end-to-end workflow that begins with order placement and ends with payment collection.
+No acelerado ambiente de negócios atual, as empresas enfrentam uma pressão cada vez maior para proporcionar experiências perfeitas aos clientes, mantendo, ao mesmo tempo, operações internas eficientes. Uma das funções mais críticas, porém frequentemente negligenciadas, é o processo Order-to-Cash (O2C) — o fluxo de trabalho de ponta a ponta que começa com a realização do pedido e termina com a cobrança do pagamento.
 
-As businesses scale, their O2C process becomes increasingly complex, involving multiple departments, systems, and checkpoints. In many organizations, this process is still largely manual, requiring significant effort from operations, finance, and customer service teams to manage orders, generate invoices, track payments, and resolve disputes. This manual handling leads to delays in order processing, frequent invoicing errors, and inefficient payment collection cycles.
+À medida que as empresas crescem, seus processos O2C se tornam cada vez mais complexos, envolvendo múltiplos departamentos, sistemas e pontos de verificação. Em muitas organizações, esse processo ainda é amplamente manual, exigindo um esforço significativo das equipes de operações, finanças e atendimento ao cliente para gerenciar pedidos, gerar faturas, rastrear pagamentos e resolver disputas. Essa manipulação manual leva a atrasos no processamento de pedidos, erros frequentes de faturamento e ciclos de cobrança ineficientes.
 
-To make matters more complex, employees often struggle to find the correct answers for queries relating to O2C process or exception handling processes when dealing with anomalies. Instead of spending time searching through intranet portals or outdated documents, they need immediate, contextual answers to continue their work.
+Para complicar ainda mais a situação, os funcionários muitas vezes têm dificuldade em encontrar as respostas corretas para dúvidas relacionadas ao processo O2C ou aos processos de tratamento de exceções ao lidar com anomalias. Em vez de perder tempo pesquisando em portais de intranet ou documentos desatualizados, eles precisam de respostas imediatas e contextuais para continuar seu trabalho.
 
-These inefficiencies have a cascading impact:
+Essas ineficiências têm um impacto em cascata:
 
-- Invoices are often disputed or delayed due to errors or mismatches.
-- Payments are not collected on time, leading to past-due accounts and cash flow issues.
-- Customer satisfaction takes a hit due to slow and error-prone service delivery.
-- Employees waste time hunting for queries relating to O2C process or escalating unnecessarily, reducing first-touch resolution.
+- As faturas são frequentemente contestadas ou atrasadas devido a erros ou incompatibilidades.
+- Os pagamentos não são coletados em dia, o que leva a contas vencidas e problemas de fluxo de caixa.
+- A satisfação do cliente é afetada devido à prestação de serviços lenta e propensa a erros.
+- Os funcionários perdem tempo buscando respostas para dúvidas relacionadas ao processo O2C ou escalando problemas desnecessariamente, reduzindo a resolução no primeiro contato.
 
-The traditional approach of managing O2C through siloed systems and human interventions no longer scales with business growth. Organizations are now looking to modernize this process using AI, automation, and Retrieval-Augmented Generation (RAG) to eliminate friction, reduce cycle times, and unlock working capital.
+A abordagem tradicional de gerenciar O2C por meio de sistemas isolados e intervenções humanas não acompanha mais o crescimento dos negócios. As organizações agora buscam modernizar esse processo usando IA, automação e Geração Aumentada de Recuperação (RAG) para eliminar atritos, reduzir os tempos de ciclo e liberar capital de giro.
 
-## 🎯 Objective
+## 🎯 Objetivo
 
-This solution aims to revolutionize the Order-to-Cash (O2C) process, one of the most critical pillars of business operations, by leveraging AI-powered agentic automation to eliminate manual inefficiencies, reduce errors, and accelerate cash realization. The goal is to design and deploy a multi-agent intelligent system that supports end-to-end automation of the O2C workflow, empowering business teams to deliver faster, more accurate, and customer-centric outcomes.
+Esta solução visa revolucionar o processo Order-to-Cash (O2C), um dos pilares mais críticos das operações comerciais, utilizando a automação agêntica com tecnologia de IA para eliminar ineficiências manuais, reduzir erros e acelerar a realização de caixa. O objetivo é projetar e implementar um sistema inteligente multiagente que suporte a automação de ponta a ponta do fluxo de trabalho O2C, capacitando as equipes de negócios a entregar resultados mais rápidos, precisos e centrados no cliente.
 
-The AI-powered agentic solution will assist in executing the following key tasks:
+A solução de agente com tecnologia de IA ajudará na execução das seguintes tarefas principais:
 
-- Automate order processing to ensure quick and accurate capture of customer orders.
-- Streamline invoice generation and validation to minimize disputes and billing errors.
-- Enable real-time tracking and reconciliation of payments to reduce Days Sales Outstanding (DSO).
-- Integrate with internal finance tools to retrieve and update financial data via APIs.
-- Provide contextual, real-time guidance on queries relating to O2C process using Retrieval-Augmented Generation (RAG), so agents can confidently resolve exceptions or follow escalation procedures.
-- Generate dynamic dashboards and summary reports to provide stakeholders with insights into cash flow and performance.
+- Automatizar o processamento de pedidos para garantir a captura rápida e precisa dos pedidos dos clientes.
+- Simplificar a geração e validação de faturas para minimizar disputas e erros de cobrança.
+- Habilitar o rastreamento e a reconciliação de pagamentos em tempo real para reduzir o período de pendência de vendas (DSO).
+- Integrar-se com ferramentas financeiras internas para recuperar e atualizar dados financeiros por meio de APIs.
+- Forneçer orientação contextual e em tempo real sobre consultas relacionadas ao processo O2C usando Recuperação-Geração Aumentada (RAG), para que os agentes possam resolver exceções com confiança ou seguir procedimentos de escalonamento.
+- Gerar painéis dinâmicos e relatórios resumidos para fornecer às partes interessadas insights sobre fluxo de caixa e desempenho.
 
-By automating these tasks and integrating RAG-based knowledge support, the organization aims to reduce manual workload, improve cash flow predictability, enhance customer satisfaction, and realize measurable financial impact—positioning the business for greater scalability and agility.
+Ao automatizar essas tarefas e integrar o suporte de conhecimento baseado em RAG, a organização visa reduzir a carga de trabalho manual, melhorar a previsibilidade do fluxo de caixa, aumentar a satisfação do cliente e obter impacto financeiro mensurável, posicionando o negócio para maior escalabilidade e agilidade.
 
-## 📊 Business Value 
+## 📊 Valor para o negócio
 
-Transforming the Order-to-Cash (O2C) process through AI-powered agentic automation and embedded RAG support delivers measurable value across operational efficiency, financial performance, and customer experience. By reducing manual dependencies and embedding intelligence into each step of the O2C cycle—from order capture to payment reconciliation—organizations can unlock new levels of performance and scalability.
+Transformar o processo Order-to-Cash (O2C) por meio da automação agêntica com tecnologia de IA e do suporte RAG incorporado gera valor mensurável em eficiência operacional, desempenho financeiro e experiência do cliente. Ao reduzir as dependências manuais e incorporar inteligência em cada etapa do ciclo O2C — da captura do pedido à reconciliação do pagamento — as organizações podem alcançar novos níveis de desempenho e escalabilidade.
 
-Key business benefits observed through this transformation include:
+Os principais benefícios comerciais observados por meio dessa transformação incluem:
 
-- 15–30% reduction in operational costs by automating repetitive, manual tasks across order entry, invoicing, and collections.
-- 30% improvement in Days Sales Outstanding (DSO) through faster invoice generation, better dispute handling, and streamlined payment tracking.
-- 1–3% revenue uplift driven by enhanced accuracy, fewer missed billings, and improved service delivery.
-- Greater transactional accuracy and compliance, reducing risk and the cost of manual errors.
-- Enhanced customer satisfaction through timely, transparent, and reliable order fulfillment and billing.
-- Improved agent productivity and decision confidence by using RAG to surface contextual FAQs, escalation paths, and exception handling guidance directly within the workflow—eliminating time lost in document searches and unnecessary escalations.
+- Redução de 15 a 30% nos custos operacionais por meio da automatização de tarefas manuais repetitivas na entrada de pedidos, faturamento e cobranças.
+- Melhoria de 30% em Dias de Vendas Pendentes (DSO) por meio de geração mais rápida de faturas, melhor tratamento de disputas e rastreamento de pagamentos simplificado.
+- Aumento de 1–3% na receita impulsionado pela maior precisão, menos faturas perdidas e melhor prestação de serviços.
+- Maior precisão e conformidade transacional, reduzindo riscos e custos de erros manuais.
+- Maior satisfação do cliente por meio do atendimento de pedidos e faturamento oportunos, transparentes e confiáveis.
+- Melhorou a produtividade do agente e a confiança na tomada de decisões usando o RAG para exibir perguntas frequentes contextuais, caminhos de escalonamento e orientações sobre tratamento de exceções diretamente no fluxo de trabalho, eliminando o tempo perdido em pesquisas de documentos e escalonamentos desnecessários.
 
-## 🏛️ Architecture
+## 🏛️ Arquitetura
 
 <img alt="Order-to-Cash" src="./practitioner_docs/images/arch.png" width="1000">
 
-## 📄 Hands-on step-by-step lab
+## 📄 Laboratório prático passo a passo
 
-Please find the step-by-step instructions on how you can implement this use case with the two workflows.
+Encontre instruções passo a passo sobre como você pode implementar este caso de uso com os dois fluxos de trabalho.
 
 - [Order-to-Cash](./practitioner_docs/hands-on-lab.md)
 

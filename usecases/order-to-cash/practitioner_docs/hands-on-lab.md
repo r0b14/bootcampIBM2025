@@ -1,550 +1,544 @@
 
-# 👨🏻‍💻 Use case: Order to Cash  
+# 👨🏻‍💻 Caso de Uso: Order to Cash  
 
-## Table of Contents
-- [Use Case Description](#use-case-description)
-- [Architecture](#architecture)
-- [Pre-requisites](#pre-requisites)
+## Índice
+- [Descrição do caso de uso](#Descrição-do-caso-de-uso)
+- [Arquitetura](#Arquitetura)
+- [Pré-requisitos](#Pré-requisitos)
 - [watsonx Orchestrate](#watsonx-orchestrate)
-  - [Accessing watsonx Orchestrate](#accessing-watsonx-orchestrate)
-- [Order-to-Cash Agent Creation](#order-to-cash-agent-creation)
-  - [Agent Configuration with Knowledge Base](#agent-configuration-with-knowledge-base)
-- [Customer Support Agent Creation and Configuration](#customer-support-agent-creation-and-configuration)
-- [Order Management Agent Creation and Configuration](#order-management-agent-creation-and-configuration)
-- [Pulling it together - Complete Agent Collaboration](#pulling-it-together)
-- [Experience Agents in Action using watsonx Orchestrate Chat UI](#experience-agents-in-action-using-watsonx-orchestrate-chat-ui)
-- [Conclusion](#conclusion)
+  - [Acessando o watsonx Orchestrate](#acessando-o-watsonx-orchestrate)
+- [Criação do Agente Order-to-Cash](#criação-do-agente-order-to-cash)
+  - [Configuração do agente com base de conhecimento](#Configuração-do-agente-com-base-de-conhecimento)
+- [Criação e configuração do agente de suporte ao cliente](#Criação-e-configuração-do-agente-de-suporte-ao-cliente)
+- [Criação e configuração do agente de gerenciamento de pedidos](#Criação-e-configuração-do-agente-de-gerenciamento-de-pedidos)
+- [Juntando tudo - Colaboração completa do agente](#Juntando-tudo---Colaboração-completa-do-agente)
+- [Experimente os agentes em ação no Watsonx Orchestrate](#Experimente-os-agentes-em-ação-no-watsonx-orchestrate)
+- [Conclusão](#Conclusão)
 
-## Use Case Description
+## Descrição do caso de uso
 
-This use case focuses on transforming the end-to-end Order-to-Cash (O2C) process using IBM watsonx Orchestrate, as illustrated in the architecture diagram. The solution aims to automate key stages of the O2C cycle—from order placement, invoicing, enhance customer satisfaction, accelerate cash flow, and deliver measurable impact to the bottom line by integrating intelligent agents and enterprise systems.
+Este caso de uso concentra-se na transformação do processo Order-to-Cash (O2C) de ponta a ponta usando o IBM Watsonx Orchestrate, conforme ilustrado no diagrama de arquitetura. A solução visa automatizar as principais etapas do ciclo O2C — desde a colocação do pedido até o faturamento —, aumentar a satisfação do cliente, acelerar o fluxo de caixa e gerar impacto mensurável nos resultados financeiros por meio da integração de agentes inteligentes e sistemas corporativos.
 
-In this lab, we will build an O2C agent in watsonx Orchestrate that simulates interactions with core business functions such as customer support and order management. The agent will streamline order management, reduce manual effort, accelerate invoice processing, and drive faster cash conversion, ultimately improving operational efficiency and customer satisfaction.
+Neste laboratório, construiremos um agente O2C no Watsonx Orchestrate que simula interações com funções essenciais do negócio, como suporte ao cliente e gerenciamento de pedidos. O agente otimizará o gerenciamento de pedidos, reduzirá o esforço manual, acelerará o processamento de faturas e impulsionará a conversão de caixa mais rapidamente, melhorando, em última análise, a eficiência operacional e a satisfação do cliente.
 
-
-## 🏛 Architecture  <a id="architecture"></a>
+## 🏛 Arquitetura  <a id="architecture"></a>
 
 <img width="900" alt="image" src="./images/arch.png">
 
-## Pre-requisites
-To run the steps in this hands-on lab portion of the bootcamp, you need access to **watsonx Orchestrate** and **watsonx.ai** which are provided for you as part of the preparation for this bootcamp.
-
-- Please go the through the [environment-setup](https://github.ibm.com/skol/agentic-ai-client-bootcamp/tree/release/v3.0.0/environment-setup) guide for steps on API key creation, and project setup.
-
-- Check with your instructor to make sure **all systems** are up and running before you continue.
+## Pré-requisitos
+Para executar as etapas desta parte do laboratório prático do bootcamp, você precisa ter acesso ao watsonx Orchestrate e ao watsonx.ai , que são fornecidos a você como parte da preparação para este bootcamp.
 
 
 ## watsonx Orchestrate
-As detailed in the [Solution Architecture](./images/o2c-arch-sb.png), we will build and deploy the majority of the agents for the solution in watsonx Orchestrate. AI Agents are autonomous entities that can run tasks, decide and interact with their environment. In IBM watsonx Orchestrate, agents are a key component of our agentic AI framework, enabling the creation of complex, dynamic systems that can adapt and respond to changing conditions. 
+Conforme detalhado na [Arquitetura da solução](./images/o2c-arch-sb.png), construiremos e implementaremos a maioria dos agentes da solução no Watsonx Orchestrate. Agentes de IA são entidades autônomas que podem executar tarefas, decidir e interagir com seu ambiente. No IBM Watsonx Orchestrate, os agentes são um componente-chave da nossa estrutura de IA agêntica, permitindo a criação de sistemas complexos e dinâmicos que podem se adaptar e responder a condições em constante mudança. 
 
-### Accessing watsonx Orchestrate
-To access watsonx Orchestrate, follow these steps:
+### Acessando o watsonx Orchestrate
+Para acessar o watsonx Orchestrate, siga estas etapas:
 
-1. If not already logged into your IBM Cloud account, navigate your preferred browser to https://cloud.ibm.com and log in with your credentials (which you used for your TechZone reservation).
+1. Se você ainda não estiver conectado à sua conta do IBM Cloud, navegue no seu navegador preferido até https://cloud.ibm.com e efetue login com suas credenciais (que você usou para sua reserva no TechZone).
 
-2. On your IBM Cloud landing page, click the top left navigation menu (hamburger menu) and select **Resource list**.
-*Note: If you are a member of multiple IBM Cloud accounts, make sure you are working in the correct account which has the required services available as explained in the [environment-setup](https://github.ibm.com/skol/agentic-ai-client-bootcamp/tree/release/v3.0.0/environment-setup) guide.*
+2. Na página inicial do IBM Cloud, clique no menu de navegação superior esquerdo (menu de hambúrguer) e selecione **Resource list**.
+*Observação: se você for membro de várias contas do IBM Cloud, certifique-se de estar trabalhando na conta correta, que possui os serviços necessários disponíveis.
 ![IBM Cloud Resource List](./images/ibm_cloud_resources.png) 
 
-3. On the Resource List page, expand the **AI / Machine Learning** section, and click the **Watsonx Orchestrate** service service name.
+3. Na página Lista de recursos, expanda a seção **AI / Machine Learning** e clique no nome do serviço **Watsonx Orchestrate**.
 ![IBM Cloud wxo](./images/ibm_cloud_wxo.png) 
 
-4. Click **Launch watsonx Orchestrate** to launch the service.
+4. Clique em **Launch watsonx Orchestrate**.
 ![wxo launch](./images/wxo-launch.png) 
 
-5. Once watsonx Orchestrate service is launched, you would be at its landing page as illustrated in the figure below. You will see an intuitive conversational interface with a chat field where you can type any text to start interacting with watsonx Orchestrate. When you start with a new service instance, there will be no custom agents defined and thus, the section under **Agents** will state *No agents available*. You can either click **Create or Deploy** an agent under the Agents section or you can click **Create new agent** to start developing new agents. You can also select the **Manage agents** link to navigate to the agent management page.
-Try to type a few generic questions and observe the responses from the large language model (LLM) powering the prebuilt agent in watsonx Orchestrate which ensures basic functionality until custom agents are created.
+5. Após o lançamento do serviço watsonx Orchestrate, você estará na página inicial, conforme ilustrado na figura abaixo. Você verá uma interface de conversação intuitiva com um campo de bate-papo onde poderá digitar qualquer texto para começar a interagir com o watsonx Orchestrate. Ao iniciar uma nova instância de serviço, não haverá agentes personalizados definidos e, portanto, a seção em **Agents** exibirá a mensagem *No agents available*. Você pode clicar em **Create or Deploy** na seção Agentes ou em **Create new agent** para começar a desenvolver novos agentes. Você também pode selecionar o link **Manage agents**  para navegar até a página de gerenciamento de agentes. Tente digitar algumas perguntas genéricas e observe as respostas do modelo de linguagem grande (LLM) que alimenta o agente pré-construído no watsonx Orchestrate, o que garante a funcionalidade básica até que os agentes personalizados sejam criados.
 ![wxo landing page](./images/wxo-landing-page.png) 
 
-## Order-to-Cash Agent Creation
-In this section, you will go through the process of creating an AI agent in watsonx Orchestrate:
+## Criação do Agente Order-to-Cash
+Nesta seção, você percorrerá o processo de criação de um agente de IA no watsonx Orchestrate:
 
-6. To start building agents, you can click the **Create new agent** link as referenced in step 5 or alternatively, click the top left navigation menu, expand the **Build** section and select **Agent Builder**. This will redirect you to the Manage agents page.
+6. Para começar a criar agentes, clique no link **Create new agent** conforme mencionado na etapa 5, ou, alternativamente, clique no menu de navegação superior esquerdo, expanda a seção **Build** e selecione **Agent Builder**.  Isso o redirecionará para a página de gerenciamento de agentes.
 ![wxo agent builder](./images/wxo-nav-menu-agent-builder.png) 
 
-7. The Manage agents page will initially be blank since no agents have been created yet. As you create more and more AI agents that can reason and act, the Manage agents page will be populated with those agents. Click **Create agent** button to start building your first agent.
+7. TA página Gerenciar agentes estará inicialmente em branco, pois nenhum agente foi criado ainda. À medida que você cria mais e mais agentes de IA capazes de raciocinar e agir, a página Gerenciar agentes será preenchida com esses agentes. Clique no botão **Create agent** para começar a criar seu primeiro agente.
 ![wxo create agent](./images/wxo-create-agent-manage-agents-empty.png) 
 
-8. On the Create an agent page, select **Create from scratch** tile, provide a **Name** and a **Description** for the agent and click **Create**.
+8. Na página Criar um agente, selecione **Create from scratch**, forneça um **Nome** e **Descrição** para o agente e clique em **Create**.
 
-Name: ```Order-to-Cash Agent```
+Nome: ```Agente Order-to-Cash```
 
-Description: 
+Descrição: 
 ```
-This Supervisor Agent orchestrates and manages the flow of conversation by intelligently routing user queries to the appropriate specialized agents based on the context.
-The Supervisor Agent oversees two domain-specific agents:
-1. Order Management Agent
-2. Customer Support Agent
-It also handles general queries by routing them to a knowledge base.
+Este Agente Supervisor orquestra e gerencia o fluxo de conversas, encaminhando de forma inteligente as consultas dos usuários para os agentes especializados apropriados, com base no contexto.
+O Agente Supervisor supervisiona dois agentes específicos de domínio:
+1. Agente de Gerenciamento de Pedidos
+2. Agente de Suporte ao Cliente
+Ele também lida com consultas gerais, encaminhando-as para uma base de conhecimento.
 ```
 
-Watsonx Orchestrate supports creating an agent from scratch or from a template which involves browsing a catalog of existing agents and using attributed of another agent as a template for the new agent. For this lab, you will be creating agents from scratch.
+O Watsonx Orchestrate permite a criação de um agente do zero ou a partir de um modelo, o que envolve navegar por um catálogo de agentes existentes e usar atributos de outro agente como modelo para o novo agente. Neste laboratório, você criará agentes do zero.
 
 ![wxo order to cash agent](./images/img20.png) 
 
-### Agent Configuration 
-After the AI Agent is created, in this section, you will go through the process of configuring the agent with knowledge and tools to enable it to respond to queries using information from the knowledge base and perform tasks using the tools.
+### Configuração do agente com base de conhecimento
+Após a criação do Agente de IA, nesta seção, você passará pelo processo de configuração do agente com conhecimento e ferramentas para permitir que ele responda a consultas usando informações da base de conhecimento e execute tarefas usando as ferramentas.
 
-9. Next, you will go through the process of configuring your agent. The Order-to-Cash Agent page is split in two halves. The right half is a **Preview** chat interface that allows you to test the behavior of your agent. The left half of the page consits of four key sections that you can use to configure your agent.
+9. Em seguida, você passará pelo processo de configuração do seu agente. A página do Agente do Pedido ao Pagamento é dividida em duas partes. A metade direita é uma interface de chat de **Preview** que permite testar o comportamento do seu agente. A metade esquerda da página consiste em quatro seções principais que você pode usar para configurar seu agente.
 
-   - Profile: The **Profile** section consists of the description of the agent which you provided as part of creating the agent. You can always go to this section to edit and refine the description of the agent as needed.
+   - Profile: A seção **Profile** contém a descrição do agente que você forneceu ao criá-lo. Você pode acessar esta seção para editar e refinar a descrição do agente conforme necessário.
 
-   - Knowledge: The **Knowledge** section is where you can add knowledge to the agent. Adding knowledge to agents plays a crucial role in enhancing their conversational capabilities by providing them with the necessary information to generate accurate and contextually relevant responses for specific use cases. You can directly upload files to the agent, or connect to a Milvus or Elasticsearch instance as a content repository. Through this **Knowledge** interface, you can enable your AI agents to implement the Retrieval Augmented Generation (RAG) pattern which is a very popular AI pattern for grounding responses to a trusted source of data such as enterprise knowledge base.
+   - Knowledge: A seção **Knowledge** é onde você pode adicionar conhecimento ao agente. Adicionar conhecimento aos agentes desempenha um papel crucial no aprimoramento de suas capacidades de conversação, fornecendo-lhes as informações necessárias para gerar respostas precisas e contextualmente relevantes para casos de uso específicos. Você pode enviar arquivos diretamente para o agente ou conectar-se a uma instância do Milvus ou Elasticsearch como um repositório de conteúdo. Por meio dessa interface de **Knowledge** , você pode habilitar seus agentes de IA para implementar o padrão de Geração Aumentada de Recuperação (RAG), um padrão de IA muito popular para fundamentar respostas em uma fonte confiável de dados, como uma base de conhecimento empresarial.
 
-   - Toolset: While *Knowledge* is how you empower agents with a trusted knowledge base, then **Toolset** is how you enable agents to take action by providing them with *Tools* and *Agents*. Agents can accomplish tasks by using **Tools** or can delegate tasks to other **Agents** which are deeply skilled in such tasks.
+   - Toolset: Enquanto *Knowledge* é como você capacita os agentes com uma base de conhecimento confiável, **Toolset** é como você capacita os agentes a agir, fornecendo-lhes Ferramentas e Agentes . Os agentes podem realizar tarefas usando **Tools** ou delegar tarefas a outros **Agentes** que sejam profundamente qualificados nessas tarefas.
    
-   - Behavior: The **Behavior** section of the agent configuration is where you provide instructions to the agent to define how it responds to user requests and situations. You can configure rules that dictate when and how the agent should take action. These rules help the agent behave in a predictable and consistent manner, delivering a seamless user experience.
+   - Behavior: A seção **Behavior** do agente é onde você fornece instruções ao agente para definir como ele responde às solicitações e situações do usuário. Você pode configurar regras que determinam quando e como o agente deve agir. Essas regras ajudam o agente a se comportar de maneira previsível e consistente, proporcionando uma experiência perfeita ao usuário.
 
-   - Channels: The **Channels** section is where you can connect your agent to the channels your team uses to communicate (under preview). You can enable your agent to communicate via teams, WhatsApp with Twilio, Facebook messenger, Genesys Bot Connector.
+   - Channels: A seção **Channels** é onde você pode conectar seu agente aos canais que sua equipe usa para se comunicar (em pré-visualização). Você pode habilitar seu agente para se comunicar via equipes, WhatsApp com Twilio, Facebook Messenger e Genesys Bot Connector.
 
-Lastly, after you've completed your agent configuration and tested its performance, you can **Deploy** the agent to make it available through the selected channel. At this time, the main channel supported is the *Chat* home page you access when you first launched watsonx Orchestrate. The product will be adding support for additional channels where you can deploy your agent(s).
+Por fim, após concluir a configuração do agente e testar seu desempenho, você pode **implantar** o agente para disponibilizá-lo no canal selecionado. No momento, o principal canal suportado é a página inicial do Chat que você acessa ao iniciar o Watsonx Orchestrate pela primeira vez. O produto adicionará suporte a canais adicionais onde você poderá implantar seu(s) agente(s).
 
 ![wxo create agent config](./images/img21.png) 
 
-10. On the agent configuration page, review the *Description* of the agent in the **Profile** section and keep as is (no edits necessary). Next, scroll down to the **Knowledge** section, or click the **Knowledge** shortcut. In the Knowledge section, add a description to inform the agent about the content of the knowledge. For this lab, add the following description as we will provide the agent with a Order to Cash process FAQs document.
+10. Na página de configuração do agente, revise a *Descrição* do agente na seção  **Profile** e mantenha-a como está (sem necessidade de edição). Em seguida, role para baixo até a seção **Knowledge**, ou clique no atalho **Knowledge**. Na seção Knowledge adicione uma descrição para informar o agente sobre o conteúdo do conhecimento. Para este laboratório, adicione a seguinte descrição, pois forneceremos ao agente um documento de Perguntas Frequentes (FAQ) sobre o processo Order to Cash.
 
-Description: 
+Descrição: 
 
-```This knowledge addresses all the queries related to Order to Cash process.```
+```Este conhecimento aborda todas as dúvidas relacionadas ao processo Order to Cash.```
 
-Next, you have to choose how to provide knowledge information to the agent. Watsonx Orchestrate supports adding knowledge to the agent either by uploading files directly through the UI or by pointing to a content repository (Mivlus or ElasticSearch). For this lab, click the **Upload files** button to upload pdf files.
+Em seguida, você precisa escolher como fornecer informações de conhecimento ao agente. O Watsonx Orchestrate permite adicionar conhecimento ao agente enviando arquivos diretamente pela interface do usuário ou apontando para um repositório de conteúdo (Mivlus ou ElasticSearch). Para este laboratório, clique no botão **Upload files** para enviar arquivos PDF.
 
 ![wxo agent config knowledge](./images/img35.png) 
 
 
-Drag and drop the following pdf files to upload to the knowledge for the agent :
-   - [Order to Cash FAQs.pdf](./Order_to_Cash_FAQs.pdf)
+Arraste e solte o arquivos PDF "Order to Cash FAQs pt_BR.pdf" para enviar ao conhecimento do agente (O arquivo "Order to Cash FAQs pt_BR.pdf" está disponível na pasta "7. Automation do Order to Cash" gerada após a descompactação do arquivo LABS.zip)
 
 
-11. Once the files are all uploaded to the knowledge base, you can start testing the agent to validate how it can respond to questions using this knowledge base. The uploaded files get processed and prepared to be leveraged by the agent. After the upload completes, test the agent by asking a few questions such as:
+11. Após o upload de todos os arquivos para a base de conhecimento, você pode começar a testar o agente para validar como ele responde a perguntas usando essa base de conhecimento. Os arquivos enviados são processados ​​e preparados para serem utilizados pelo agente. Após a conclusão do upload, teste o agente fazendo algumas perguntas, como:
 
-```What should I do if there is an issue with my order delivery, such as delays or damaged goods? ```
+```O que devo fazer se houver um problema com a entrega do meu pedido, como atrasos ou produtos danificados? ```
 
-```What payment methods are accepted?```
+```Quais métodos de pagamento são aceitos?```
 
-You should see the responses being retrieved from the uploaded documents and then the final response generated by the agent as illustrated in the figure below.
+Você deverá ver as respostas sendo recuperadas dos documentos enviados e, em seguida, a resposta final gerada pelo agente, conforme ilustrado na figura abaixo.
 
 ![wxo agent knowledge test](./images/img37.png) 
 
-At this time, it is worthwhile taking a moment to reflect on what you've developed so far. You have design an agent and empowered it with a knowledge base to enable it to respond to queries in context using its knowledge base. *Congratulations!!*
+Neste momento, vale a pena refletir sobre o que você desenvolveu até agora. Você projetou um agente e o capacitou com uma base de conhecimento para que ele possa responder a consultas em contexto usando sua base de conhecimento. *Parabéns!!*
 
 
-## Customer Support Agent Creation and Configuration
-In this section, you will create the Customer Support Agent, a collaborator agent designed to handle customer queries by retrieving relevant email threads and providing real-time order updates. This agent is powered by a combination of tools including the **Email Retrieval Tool** for accessing customer messages and the **Order Lookup Tool** for fetching order status. The agent mirrors real-world support workflows by curating responses and optionally sending emails to customers, all within a guided conversational flow.
+## Criação e configuração do agente de suporte ao cliente
+Nesta seção, você criará o Agente de Suporte ao Cliente, um agente colaborador projetado para lidar com as dúvidas dos clientes, recuperando conversas de e-mail relevantes e fornecendo atualizações de pedidos em tempo real. Este agente é alimentado por uma combinação de ferramentas, incluindo a **Ferramenta de Recuperação de E-mails** para acessar mensagens de clientes e a **Ferramenta de Consulta de Pedidos** para obter o status do pedido. O agente espelha fluxos de trabalho de suporte do mundo real, selecionando respostas e, opcionalmente, enviando e-mails aos clientes, tudo dentro de um fluxo de conversa guiado.
 
-12. If you are not at the watsonx Orchestrate landing page (chat interface), repeat the steps above to make sure you are logged into IBM Cloud, find the watsonx Orchestrate service and launch it to access the landing page.
+12. Se você não estiver na página inicial do watsonx Orchestrate (interface de bate-papo), repita as etapas acima para garantir que você esteja conectado ao IBM Cloud, localize o serviço watsonx Orchestrate e inicie-o para acessar a página inicial.
 
-13. From the watsonx Orchestrate langding page, click **Create agent** to start developing a new agent, the Customer Support Agent. 
+13. Na página de idioma do watsonx Orchestrate, clique em  **Create agent** para começar a desenvolver um novo agente, o Agente de Suporte ao Cliente.
 
 ![wxo landing page create agent](./images/wxo-landing-page-create-agent.png) 
 
-14. On the Create an agent page, select **Create from scratch** tile , provide a **Name** and a **Description** for the agent and click **Create**.
+14. Na página Criar um agente, selecione o bloco **Create from scratch** forneça um  **Nome** e uma **Descrição** para o agente e clique em **Create**.
 
-Name: ```Customer Support```
+Name: ```Agente de Suporte ao Cliente```
 
-Description: 
+Descrição: 
 ```
-This agent is helpful for all the customer support queries. This agent fetches all user email addresses, retrieves order updates on user input (order id) from the tool, and sends a relevant email to the user with their respective order update.
+Este agente é útil para todas as consultas de suporte ao cliente. Ele busca todos os endereços de e-mail dos usuários, recupera atualizações de pedidos com base na entrada do usuário (ID do pedido) na ferramenta e envia um e-mail relevante ao usuário com a respectiva atualização do pedido.
 ```
-As explained earlier, the decription of an agent is important as it is leveraged by the agentic solution to route user messages to the right agent skilled in addressing the request.
+Conforme explicado anteriormente, a descrição de um agente é importante, pois ela é aproveitada pela solução de agente para encaminhar mensagens do usuário ao agente certo e qualificado para atender à solicitação.
 
 ![wxo create customer support agent](./images/img1.png) 
 
-15. On the agent configuration page, scroll down to **Toolset** section or click the shortcut. Then cick the **Add tool** button to bring up the window for adding tools to the agent.
+15. Na página de configuração do agente, role para baixo até a seção **Toolset** ou clique no atalho. Em seguida, clique no botão **Add tool** para abrir a janela para adicionar ferramentas ao agente.
 
 ![wxo agent tools](./images/img3.png) 
 
-16. On the tool options pop-up, select **Import** as illustrated in the figure below. 
+16. No pop-up de opções da ferramenta, selecione **Import** conforme ilustrado na figura abaixo.
 
 ![wxo tool options](./images/img4.png) 
 ![wxo tool options](./images/img4.1.png) 
 
-watsonx Orchestrate supports multiple approaches to adding tools to agents:
+O watsonx Orchestrate oferece suporte a diversas abordagens para adicionar ferramentas aos agentes:
 
-   - Add from catalog: The **Add from catalog** option enables you to add a tool from a rich catalog of pre-defined tools. The catalog of tools is actively being developed to make it even easier to add tools to agents.
+   - Adicionar do catálogo: A opção **Add from catalog** permite adicionar uma ferramenta de um amplo catálogo de ferramentas predefinidas. O catálogo de ferramentas está sendo desenvolvido ativamente para facilitar ainda mais a adição de ferramentas aos agentes.
 
-   - Add from local instance: The **Add from local instance** option enables you to add a tool from an existing set of tools already uploaded to the local instance of watsonx Orchestrate. 
+   - Adicionar da instância local: A opção **Add from local instance** opermite que você adicione uma ferramenta de um conjunto existente de ferramentas já carregadas na instância local do watsonx Orchestrate.
 
-   - Import: The **Import** option enables you to import an external tool using an OpenAPI specification and selecting which operations you want to import as tools.
+   - Importar: A opção **Import** permite que você importe uma ferramenta externa usando uma especificação **OpenAPI** e selecionando quais operações você deseja importar como ferramentas.
 
-   - Create a new flow: The **Create a new flow** option provides you with a drag and drop tool builder interface to create a sequence of steps that utilize conditional controls and activities. 
+   - Criar um novo fluxo: A opção **Create a new flow** fornece uma interface de criação de ferramentas de arrastar e soltar para criar uma sequência de etapas que utilizam controles e atividades condicionais.
 
-For purposes of the Order-to-Cash Agent, you will use the **Import** option and then **Import from file** to import an OpenAPI specification and define which operations to import as tools. You will need a Openapi spec file which will be provided by your instructor. 
+Para fins do Agente Order-to-Cash, você usará a opção **Import** e, em seguida **Import from file** tpara importar uma especificação OpenAPI e definir quais operações importar como ferramentas. Você precisará de um arquivo de especificação OpenAPI, que está disponível na pasta "7. Automation do Order to Cash" gerada após a descompactação do arquivo LABS.zip.
 
-17. On the Import tool page, drag and drop the **customer_support.yml** spec file provided by your instructor and click **Next**.
+17. Na página da ferramenta Importar, arraste e solte o arquivo de especificação **customer_support.yml** (disponível na pasta "7. Automation do Order to Cash" gerada após a descompactação do arquivo LABS.zip.) e clique em **Next**.
 
 ![wxo tool import openapi](./images/img2.png) 
 
-18. Next, select the checkboxes for the **Get Order Details**, **Get All Orders** and **Get All Mails** operations and click **Done**.
+18. Em seguida, marque as caixas de seleção para as operações **Obter detalhes do pedido** , **Obter todos os pedidos** e **Obter todos os e-mails** e clique em **Done**.
 
 ![wxo tool import operations](./images/img5.png) 
 
-19. At this point, you will see the two tools imported under the Tools subsection which means they are available for the **Customer Support Agent** to use these tools in executing tasks. 
+19. Neste ponto, você verá as duas ferramentas importadas na subseção Ferramentas, o que significa que elas estão disponíveis para o **Agente de Suporte ao Cliente** usar essas ferramentas na execução de tarefas.
 
-20. Next, scroll further down to the **Behavior** section or click the **Behavior** shortcut and add the following Instructions to guide the agent in its reasoning and orchestration.
+20. Em seguida, role mais para baixo até a seção **Behavior** ou clique no atalho **Behavior** e adicione as seguintes instruções para orientar o agente em seu raciocínio e orquestração.
 
-Behavior instructions: 
+Instruções de comportamento: 
 
 ```
 ### **Trigger Condition**
 When a user initiates a conversation or asks a question containing the keyword
 ```show me all my emails, customer service, customers list or related phrases```
 
-### **Step 1**: Display All Customer Emails
-* **Action**: Trigger the get_all_mails tool to fetch email all the data
-* **Response Format**: Present the table with all key columns: Email name, address, cc, bcc, subject, from the fetched data.
+### **Condição de Acionamento**
+Quando um usuário inicia uma conversa ou faz uma pergunta contendo a palavra-chave
+```mostrar todos os meus e-mails, atendimento ao cliente, lista de clientes ou frases relacionadas```
+
+### **Etapa 1**: Exibir todos os e-mails de clientes
+* **Ação**: Acionar a ferramenta get_all_mails para buscar todos os dados do e-mail
+* **Formato de Resposta**: Apresentar a tabela com todas as colunas-chave: nome do e-mail, endereço, cc, bcc, assunto, a partir dos dados buscados.
 * **Prompt**:
-    ```Here is the list of all available emails. 
-    | To Name                     | To Email Address                                              |
+```Aqui está a lista de todos os e-mails disponíveis.     
+| Para o Nome             | Para endereço de email                                             |
 | --------------------------- | ------------------------------------------------------------- |
 | Acme Corp - John Smith      | [john.smith@acmecorp.com](mailto:john.smith@acmecorp.com)     |
 | Globex Ltd - Maria Gonzales | [maria.gonzales@globex.com](mailto:maria.gonzales@globex.com) |
 
-    Please select the customer name or email.	
+    Por favor selecione o nome ou e-mail do cliente.
     ```
 
-### **Step 2**: Email Input & Validation
-* **Action**: Wait for the user to input an name or mail.
-* **Validation**:
-    * If not found, respond with: 
-    ```The selected email address is not in the list. Please choose a valid one from above.```
-    * If valid, proceed to the next step.
+### **Etapa 2**: Entrada e Validação de E-mail
+* **Ação**: Aguarde o usuário inserir um nome ou e-mail.
+* **Validação**:
+* Caso não encontre, responda com:
+```O endereço de e-mail selecionado não está na lista. Escolha um válido entre os acima.```
+* Se válido, prossiga para a próxima etapa.
 
-### **Step 3**: Display all the orders from 'get All Orders(2) ' first and Ask the user for Order ID from the displayed list to get the order update.
-* **Prompt**:
-    ```Here are the list of order ids, please select an Order ID for which you want to check the order update.```
-* **Action**: Display the all the order-ids and Wait for user input.
+### **Etapa 3**: Exiba todos os pedidos de 'obter Todos os Pedidos(2)' primeiro e peça ao usuário o ID do Pedido na lista exibida para obter a atualização do pedido.
+* **Solicitação**:
+```Aqui está a lista de IDs de pedidos. Selecione o ID do Pedido cuja atualização você deseja verificar.```
+* **Ação**: Exiba todos os IDs de pedidos e aguarde a entrada do usuário.
 
-### **Step 4**: Display Order Update
-* **Action**: Trigger the get_order_details tool with the provided Order ID.
-* **Response Format**: Display order update cleanly in a table format.
+### **Etapa 4**: Exibir Atualização do Pedido
+* **Ação**: Acione a ferramenta get_order_details com o ID do Pedido fornecido.
+* **Formato de Resposta**: Exiba a atualização do pedido de forma organizada em formato de tabela.
 
-### **Step 5**: Ask to contact the customer
-* **Prompt**:
-```Would you like to contact this customer regarding this order? (yes/no)```
+### **Etapa 5**: Peça para entrar em contato com o cliente
+* **Solicitação**:
+```Você gostaria de entrar em contato com este cliente sobre este pedido? (sim/não)```
 
-### **Step 6**: Ask to Curate Email
-* **Prompt**:
-```Would you like me to draft an email with the above order update to the selected customer? (yes/no)```
+### **Etapa 6**: Solicitar Curadoria de E-mail
+* **Solicitação**:
+```Deseja que eu redija um e-mail com a atualização do pedido acima para o cliente selecionado? (sim/não)```
 
-### **Step 7**: Draft Email
-* **Trigger Condition**: If user responds yes.
-* **Action**: Auto-generate email.
-* **Email Format**:
-    ```To:abc@acmecorp.com  
-    Subject: Update on Your Order xyzzy  
-    Dear abc,
-    Thank you for reaching out. Here are the details of your order:
-    - Order ID: xyzzy  
-    - Order Date: 25-01-2025  
+### **Etapa 7**: Redigir E-mail
+* **Condição de Acionamento**: Se o usuário responder sim.
+* **Ação**: Gerar e-mail automaticamente.
+* **Formato do E-mail**:
+    ```Para: abc@acmecorp.com
+    Assunto: Atualização do seu Pedido xyzzy
+    Prezado abc,
+    Agradecemos o seu contato. Aqui estão os detalhes do seu pedido:
+    - ID do Pedido: xyzzy
+    - Data do Pedido: 25/01/2025
 
-    Order is delayed as the ordered quantity is not available in the current inventory.  
-    Updated delivery date: 25-01-2025  
+    O pedido está atrasado porque a quantidade solicitada não está disponível no estoque atual.
+    Data de entrega atualizada: 25/01/2025
 
-    If you have any questions or require further assistance, please don't hesitate to contact us.
+    Caso tenha alguma dúvida ou precise de mais assistência, entre em contato conosco.
 
-    Best regards,  
-    Customer Support Team```
-* **Prompt**:
-```Would you like to send the above email to the customer now? (yes/no)```
+    Atenciosamente,
+    Equipe de Suporte ao Cliente```
+* **Solicitação**:
+```Deseja enviar o e-mail acima ao cliente agora? (sim/não)```
 
-### **Step 8**: Send the Email
-* **Trigger Condition**: If the user selects yes to send the email.
-* **Response:
-```Email sent successfully to john.smith@acmecorp.com.```
+### **Etapa 8**: Enviar o e-mail
+* **Condição de gatilho**: Se o usuário selecionar "sim" para enviar o e-mail.
+* **Resposta:
+```E-mail enviado com sucesso para john.smith@acmecorp.com.```
 
-### **Design Principles**
-* Clean and intuitive step-by-step interaction
-* Input validation to reduce errors
-* Clear prompts at each stage to guide the user
-* Structured formatting for easy reading
-* Follows a real-world support workflow
-
+### **Princípios de design**
+* Interação passo a passo limpa e intuitiva
+* Validação de entrada para reduzir erros
+* Prompts claros em cada etapa para orientar o usuário
+* Formatação estruturada para facilitar a leitura
+* Segue um fluxo de trabalho de suporte do mundo real
 ```
 
 ![wxo customer support agent behavior](./images/img6.png)
 
-21. Now that you have completed the creation of the agent and added the tools it requires, test the tools in the Preview section by asking a sample question such as:
+21. Agora que você concluiu a criação do agente e adicionou as ferramentas necessárias, teste as ferramentas na seção **Preview** fazendo uma pergunta de exemplo, como:
 
-```show me all emails ```
+```mostrar todos os e-mails```
 
-```customers list```
+```lista de clientes```
 
-Observe the response which was based on the information returned by the Mail tool. To verify that, click the **Show Reasoning** link to expand the agent's reasoning. Note that the agent is correctly calling the **Get All Mails** tool and it shows both input and output of the tool call.
+Observe a resposta baseada nas informações retornadas pela ferramenta de e-mail. Para verificar isso, clique no link **Show Reasoning** para expandir o raciocínio do agente. Observe que o agente está chamando corretamente a ferramenta **Obter Todos os E-mails** e que ela mostra tanto a entrada quanto a saída da chamada da ferramenta.
 
 ![wxo tool mails](./images/img7.png) 
 ![wxo tool mails](./images/img8.png) 
 
-22. Test the **Customer Support Agent** further by selecting the order_id to fetch the order details and later contact the customer and draft and send an email.
+22. Teste o **Agente de Suporte ao Cliente** mais detalhadamente selecionando order_id para obter os detalhes do pedido e depois entrar em contato com o cliente, redigir e enviar um e-mail.
 
-Again, observe the response and expand the **Show Reasoning** link to trace through the agent's reasoning which in this case correctly triggered the **Get Order Details** tool.
+Novamente, observe a resposta e expanda o link **Show Reasoning** para rastrear o raciocínio do agente, que neste caso acionou corretamente a ferramenta **Obter detalhes do pedido**.
 
 ![wxo tool order](./images/img9.png)  
 ![wxo tool order](./images/img10.png)
 
-23. At this point, you are ready to deploy your Agent. To do so, scroll to the bottom of the configuration page and make sure the slide bar next to Show agent is disabled. Click the **Deploy** button to deploy the agent and makes it available to be used as a collaborator agent.
+23. Neste ponto, você está pronto para implantar seu agente. Para isso, role até o final da página de configuração e certifique-se de que a barra deslizante ao lado de **Show agent** esteja desabilitada. Clique no botão **Deploy** para implantar o agente e torná-lo disponível para uso como um agente colaborador.
 
 ![wxo order managemen agent deploy](./images/show-chat.png)
 ![wxo o2c deploy](./images/img11.png) 
 
-*Congratulations!!* You have just completed developing the **Customer Support Agent** empowered with tools for returning email data and order updates.
+*Parabéns!! Você acabou de concluir o desenvolvimento do **Agente de Suporte ao Cliente** , equipado com ferramentas para retornar dados de e-mail e atualizações de pedidos.
 
-## Order Management Agent Creation and Configuration
-In this section, you will build the **Order Management Agent**, a key collaborator agent responsible for managing the end-to-end flow of purchase orders (POs) within the Order-to-Cash (O2C) lifecycle. This agent is designed to streamline order processing by interacting with external systems such as databases and ERP platforms (e.g., SAP), helping users retrieve PO and quotation details, validate input, and place orders efficiently. In this lab, the agent will be equipped with tools such as **Fetch All POs**, **Get Po Detail**, **Get Quotation Details**, and **Display Confirmation** to simulate real-world enterprise automation.
+## Criação e configuração do agente de gerenciamento de pedidos
+Nesta seção, você criará o **Agente de Gerenciamento de Pedidos** , um agente colaborador essencial responsável por gerenciar o fluxo de ponta a ponta de pedidos de compra (POs) dentro do ciclo de vida do Pedido ao Pagamento (O2C). Este agente foi projetado para otimizar o processamento de pedidos interagindo com sistemas externos, como bancos de dados e plataformas ERP (por exemplo, SAP), ajudando os usuários a recuperar detalhes de POs e cotações, validar entradas e fazer pedidos com eficiência. Neste laboratório, o agente estará equipado com ferramentas como **Buscar Todos as ordens de pedidos** , **Obter Detalhes da ordem de pedido** , **Obter Detalhes da Cotação** e **Exibir Confirmação** para simular a automação empresarial do mundo real.
 
-24. If you are not at the watsonx Orchestrate landing page (chat interface), repeat the earlier steps to make sure you are logged into IBM Cloud, find the watsonx Orchestrate service and launch it to access the landing page.
 
-25. On the watsonx Orchestrate landing page, which is the Chat UI, click **Create new agent** link to start creating the Order Management Agent.
+24. Se você não estiver na página inicial do watsonx Orchestrate (interface de bate-papo), repita as etapas anteriores para garantir que você esteja conectado ao IBM Cloud, localize o serviço watsonx Orchestrate e inicie-o para acessar a página inicial.
+
+25. Na página inicial do watsonx Orchestrate, que é a interface de bate-papo, clique no link **Create new agent** para começar a criar o agente de gerenciamento de pedidos.
 
 ![wxo landing page create agent](./images/wxo-landing-page-create-agent.png) 
 
-26. Repeat the steps you did earlier to create an agent from scratch and provide the following name and description for the order management agent. Click **Create**.
+26. Repita os passos anteriores para criar um agente do zero e forneça o seguinte nome e descrição para o agente de gerenciamento de pedidos. Clique em **Create**.
 
-Name: ```Order Management```
+Name: ```Agente de Gerenciamento de Pedidos```
 
-Description: 
+Descrição: 
 
 ```
-This agent is designed to handle user queries related to order management. It retrieves purchase order (PO) details along with the corresponding quotation information, ensuring users receive accurate and up-to-date data. Once the information is retrieved, the agent responds with a confirmation message: "Your order has been placed successfully."
+Este agente foi projetado para lidar com consultas de usuários relacionadas ao gerenciamento de pedidos. Ele recupera os detalhes do pedido de compra (PO) juntamente com as informações de cotação correspondentes, garantindo que os usuários recebam dados precisos e atualizados. Assim que as informações são recuperadas, o agente responde com uma mensagem de confirmação: "Seu pedido foi feito com sucesso."
 ```
 
 ![wxo create order management agent](./images/img12.png)
 
-27. On the agent configuration page, scroll down to the **Toolset** section or click the **Toolset** shortcut, then click **Add tool**.
+27. Na página de configuração do agente, role para baixo até a seção **Toolset** ou clique no atalho **Toolset**e, em seguida, clique em **Add tool**.
 
-28. As explained earlier, watsonx Orchestrate supports multiple approaches for adding tools to agents. For the Order Management Agent, you will leverage the **Import** functionality like you did earlier. Click the **Import from file** tile.
+28. Como explicado anteriormente, o Watsonx Orchestrate oferece suporte a diversas abordagens para adicionar ferramentas aos agentes. Para o Agente de Gerenciamento de Pedidos, você utilizará a funcionalidade de **Import**, como fez anteriormente. Clique no bloco **Import from file**.
 
-29. On the Import tool page, drag and drop the **order_management.yml** spec file provided by your instructor and click **Next**.
+29. Na página da ferramenta Importar, arraste e solte o arquivo de especificação **order_management.yml** fornecido pelo seu instrutor e clique em **Next**. (O arquivo order_management.yml" está disponível na pasta "7. Automation do Order to Cash" gerada após a descompactação do arquivo LABS.zip)
 
 ![wxo order managemen agent tool import openapi](./images/img13.png) 
 
-30. Next, select the checkboxes for the **Fetch All POs**, **Get Po Detail**, **Get Quotation Details**, **Get Matching Details** and **Display Confirmation** operation and click **Done**.
+30. Em seguida, marque as caixas de seleção para as operações **Buscar todos os pedidos de compra** , **Obter detalhes do pedido de compra** , **Obter detalhes da cotação**, **Obter detalhes correspondentes** e **Exibir confirmação** e clique em **Done**.
 
 ![wxo order management agent tool import operations](./images/img38.png) 
 
-31. At this point, you will see the tool imported under the Tools subsection which means it is available for the **Order Management Agent**. 
+31. Neste ponto, você verá a ferramenta importada na subseção Ferramentas, o que significa que ela está disponível para o **Agente de Gerenciamento de Pedidos** .
 
-32. Scroll down further to the **Behavior** section of the agent configuration page and add the following **Instructions** to help guide the agent's behavior.
+32. Role mais para baixo até a seção **Behavior** da página de configuração do agente e adicione as seguintes **instruções** para ajudar a orientar o comportamento do agente.
 
-Behavior instructions: 
+Instruções de comportamento:
 ```
-### **Trigger Condition**
-When a user initiates a conversation or asks a question containing the keyword 
-```show all orders or order management or manage orders or related phrases.```
+### **Condição de Acionamento**
+Quando um usuário inicia uma conversa ou faz uma pergunta contendo a palavra-chave
+```mostrar todos os pedidos ou gerenciamento de pedidos ou gerenciar pedidos ou frases relacionadas.```
 
-### **Step 1: Fetch and Display All POs**
-* **Action**: Automatically trigger the `fetch_all_pos` tool.
-* **Response Format (Example)**:
-  ```Here is a list of all purchase orders:
-  | PO Number   | POM ID | Submitted By     | User ID           |
+### **Etapa 1: Buscar e Exibir Todos os Pedidos de Compra**
+* **Ação**: Acionar automaticamente a ferramenta `fetch_all_pos`.
+* **Formato de Resposta (Exemplo)**:
+```Aqui está uma lista de todos os pedidos de compra:
+  | PO Number   | POM ID | Submetido por    | User ID           |
   |-------------|--------|------------------|-------------------|
   | 4300016793  | 4697   | Sailendu Patra   | sailendu.patra    |
   | 4200054529  | 3426   | Tannavi Snehal   | tannavi.snehal    |
-  Please enter the PO number you would like to view or manage.```
+  Insira o número do pedido que você gostaria de visualizar ou gerenciar.```
 
-### **Step 2: PO Number Input & Validation**
-* **Action**: Wait for user input (PO number).
-* **Validation**:
-  * If not found:
-    ```
-    No PO details found for the given PO number. Please try again or check your input.
-    ```
-  * If valid: Proceed to Step 3.
+### **Etapa 2: Entrada e Validação do Número da Ordem de Compra**
+* **Ação**: Aguarde a entrada do usuário (número da Ordem de Compra).
+* **Validação**:
+* Se não encontrado:
+```
+Nenhum detalhe da Ordem de Compra encontrado para o número da Ordem de Compra informado. Tente novamente ou verifique sua entrada.
+```
+* Se válido: Prossiga para a Etapa 3.
 
-### **Step 3: Retrieve & Display PO details in a table format**
-* **Action**: Call `get_po_details(po_number)` tool.
-* **Response Example**:
+### **Etapa 3: Obter e exibir os detalhes da OC em formato de tabela**
+* **Ação**: Chamar a ferramenta `get_po_details(po_number)`.
+* **Exemplo de resposta**:
 
-  ```Please confirm the PO details shown above. Do you want to proceed with this PO? (Yes/No)```
+```Confirme os detalhes da OC mostrados acima. Deseja prosseguir com esta OC? (Sim/Não)```
 
-### **Step 4: Fetch & Display Quotation details in table format**
-* **Trigger Condition**: If the user confirms the PO.
-* **Action**: Extract `quotation_number` from PO details and call `get_quotation_details(quotation_number)` tool.
-* **Response Example**:
+### **Etapa 4: Obter e exibir os detalhes da cotação em formato de tabela**
+* **Condição de gatilho**: Se o usuário confirmar a OC.
+* **Ação**: Extrair `quotation_number` dos detalhes da OC e chamar a ferramenta `get_quotation_details(quotation_number)`.
+* **Exemplo de resposta**:
 
-  ```  Please confirm the quotation details. Shall we proceed with placing the order? (Yes/No)```
+```Confirme os detalhes da cotação. Podemos prosseguir com a realização do pedido? (Sim/Não)```
 
-### **Step 5: Confirm and Place Order**
-* **Trigger Condition**: If the user confirms the quotation.
-* **Action**: Call `display_confirmation` tool.
-* **Response Example**:
+### **Etapa 5: Confirmar e Fazer o Pedido**
+* **Condição de Acionamento**: Se o usuário confirmar o orçamento.
+* **Ação**: Chamar a ferramenta `display_confirmation`.
+* **Exemplo de Resposta**:
 
-  ```The order was placed successfully. You can track your order with Order ID: #710004927```
+```O pedido foi feito com sucesso. Você pode acompanhar seu pedido com o ID do Pedido: #710004927```
 
-### **Design Principles**
-* Ensure **one confirmation at a time** — first PO, then quotation.
-* Avoid overwhelming the user with too much information at once.
-* Validate user inputs and provide friendly recovery prompts if something goes wrong.
-* Format messages clearly with clean markdown-style tables and highlights.
+### **Princípios de Design**
+* Garanta **uma confirmação por vez** — primeiro o pedido, depois o orçamento.
+* Evite sobrecarregar o usuário com muitas informações de uma só vez.
+* Valide as entradas do usuário e forneça prompts de recuperação amigáveis ​​caso algo dê errado.
+* Formate as mensagens de forma clara com tabelas e destaques limpos em estilo markdown.
 
 ```
 
-Next, test the functionality of the agent by asking a question such as
+Em seguida, teste a funcionalidade do agente fazendo uma pergunta como
 
- ```manage orders``` 
+```Gerenciar pedidos```
 
-  ```Show all orders``` 
+```Mostrar todos os pedidos```
   
-  and its follow up questions and observe the response of the agent. Click the **Show Reasoning** link and note how the agent is correctly invoking the **Get All PO Details**, **Get Po Detail**, **Get Quotation Details**, **Get Matching Details** and **Display Confirmation** to retrieve relevant information.
+  e suas perguntas subsequentes, e observe a resposta do agente. Clique no link **Show Reasoning** e observe como o agente está invocando corretamente as funções **Obter Todos os Detalhes da PO**, **Obter Detalhes da PO**, **Obter Detalhes da Cotação**, **Obter Detalhes da Correspondência** e **Exibir Confirmação** para recuperar informações relevantes.
 
 ![wxo order management agent behavior](./images/img16.png) 
 ![wxo order management agent behavior](./images/img17.png)
 ![wxo order management agent behavior](./images/img18.png)
 ![wxo chat q3 reasoning](./images/img34.0.png)
 
-33. At this point, you are ready to deploy your Agent. To do so, scroll to the bottom of the configuration page and make sure the slide bar next to Show agent is disabled. Next, click the **Deploy** button to deploy the agent and makes it available to be used as a collaborator agent.
+33. Neste ponto, você está pronto para implantar seu agente. Para isso, role até o final da página de configuração e certifique-se de que a barra deslizante ao lado de **Show agent** esteja desabilitada. Em seguida, clique no botão **Deploy** para implantar o agente e torná-lo disponível para uso como um agente colaborador.
 
 ![wxo order managemen agent deploy](./images/show-chat.png)
 ![wxo order managemen agent deploy](./images/img19.png) 
 
-*Congratulations!!* You have just completed developing the **Order Management Agent** empowered with tools for helping users retrieve PO and quotation details, validate input, and place orders efficiently.
+*Parabéns!!* Você acabou de concluir o desenvolvimento do **Agente de Gerenciamento de Pedidos** equipado com ferramentas para ajudar os usuários a recuperar detalhes de PO e cotação, validar entradas e fazer pedidos de forma eficiente.
 
-## Pulling it together - Complete Agent Collaboration <a id="pulling-it-together"></a>
-Now that you have developed all agents and tools, in this section, you will work through the process of integrating the collaborator agents, testing and deploying the **Order-to-Cash Agent**.
+## Juntando tudo - Colaboração completa do agente 
+Agora que você desenvolveu todos os agentes e ferramentas, nesta seção, você trabalhará no processo de integração dos agentes colaboradores, testando e implantando o agente. **Agente Order-to-Cash**.
 
-34. If you are not at the watsonx Orchestrate landing page (chat interface), repeat the earlier steps to make sure you are logged into IBM Cloud, find the watsonx Orchestrate service and launch it to access the landing page.
+34. Se você não estiver na página inicial do watsonx Orchestrate (interface de bate-papo), repita as etapas anteriores para garantir que você esteja conectado ao IBM Cloud, localize o serviço watsonx Orchestrate e inicie-o para acessar a página inicial.
 
-35. On the watsonx Orchestrate landing page, which is the Chat UI, click **Manage agents**.
+35. Na página Gerenciar agentes, selecione o **Manage agents**.
 
 ![wxo landing page manage agents](./images/wxo-landing-page-manage-agents.png) 
 
-36. On the Manage agents page, select the **Order-to-Cash Agent**.
+36. Na página Gerenciar agentes, selecione o **Agente Order-to-Cash**.
 
 ![wxo collaborator agents](./images/img39.png) 
 
-37. On the **Order-to-Cash Agent** configuration page, scroll down to the **Toolset** section or click the **Toolset** shortcut, and then click **Add agent** to add a collaborator agent.
+37. Na página de configuração do **Agente Order-to-Cash**, role para baixo até a seção **Toolset** ou clique no atalho **Toolset** e, em seguida, clique em **Add agent** para adicionar um agente colaborador.
 
-38. On the pop-up, select **Add from local instance** tile. For reference, watsonx Orchestrate supports multiple approaches for adding collaborator agents.
+38. No pop-up, selecione **Add from local instance**. Para referência, o Watsonx Orchestrate oferece suporte a diversas abordagens para adicionar agentes colaboradores.
 
 ![wxo collaborator agents](./images/img22.png)  
 
-39. Select the checkbox next to both, the **Customer Support** and the **Order Management Agent** and click **Add to agent** button.
+39. Marque a caixa de seleção ao lado do **Agente de Suporte ao Cliente** e do **Agente de Gerenciamento de Pedidos** e clique no botão  **Add to agent**
 
 ![wxo financial analyst add collaborators](./images/img23.png) 
 
-40. Scroll further down to the **Behavior** section or click the **Behavior** shortcut and add the following **Instructions** to guide the agent in its reasoning and orchestration.
+40. Role mais para baixo até a seção **Behavior** ou clique no atalho  **Behavior** e adicione as seguintes **instruções** para orientar o agente em seu raciocínio e orquestração.
 
-Behavior instructions: 
+Instruções de comportamento:
 ```
-## **Agent Role: Supervisor Agent** 
-  - This **Supervisor Agent** orchestrates and manages the flow of conversation by intelligently routing user queries to the appropriate   specialized agents based on the context.
+## **Função do Agente: Agente Supervisor**
+- Este **Agente Supervisor** orquestra e gerencia o fluxo da conversa, encaminhando de forma inteligente as consultas dos usuários para os agentes especializados apropriados, com base no contexto.
 ---
 
-###  **Responsibilities & Behavior**
-The Supervisor Agent oversees two domain-specific agents:
-1. **Order Management Agent**
-2. **Customer Support Agent**
+### **Responsabilidades e Comportamento**
+O Agente Supervisor supervisiona dois agentes específicos de domínio:
+1. **Agente de Gerenciamento de Pedidos**
+2. **Agente de Suporte ao Cliente**
 ---
 
-###  **Triggering Logic**
-* **Order Management Queries**
-  *Trigger Condition*: When a user initiates a conversation or asks a question containing the keyword `show me all orders`,'manage orders' or related phrases.
-  *Action*: Automatically delegates the conversation to the **Order Management Agent**, which follows a structured step-by-step workflow to fetch and manage purchase orders and quotations.
+### **Lógica de Acionamento**
+* **Consultas de Gerenciamento de Pedidos**
+*Condição de Acionamento*: Quando um usuário inicia uma conversa ou faz uma pergunta contendo as palavras-chave `mostrar todos os pedidos`, `gerenciar pedidos` ou frases relacionadas.
+*Ação*: Delega automaticamente a conversa para o **Agente de Gerenciamento de Pedidos**, que segue um fluxo de trabalho estruturado passo a passo para buscar e gerenciar pedidos de compra e cotações.
 
-* **Customer Support Queries**
-  *Trigger Condition*: When the user asks for help using the keyword 'show me all emails', `customer support` or related intent.
-  *Action*: Passes control to the **Customer Support Agent**, which handles email-based inquiries, order updates, and customer communication workflows.
+* **Consultas de Suporte ao Cliente**
+*Condição de Acionamento*: Quando o usuário solicita ajuda usando a palavra-chave 'mostrar todos os e-mails', `suporte ao cliente` ou intenção relacionada.
+*Ação*: Passa o controle para o **Agente de Suporte ao Cliente**, que lida com consultas por e-mail, atualizações de pedidos e fluxos de trabalho de comunicação com o cliente.
 ---
 
-###  **Fallback Behavior for General Queries**
-* **Non-Domain-Specific Queries (e.g., O2C questions)**
-  *Trigger Condition*: When the user query does not relate to either order management or customer support.
-  *Action*: Supervisor Agent routes the query to a **knowledge retrieval system** and returns the most relevant answer **directly without stating fallback context**.
+### **Comportamento de Retorno para Consultas Gerais**
+* **Consultas Não Específicas de Domínio (por exemplo, perguntas O2C)**
+*Condição de Acionamento*: Quando a consulta do usuário não está relacionada ao gerenciamento de pedidos ou ao suporte ao cliente.
+*Ação*: O Agente Supervisor encaminha a consulta para um **sistema de recuperação de conhecimento** e retorna a resposta mais relevante **diretamente, sem especificar o contexto de retorno**.
 ---
 
-###  **Design Principles**
-* **Intent Recognition First**: Clearly detect and route based on user input context.
-* **Delegation, Not Duplication**: Does not handle detailed tasks but ensures the right agent is activated.
-* **Natural Interaction Flow**: Smooth transitions without disrupting the user experience.
-* **No Overlap Between Agents**: Maintains clear boundaries to avoid confusion.
-* **Direct Answers for O2C and Other Topics**: No extra framing or disclaimers—only the relevant response.
+### **Princípios de Design**
+* **Reconhecimento de Intenção Primeiro**: Detecte e encaminhe claramente com base no contexto de entrada do usuário.
+* **Delegação, não duplicação**: Não lida com tarefas detalhadas, mas garante que o agente certo seja ativado.
+* **Fluxo de interação natural**: Transições suaves sem interromper a experiência do usuário.
+* **Sem sobreposição entre agentes**: Mantém limites claros para evitar confusão.
+* **Respostas diretas para O2C e outros tópicos**: Sem enquadramento ou isenções de responsabilidade extras — apenas a resposta relevante.
 
 ```
+Teste o comportamento do agente na seção **Preview** fazendo a seguinte pergunta de exemplo:
 
-Test the agent behavior in the **Preview** section by asking the following sample question:
+Pergunta:
 
-Question: 
+```Mostrar todos os e-mails de atendimento ao cliente```
 
-```Show me all emails for customer service```
+``` Lista de clientes```
 
-``` customers list```
-
-Expand the **Show Reasoning** and **Step 1** links to review the reasoning of the agent. Note that it is correctly retreiving information as it references the **Customer Support Agent** tool.
+Expanda os links **Show Reasoning** e **Step 1** para revisar o raciocínio do agente. Observe que ele está recuperando as informações corretamente, pois faz referência à ferramenta **Agente de Suporte ao Cliente**.
 
 ![wxo knowledge base test](./images/img25.png) 
 
-41. Continue testing your agent now by stressing the order management agent functionality and Knowledge base. To do so, ask the following question.
+41. Continue testando seu agente agora, enfatizando a funcionalidade do agente de gerenciamento de pedidos e a Base de conhecimento. Para isso, faça a seguinte pergunta.
 
-Question:
+Pergunta:
 
- ```Show me all order details``` 
+```Mostrar todos os detalhes do pedido```
 
- ```manage orders```
+```Gerenciar pedidos```
 
-42. At this point, you are ready to deploy your **Order-to-Cash Agent**. To do so, scroll to the bottom of the configuration page and make sure the slide bar next to **Show agent** is enabled (green) to make the **Order-to-Cash Agent** accessible on the chat interface. Click **Deploy** button to deploy your agent.
+42. Neste ponto, você está pronto para implementar seu **Agente Order-to-Cash** . Para isso, role até o final da página de configuração e certifique-se de que a barra deslizante ao lado de **Show agent** esteja habilitada (verde) para tornar o **Agente Order-to-Cash** acessível na interface de chat. Clique no botão **Deploy** para implementar seu agente.
+
 
 ![wxo  agent deploy](./images/img24.png)
 
-*Congratulations!!* You have just developed and deployed the **Order-to-Cash Agent**.
+*Parabéns!!* Você acabou de desenvolver e implantar o **Agente Order-to-Cash**.
 
-## Experience Agents in Action using watsonx Orchestrate Chat UI
+## Experimente os agentes em ação no Watsonx Orchestrate
 
-Now that you have deployed your **Order-to-Cash Agent**, you can interact with the agent using watsonx Orchestrate Conversational Interface.
+Agora que você implantou seu **Order-to-Cash Agent**, você pode interagir com o agente usando a Watsonx Orchestrate Conversational Interface.
 
-43. Click the top left navigation menu and select **Chat** to access the conversational interface.
+43. Clique no menu de navegação superior esquerdo e selecione **Chat** para acessar a interface de conversação.
 
 ![wxo chat ui](./images/wxo-chat-ui.png)
 
-44. On the **Chat UI**, note that now you have the **Order-to-Cash** as one of the available agents you can chat with. As you add more and more agents, you can select which agent you'd like to interact with by selecting the agent drop down list.
-With the **Order-to-Cash Agent** selected, try interacting by asking the following question and observe the response.
+44. Na interface do **Chat**, observe que agora você tem o **Order-to-Cash** como um dos agentes disponíveis para conversar. À medida que você adiciona mais agentes, pode selecionar com qual agente deseja interagir selecionando a lista suspensa de agentes.
+Com o **Order-to-Cash** selecionado, tente interagir fazendo a seguinte pergunta e observe a resposta.
 
-Question: 
+Pergunta:
 
-```Show me all emails for customer service```
+```Mostrar todos os e-mails de atendimento ao cliente```
 
-``` customers list```
+``` Lista de clientes```
 
 ![wxo chat q1](./images/img26.png)
 
-45. Expand the **Show Reasoning** and **Step 1** sections to investigate the agent's reasoning in retrieving the response from **customer support agent** tool and continue to have a conversation with the customer support workflow. 
+45. Expanda as seções **Show Reasoning** e **Step 1** para investigar o raciocínio do agente ao recuperar a resposta da ferramenta **Agente de suporte ao cliente** e continuar a conversar com o fluxo de trabalho de suporte ao cliente.
 
 ![wxo chat q1 reasoning](./images/img26copy.png)
 ![wxo chat q1](./images/img27.png)
 ![wxo chat q1](./images/img27.1.png)
 
-46. Next, ask the following question to get response from knowledge base.
+46. Em seguida, faça a seguinte pergunta para obter uma resposta da base de conhecimento.
+Pergunta:
 
-Question:
+```O que devo fazer se houver algum problema com a entrega do meu pedido, como atrasos ou produtos danificados?``
 
-```What should I do if there is an issue with my order delivery, such as delays or damaged goods ```
+```Quais métodos de pagamento são aceitos?```
 
-```What payment methods are accepted?```
-
-Expand the **Show Reasoning** and **Step 1** sections to investigate the agent's reasoning in retrieving the response. In this case, the agent leverages the **knowledge base** to retrieve the response.
+Expanda as seções **Show Reasoning** e **Step 1** para investigar o raciocínio do agente ao recuperar a resposta. Nesse caso, o agente utiliza a **knowledge base** para recuperar a resposta.
 
 ![wxo chat q2](./images/img28.png)
 
-47. Next, try another question to retrieve the order details.
+47. Em seguida, tente outra pergunta para recuperar os detalhes do pedido.
+Pergunta:
 
-Question: 
+```Mostre-me todos os pedidos```
 
-```Show me all orders```
+Expanda a seção **Show Reasoning** e observe que o agente tomou 2 passos para recuperar a resposta para esta pergunta.
 
-Expand the **Show Reasoning** section and observe that the agent took 2 steps to retrieve the response for this question.
-
-48. Now, let's try to explore what are the steps taken.
-Expand the **Step 1** and **Step 2** sections and observe the agent transferring the request to the **Order Management Agent** to provide the order details of particular user.
+48. Agora, vamos tentar explorar quais são as etapas executadas. Expanda as seções **Step 1** e **Step 2** e observe o agente transferindo a solicitação ao **Agente de Gerenciamento de Pedidos** para fornecer os detalhes do pedido de um usuário específico.
 
 ![wxo chat q3 reasoning](./images/img31.png)
 ![wxo chat q3 reasoning](./images/img32.png)
 ![wxo chat q3 reasoning](./images/img33.png)
 
 
-Feel free to explore and experience the power of Agents in action! 
+Sinta-se à vontade para explorar e experimentar o poder dos Agentes em ação!
 
-## Conclusion
-**Congratulations** on completing the hands-on lab portion of the bootcamp. 
+## Conclusão
+**Parabéns** por concluir a parte prática do laboratório do bootcamp.
 
-To recap, you have used watsonx Orchestrate no-code functionality to develop a **Order-to-Cash Agent** skilled at helping order placement, invoicing, enhance customer satisfaction, accelerate cash flow, and deliver measurable impact to the bottom line by integrating intelligent agents and enterprise systems. You then added knowledge to the agent by uploading knowledge documents in the form of pdf files capturing O2C information.
+Recapitulando, você utilizou a funcionalidade sem código do Watsonx Orchestrate para desenvolver o **Agente Order-to-Cash** especializado em auxiliar na colocação de pedidos, faturamento, aumento da satisfação do cliente, aceleração do fluxo de caixa e impacto mensurável nos resultados financeiros, integrando agentes inteligentes e sistemas corporativos. Em seguida, você adicionou conhecimento ao agente, enviando documentos de conhecimento em formato PDF que capturam informações O2C.
 
-Next, you augmented the **Order-to-Cash Agent** capabilities by developing two other agents, the **Order Management** and the **Customer Support Agent** which are empowered with tools to execute order management queries and also retrieve information from customer support regarding you order.
+Em seguida, você ampliou os recursos do **Agente Order-to-Cash** desenvolvendo dois outros agentes, o **Agente de gerenciamento de pedidos** e o **Agente de suporte ao cliente**, que são equipados com ferramentas para executar consultas de gerenciamento de pedidos e também recuperar informações do suporte ao cliente sobre seu pedido.
