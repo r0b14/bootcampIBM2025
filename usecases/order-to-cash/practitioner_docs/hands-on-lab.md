@@ -351,7 +351,7 @@ Quando um usuário inicia uma conversa ou faz uma pergunta contendo a palavra-ch
 * **Exemplo de resposta**:
 
 
-```Confirme os detalhes da OC mostrados acima. Deseja prosseguir com esta OC? (Sim/Não)```
+```Confirme os detalhes da OC mostrados acima. Deseja prosseguir com esta OC? (Sim/Não)
 
 ### **Etapa 4: Obter e exibir os detalhes da cotação em formato de tabela**
 * **Condição de gatilho**: Se o usuário confirmar a OC.
