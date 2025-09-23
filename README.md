@@ -1,5 +1,5 @@
 # 🤖 watsonx Agentic AI Bootcamp 
-# <img src="docs/images/caixa.png" width="40" height="40"> CAIXA - 10/09/2025
+# <img src="docs/images/BB-LOGO.png" width="40" height="40"> Banco do Brasil - 24/09/2025
 
 
 
