@@ -1,5 +1,5 @@
 # 🤖 watsonx Agentic AI Bootcamp 
-# <img src="docs/images/crist.png" width="40" height="40"> Rio de Janeiro - 26/08/2025
+# <img src="docs/images/SP.svg" width="40" height="40"> São Paul - 21 e 22 de Outubro
 
 
 
