@@ -18,6 +18,8 @@
     - [Agente Processador de sinistros](#agente-processador-de-sinistros)
       - [Crie o Agente Processador de sinistros](#crie-o-agente-processador-de-sinistros)
       - [Teste o Agente Processador de sinistros](#teste-o-agente-processador-de-sinistros)
+    - [Agente Supervisor](#agente-supervisor)
+      - [Crie o Agente Supervisor](#crie-o-agente-supervisor)
     - [Mais testes via chat de IA](#mais-testes-via-chat-de-ia)
 
 ## Descrição do caso de uso
@@ -91,7 +93,7 @@ O agente de informações buscará notícias e diferentes artigos e usará essas
 
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/information-agent/6-ia.png">
 
-- Faça upload do arquivo `duckduckgo.json` (Arquivo "duckduckgo.json" dentro da pasta "5. Agente de Sinistros de seguros" gerada após descompactar o LABS.zip) 
+- Faça upload do arquivo `tavily.json` (Arquivo "tavily.json" dentro da pasta "5. Agente de Sinistros de seguros" gerada após descompactar o LABS.zip) 
 
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/information-agent/7-ia.png">
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/information-agent/8-ia.png">
@@ -450,6 +452,140 @@ Sim
 Etapa 5. Você deverá ver uma confirmação de atualização
 
   <img width="1000" alt="image" src="./screenshots_hands_on_lab/cp-flow-5-new.png">
+
+
+### Agente Supervisor
+#### Crie o Agente Supervisor
+
+- Clique no menu hambúrguer, depois **Build** -> **Agent Builder**.
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/2.png">
+
+- Clique em**Create Agent**
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/claim_processor_insurance_agent/0.png">
+
+- Siga os passos conforme a imagem abaixo.
+  - Selecione **Create from scratch**
+  - Dê o nome ao agente`Agente Supervisor`
+  - Use a seguinte descrição:
+
+    ```
+    O agente supervisor_insurance atuará como um supervisor e, dependendo da consulta, encaminhará a consulta para os respectivos agentes para processamento. Este agente terá dois agentes auxiliares: o customer_claims_agent, que permitirá ao usuário abrir uma nova solicitação de sinistro, verificar o status do sinistro e pedir informações sobre seguro e o processo de sinistro. O outro agente é o claim_processor_insurance_agent, que permitirá ao processador de sinistros visualizar todos os principais sinistros abertos usando um ID de cliente; se houver múltiplos sinistros para um cliente, permitirá ao processador selecionar utilizando o número do sinistro. O processador de sinistros poderá aceitar ou rejeitar os sinistros com base na sugestão feita pelo agente.
+    ```
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_1.png">
+
+- Selecione o `modelo`.
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_2.png">
+
+- Selecione o **Style** como `Default`. Também nenhuma alteração é necessária para Voice Modality. Mantenha como No Voice Configuration
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_3.png">
+
+- Clique em`Add agent`. 
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_4.png">
+
+- Adicione o `Agente de sinitro de clientes` e o `Agente de sinitro de clientes`. Clique em on `Add to agent`.
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_8.png">
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_9.png">
+
+- Na seção **Behavior**, adicione o seguinte para **Instructions**:
+  ```
+  ## 🎯 Papel
+  You act as a **supervisor** in the insurance system. Based on the **intent and role** of the user query (customer or claim processor), you must **route the query** to the appropriate agent:
+
+  Você atua como **supervisor** no sistema de seguros. Com base na **intenção e perfil** do usuário (cliente ou processador de sinistros), você deve direcionar a consulta para o agente apropriado:
+
+  - `Agente de sinitro de clientes`
+  - `Agente Processador de sinistros`
+
+  ---
+
+  ## 🧠 Instruções Passo a Passo
+
+  ### 1. Detectar Papel e Intenção
+  - Analise a consulta recebida para determinar a **intenção**.
+  - Identifique se o usuário é um **Cliente** ou um **Processador de Sinistros**.
+
+  ---
+
+  ### 2. Lógica de Roteamento
+
+  #### 🧑 Se o usuário for um **Cliente**, roteie para `Agente de sinitro de clientes`
+
+  **Trigger queries incluem:**
+  - "Quero registrar/submeter uma solicitação de sinistro"
+  - "Verificar o status do meu sinistro"
+  - "Explique o processo de seguro/sinistro"
+  - "Quais documentos são necessários para um sinistro?"
+  - "Quanto tempo leva para processar um sinistro?"
+  - "Onde posso acompanhar meu sinistro?"
+
+  ✅ **Actions**: Encaminhar query para `Agente de sinitro de clientes`
+
+  ---
+
+  #### 👨‍💻 ISe o usuário for um **Agente Processador de sinistros**, roteie para `Agente Processador de sinistros`
+
+  **Trigger queries incluem:**
+  - "Obter todos os sinistros abertos de um cliente"
+  - "Mostrar os sinistros abertos para o ID do cliente X"
+  - "Há vários sinistros, ajude-me a escolher pelo número do sinistro"
+  - "Devo aceitar ou rejeitar este sinistro?"
+  - "Ver sugestões para processar um sinistro"
+  - "Listar principais sinistros não resolvidos para revisão"﻿
+
+  ✅ **Action**: Encaminhar query to `Agente Processador de sinistros`
+
+  ---
+
+  ### 3. Trate consultas inválidas ou ambíguas
+
+  Se a consulta estiver pouco clara:
+  - Faça uma pergunta de esclarecimento:﻿
+    - "Você é um cliente que deseja registrar ou verificar um sinistro?"
+    - "Ou você é um processador de sinistros que deseja gerenciar sinistros?"
+
+  ---
+
+  ### 4. Garanta a transferência clara do contexto
+
+  Ao fazer o roteamento, garanta que o seguinte seja passado para o agente selecionado:
+  - Qualquer customer_id, claim_number, ou outro contexto do usuário
+  - O papel do usuário (se esclarecido)
+  - A pergunta ou solicitação original
+
+  ---
+
+  ### 5. Mantenha registros e encaminhe (escale) se necessário
+
+  - MMantenha um registro interno simples de qual agente tratou qual consulta.
+  - Se uma consulta não corresponder a nenhuma categoria conhecida, encaminhe para um supervisor humano.
+
+  Certifique-se de seguir as instruções dos agentes exatamente como estão, sem adicionar etapas ou consultas adicionais.
+  ```
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_5.png">
+
+- Mantenha o`Channels` do jeito que está.
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_6.png">
+
+- Clique em **Deploy** em ambas as telas para implantar o agente.
+
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/supervisor_agent/sa_7.png">
+  <img width="1000" alt="image" src="./screenshots_hands_on_lab/deploy/sa_20.png">
+
+- Você pode realizar o teste do agente supervisor de acordo com o fluxo abaixo. Siga o fluxo na sequência mencionada﻿.
+  [Teste o Agente de Informação](#teste-o-agente-de-informação)
+  [Teste o Agente de Sinitro de clientes](#teste-o-agente-de-sinistro-de-cliente)
+  [Teste o Agente Processador de sinistros](#teste-o-agente-processador-de-sinistros)
+
+
 
 ### Mais testes via chat de IA
 >

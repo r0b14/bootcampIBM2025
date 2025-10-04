@@ -26,6 +26,8 @@
   - [Teste e implante o Agente Orquestrador do Banco GFM](#Teste-e-implante-o-Agente-Orquestrador-do-Banco-GFM)
 - [Teste Sua Solução Bancária De Agentic IA](#Teste-Sua-Solução-Bancária-De-Agentic-AI)
 - [🎉 Parabéns. Você completou o laboratório](#-Parabéns)
+- [🔊 Recurso adicional para experimentar: Interação por voz](#-recurso-adicional-para-experimentar-interação-por-voz)
+  - [✨ You successfully added Voice Configuration to your agent!](#-you-successfully-added-voice-configuration-to-your-agent)
 - [📚 Recursos](#-recursos)
 - [📄 Isenção de responsabilidade do código de amostra da IBM](#-ibm-sample-code-disclaimer)
 
@@ -166,7 +168,7 @@ Este Agente lida com operações bancárias especiais para o GFM Bank que exigem
 
   ![Import from file](./backoffice_ag_imgs/i16.png)
 
-- Faça Upload do arquivo de API `bank.json` API (o arquivo está disponível na pasta "6. Banking Backoffice" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
+- Faça Upload do arquivo de API `bank.json` API (o arquivo está disponível na pasta "3. Banking Backoffice" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
 
   ![Upload spec file](./images/i38.png)
 
@@ -617,7 +619,7 @@ Cada tópico inclui informações atualizadas, divulgações regulatórias, quan
 
 ### Agente Orquestrador do Banco GFM
 
-This Agent acts as the virtual front desk of GFM Bank, welcoming customers, identifying their needs, and connecting them with the right specialist for a smooth and professional experience.
+Este Agente atua como o recepcionista virtual do GFM Bank, recebendo os clientes, identificando suas necessidades e conectando-os ao especialista certo para uma experiência fluida e profissional.
 
 #### Crie o Agente Orquestrador do Banco GFM
 
@@ -820,6 +822,68 @@ Este laboratório demonstra como os agentes de IA podem transformar as operaçõ
   - Fornecendo assistência bancária 24 horas por dia, 7 dias por semana
   - Garantir a aplicação consistente das políticas bancárias
   - Liberando a equipe humana para tarefas mais complexas
+
+## 🔊 Recurso adicional para experimentar: Interação por voz
+
+Você pode gravar e interagir com agentes usando sua voz!
+
+⚠️ **Disclaimer**: Este recurso está disponível atualmente apenas como **preview** e não em agentes implantados.
+
+> **Os dados necessários para esta configuração estão disponíveis na página de dados de labs do git.**
+
+- Abra o menu hambúrguer, clique em **Manage**->**Voice**.
+
+  ![Manage voice](./images/v1.png)
+
+- Clique em **Create voice configuration**
+
+  ![Voice configuration create](./images/v2.png)
+
+- Na aba **Details**, insira um nome para a configuração de voz e clique em **Next**.
+
+  ![Voice configuration create](./images/v3.png)
+
+- Se estiver habilitando **Speech to Text**, na aba **Speech to Text**:
+
+  - Insira a API URL do **Watson Speech to Text**.
+  - Digite a **API KEY** desta instância.
+  - Selecione o modelo de linguagem **Speech to Text**.
+  - Clique **Next**
+
+  ![Voice configuration get APIKEY and URL](./images/v4.png)
+
+- Se estiver habilitando **Text to Speech**, na aba **Text to Speech**:
+
+  - Insira a API URL do **Watson Text to Speech**.
+  - Digite a **API KEY** desta instância.
+  - Selecione a linguagem da voz.
+  - Selecione o tipo de voz.
+  - Defina a velocidade e a tonalidade da voz.
+  - Clique **Finish**.
+
+  ![Voice configuration get APIKEY and URL](./images/v5.png)
+
+- Você deve ver o  **Voice Configuration** criado.
+
+  ![Created voice configuration](./images/v6.png)
+
+  Para mais informações sobre como habilitar o Voice em **Agent Builder**, verifique [Voice Configuration](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/base?topic=agents-configuring-voice-preview)
+
+- Para adicionar ao seu agente a **Voice Configuration**, va em **Build**->**Agent Builder**
+
+  ![Agent builder](./images/v7.png)  
+
+- Selecione o **Agente Orquestrador do Banco GFM** para adicionar a **Voice Configuration**
+
+  ![Select agent voice](./images/v8.png)
+
+- Abaixo da seção **Voice modality**, selecione o recem criado **Voice assistant**
+
+  ![Select voice configuration](./images/v9.png)
+
+### ✨ Você adicionou a Configuração de Voz ao seu agente com sucesso!
+Agora você pode testar a configuração de voz com os prompts na página de preview!
+
 
 ## 📚 Recursos
 

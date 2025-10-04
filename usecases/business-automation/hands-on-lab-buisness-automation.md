@@ -160,7 +160,7 @@ Este agente foi projetado para pesquisar um produto específico e recuperar seus
 6. Após clicar no botão Choose knowledge, uma janela pop-up será exibida. Selecione Upload Files e clique em Next.
 ![Choose knowledge](assets/BAP_5_K_2.png)
 
-7. Em seguida, escolha a knowledge source. No nosso caso, é o Catálogo de Produtos (o arquivo "ABC_Motor_Product_Catalog_ptbr.pdf" está disponível na pasta "3. Automacao de Negocio" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
+7. Em seguida, escolha a knowledge source. No nosso caso, é o Catálogo de Produtos (o arquivo "ABC_Motor_Product_Catalog_ptbr.pdf" está disponível na pasta "6. Automacao de Negocio" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
 ![Choose knowledge](assets/BAP_6_K.png)
 
 8. Após o upload do arquivo, a tela ficará como a abaixo. Clique em Next para prosseguir.

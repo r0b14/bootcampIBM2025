@@ -116,30 +116,41 @@ Por fim, após concluir a configuração do seu agente e testar seu desempenho, 
 11. Após clicar no botão Choose knowledge, uma janela pop-up será exibida. Selecione Upload Files e clique em Next.
 ![Choose knowledge](../business-automation/assets/BAP_5_K_2.png)
 
-12. Arraste e solte os seguintes arquivos PDF para enviar ao conhecimento do agente (todos os arquivos estão na pasta "4. Agente Financeiro" gerada após a descompactação do arquivo LABS.zip) e selecione Next. A documentação [Adicionando conhecimento aos agentes](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-knowledge) fornece mais detalhes.
+12. Arraste e solte os seguintes arquivos PDF para enviar ao conhecimento do agente (todos os arquivos estão na pasta "2. Agente Financeiro" gerada após a descompactação do arquivo LABS.zip) e selecione Next. A documentação [Adicionando conhecimento aos agentes](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-knowledge) fornece mais detalhes.
    - AMZN-Q4-2024-Earnings_ptBR.pdf
    - META-Q4-2024-Earnings_ptBR.pdf
    - NFLX-Q4-2024-Earnings_ptBR
    - NVDA-Q4-2024-Earnings_ptBR.pdf
 
-![Choose knowledge](images/wxo-knowledge-upload-files.png)
+![Choose knowledge](images/wxo-agent-config-knowledge-pdfs.png)
 
-13. Adicione uma descrição para informar o agente sobre o conteúdo do conhecimento. Para este laboratório, adicione a seguinte descrição, pois forneceremos ao agente diversos relatórios de lucros recentes de algumas empresas.
+13. Por fim, na etapa Description (anotada com oval vermelho), adicione uma descrição para informar o agente sobre o conteúdo do conhecimento. Para este laboratório, adicione a seguinte descrição, pois forneceremos ao agente vários relatórios recentes de resultados de algumas empresas.
+
 Description: 
 ```
 Este conhecimento aborda todos os detalhes sobre os relatórios de lucros das empresas de interesse. Analistas de pesquisa podem perguntar sobre quaisquer detalhes dos relatórios de lucros.
 ```
-![Choose knowledge](images/knowledge.png)
+![Choose knowledge](images/wxo-agent-config-knowledge-description.png)
+
+Leva um minuto para fazer upload e processar esses documentos PDF na base de conhecimento do agente. Após o upload, você deve ver esses arquivos PDF listados na seção de conhecimento (anotada com retângulo vermelho na figura abaixo). Aguarde para confirmar que os arquivos foram carregados corretamente antes de prosseguir para as próximas etapas do laboratório.
+
+![Choose knowledge](images/wxo-agent-config-knowledge-summary.png)
 
 14. Após o upload de todos os arquivos para a base de conhecimento, você pode começar a testar o agente para validar como ele responde a perguntas usando essa base de conhecimento. Os arquivos enviados são processados ​​e preparados para serem utilizados pelo agente. Após a conclusão do upload, teste o agente fazendo algumas perguntas, como:
 
 ```Você pode me falar sobre os negócios da Meta?```
 
+Você deve ver as respostas sendo recuperadas dos documentos enviados e, em seguida, a resposta final gerada pelo agente conforme ilustrado na figura abaixo. Clique em Show Reasoning (anotado com oval vermelho) e também em Step 1 para revisar o raciocínio do agente e validar se ele está recuperando corretamente a resposta da base de conhecimento. Além disso, clique no ícone Toggle Citation (anotado com seta vermelha) para mostrar o documento real de onde a resposta foi recuperada. Observe que ele está recuperando corretamente a resposta do relatório de resultados da Meta (anotado com retângulo vermelho).
+
+![wxo agent knowledge test](images/wxo-agent-knowledge-test-meta.png) 
+
+Tenqye agora o seguinte teste:
+
 ```Tenho interesse em saber mais sobre a Meta e a Amazon. Você pode me contar um pouco sobre os negócios deles?```
 
 Você deverá ver as respostas sendo recuperadas dos documentos enviados e, em seguida, a resposta final gerada pelo agente, conforme ilustrado na figura abaixo.
 
-![wxo agent knowledge test](images/wxo-agent-knowledge-test.png) 
+![wxo agent knowledge test](images/wxo-agent-knowledge-test-meta-amazon.png) 
 
 Neste momento, vale a pena refletir um pouco sobre o que você desenvolveu até agora. Você projetou um agente e o capacitou com uma base de conhecimento para que ele possa responder a consultas em contexto usando sua base de conhecimento. *Parabéns!!*
 
@@ -176,7 +187,7 @@ Conforme explicado anteriormente, a descrição de um agente é importante, pois
 
 ![wxo agent tools](images/wxo-agent-tools.png) 
 
-20. No pop-up de opções da ferramenta, selecione **Import** (anotado com retângulo vermelho) conforme ilustrado na figura abaixo.
+20. No pop-up de opções da ferramenta, selecione **Add from file or MCP Server** (anotado com retângulo vermelho) conforme ilustrado na figura abaixo.
 
 ![wxo tool options](images/wxo-tool-options.png) 
 
@@ -186,14 +197,15 @@ O watsonx Orchestrate oferece suporte a várias abordagens para adicionar ferram
 
    - Adicionar da instância local: A opção **Add from local instance** permite adicionar uma ferramenta de um conjunto existente de ferramentas já carregadas na instância local do Watsonx Orchestrate.
 
-   - Importar: A opção **Import** permite importar uma ferramenta externa usando uma especificação OpenAPI e selecionando quais operações você deseja importar como ferramentas.
+   - Importar: A opção **Add from file or MCP Server** permite importar uma ferramenta externa usando uma especificação OpenAPI ou a partir de um MCP Server:
+      - Importar ferramentas de uma OpenAPI: Você pode importar uma ferramenta externa usando uma especificação OpenAPI e selecionar quais operações você deseja importar como ferramentas.
+      - Importar ferramentas de um servidor MCP: Conecte-se a um servidor Model Context Protocol (MCP) e importe ferramentas externas. Se você não estiver familiarizado com isso, MCP é um padrão para conectar Agentes de IA a sistemas onde os dados residem, incluindo repositórios de conteúdo, ferramentas de negócios e ambientes de desenvolvimento. MCP está se tornando cada vez mais popular como o padrão para capacitar agentes com ferramentas.
 
    - Criar um novo fluxo: A opção **Create a new flow** fornece uma interface de construtor de ferramentas com recurso de arrastar e soltar para criar uma sequência de etapas que utiliza controles e atividades condicionais.
 
 Além disso, você pode usar o [Agentic Development Kit (ADK)](https://developer.watson-orchestrate.ibm.com/) do watsonx Orchestrate para desenvolver e carregar ferramentas Python e OpenAPI em uma instância específica do watsonx Orchestrate, que você pode então adicionar aos agentes.
-O watsonx Orchestrate também suporta a adição de ferramentas do [Model Context Protocol (MCP)](https://developer.watson-orchestrate.ibm.com/). Se você não estiver familiarizado com ele, o MCP é um padrão para conectar agentes de IA a sistemas onde os dados residem, incluindo repositórios de conteúdo, ferramentas de negócios e ambientes de desenvolvimento. O MCP está se tornando cada vez mais popular como o padrão para habilitar agentes com ferramentas.
 
-Para fins do Agente de API Financeira, você usará a opção **Import** para importar uma especificação OpenAPI e definir quais operações importar como ferramentas. Você precisará do arquivo financial_api_openapi.json (o arquivo "financial_api_openapi.json" está na pasta "4. Agente Financeiro" gerada após a descompactação do arquivo LABS.zip).
+Para fins do Agente de API Financeira, você usará a opção **Import** para importar uma especificação OpenAPI e definir quais operações importar como ferramentas. Você precisará do arquivo financial_api_openapi.json (o arquivo "financial_api_openapi.json" está na pasta "2. Agente Financeiro" gerada após a descompactação do arquivo LABS.zip).
 
 21. Na página da ferramenta Importar, arraste e solte o arquivo e clique em **Next** (annotated with red arrow).
 
@@ -297,14 +309,16 @@ Novamente, observe a resposta e expanda o link **Mostrar raciocínio** para rast
 
 ![wxo financial agent deploy](images/wxo-financial-api-agent-deploy.png) 
 
+Na página Deploy Agent, você tem a oportunidade de revisar a definição e configuração do agente e qualquer conhecimento ou ferramentas associados, bem como fornecer detalhes de conexão necessários para as ferramentas acessarem sistemas backend com credenciais. Para as ferramentas que estamos usando neste laboratório, nenhuma credencial é necessária e não há necessidade de configurar conexões. Clique em Deploy para implantar seu agente.
+
+![wxo financial agent deploy](images/wxo-financial-api-agent-deploy-conn.png) 
+
 *Parabéns!!* Você acabou de concluir o desenvolvimento do **Agente de API Financeira** equipado com ferramentas para retornar dados de ganhos e definições de glossário.
 
 ## Criação e configuração do agente de pesquisa na Web
-Nesta seção, você desenvolverá o **Agente de Busca na Web**, outro agente colaborador especializado em buscar na web e retornar detalhes publicamente disponíveis sobre uma entidade, bem como notícias e relatórios de analistas recentes.
+Nesta seção, você desenvolverá o **Agente de Pesquisa na Web**, outro agente colaborador que é especificamente habilidoso em pesquisar na web e retornar informações publicamente disponíveis sobre uma entidade, bem como quaisquer notícias recentes e relatórios de analistas. Há muitas ferramentas disponíveis que fornecem funcionalidade de pesquisa na web. Neste laboratório prático, você adicionará a **Tavily Search Tool** e completará o laboratório prático usando apenas essa ferramenta de pesquisa. Na prática, você pode escolher sua ferramenta de pesquisa na web preferida ou até mesmo combinar múltiplas ferramentas de pesquisa se desejar; apenas certifique-se de revisar as instruções do agente e atualizá-las adequadamente.
 
-A arquitetura faz referência a diversas ferramentas de busca na web, a saber, a **Brave Search Tool** e a **DuckDuckGo Search Tool**. Como essas ferramentas de busca na web utilizam tecnologias subjacentes diferentes, o uso de ambas pode retornar informações mais relevantes, e o Agente de Busca na Web se encarregará de agregar a resposta final. Neste laboratório prático, você adicionará a **DuckDuckGo Search Tool** e concluirá o laboratório prático usando apenas essa ferramenta de busca.
-
-*Opcional* Você pode verificar com seu instrutor se ele também configurou a **Brave Search Tool** e, em seguida, você pode tentar adicioná-la. Se você adicionar a **Brave Search Tool**, precisará atualizar as instruções para o agente recuperar resultados de busca de diversas ferramentas e agregá-los.
+Opcional Se você utilizar múltiplas ferramentas de pesquisa, precisa atualizar as instruções para o agente recuperar resultados de pesquisa de múltiplas ferramentas e agregar os resultados.
 
 28. Se você não estiver na página inicial do watsonx Orchestrate (interface de bate-papo), repita as etapas anteriores para garantir que você esteja conectado ao IBM Cloud, localize o serviço watsonx Orchestrate e inicie-o para acessar a página inicial.
 
@@ -355,7 +369,7 @@ Instruções:
 Para informações sobre notícias recentes ou mais recentes, use a ferramenta de busca Brave. Além disso, para consultas gerais, onde as informações estão disponíveis online e podem ser recuperadas por meio de uma busca na web, use a ferramenta de busca Tavily.
 ```
 
-Em seguida, teste a funcionalidade do agente fazendo uma pergunta como ```Você pode mostrar os principais executivos da Amazon?``` e observe a resposta do agente. Clique no link **Show Reasoning** (indicado pela seta vermelha) e observe como o agente está invocando corretamente a **DuckDuckGo Search Tool**  para recuperar informações relevantes.
+Em seguida, teste a funcionalidade do agente fazendo uma pergunta como ```Você pode mostrar os principais executivos da IBM?``` e observe a resposta do agente. Clique no link **Show Reasoning** (indicado pela seta vermelha) e observe como o agente está invocando corretamente a **DuckDuckGo Search Tool**  para recuperar informações relevantes.
 
 ![wxo web search agent behavior](images/wxo-web-search-agent-behavior-duckduckgo.png) 
 
@@ -401,64 +415,18 @@ Instruções:
 Você é um Analista Financeiro que fornece pesquisas e análises financeiras abrangentes. Suas habilidades incluem:
 
 **Análise de Ações:**
-- Obtenha dados de preços de ações em tempo real e desempenho histórico usando o Yahoo Finanças
+- Obtenha dados de preços de ações em tempo real e desempenho histórico usando APIs financeiras
 - Obtenha informações abrangentes da empresa, incluindo métricas financeiras, dados de mercado e descrições de negócios
 - Acesse demonstrações financeiras detalhadas (demonstração de resultados, balanço patrimonial, demonstração de fluxo de caixa) com dados anuais e trimestrais
 
 **Pesquisa e Informações:**
-- Pesquise na web por notícias financeiras atuais, relatórios de analistas e insights de mercado usando o Brave Search
+- Pesquise na web por notícias financeiras atuais, relatórios de analistas e insights de mercado usando a Busca na Web
 - Encontre definições de termos financeiros e informações básicas da empresa usando a busca na Wikipédia
-- Forneça análises contextuais combinando múltiplas fontes de dados
+- Base de conhecimento composta por relatórios de lucros recentes
 
-**GUIA DE SELEÇÃO DE FERRAMENTAS:**
-
-**Ferramenta OBTER INFORMAÇÕES SOBRE AÇÕES** - Use para:
-- Métricas atuais da empresa (índice P/L, capitalização de mercado, margem de lucro, beta)
-- Fundamentos da empresa (setor, indústria, descrição do negócio)
-- Índices de avaliação e estatísticas financeiras
-- Preço atual da ação com as principais métricas
-- Comparações e análises de empresas
-
-**Ferramenta OBTER DADOS DE PREÇOS DE AÇÕES** - Use para:
-- Desempenho histórico de preços e tendências
-- Análise de séries temporais (1 dia a 10 anos)
-- Análise de volume de negociação e volatilidade
-- Análise técnica e padrões de preços
-- Desempenho em períodos específicos
-
-**Ferramenta OBTER DEMONSTRAÇÕES FINANCEIRAS** - Use para:
-- Dados financeiros trimestrais/anuais (resultados do 1º, 2º, 3º e 4º trimestres)
-- Demonstrações de resultados, balanços patrimoniais, demonstrações de fluxo de caixa
-- Tendências e comparações financeiras históricas
-- Análise de dívida, crescimento da receita, métricas de lucratividade
-- Desempenho financeiro plurianual
-
-**Ferramenta PESQUISAR NA WIKIPEDIA** - Use para:
-- Definições e explicações de termos financeiros
-- Conteúdo educacional sobre conceitos financeiros
-- Histórico e informações históricas da empresa
-
-**Diretrizes de Resposta:**
-- Para métricas e índices atuais, use a ferramenta OBTER INFORMAÇÕES SOBRE AÇÕES
-- Para análise de desempenho histórico, use a ferramenta OBTER DADOS DE PREÇOS DE AÇÕES
-- Para demonstrações financeiras trimestrais/anuais, use a ferramenta OBTER DEMONSTRAÇÕES FINANCEIRAS
-- Para definições e informações, use a ferramenta PESQUISAR NA WIKIPEDIA
-- Sempre forneça insights baseados em dados com métricas específicas, quando disponíveis
-- Cite suas fontes e indique quando os dados são em tempo real ou históricos
-
-**Casos de Uso de Exemplo Aprimorados:**
-- "Qual é o índice P/L atual da Apple?" → Use a ferramenta OBTER INFORMAÇÕES SOBRE AÇÕES
-- "Qual foi o desempenho da Apple nos últimos 6 meses?" → Use a ferramenta OBTER DADOS DE PREÇOS DE AÇÕES
-- "Mostre-me os resultados do 1º trimestre de 2024 da Apple" → Use a ferramenta OBTER DEMONSTRAÇÕES FINANCEIRAS (com ano: 2024, trimestre: "1º trimestre")
-- "Compare os valores de mercado da Apple e da Tesla" → Use a ferramenta OBTER INFORMAÇÕES DE AÇÕES para ambas as empresas
-- "Tendência de crescimento da receita da Apple nos últimos 3 anos" → Use a ferramenta OBTER DEMONSTRAÇÕES FINANCEIRAS (com anos_retroativos: 3)
-- "O que é margem EBITDA?" → Use a ferramenta PESQUISA NA WIKIPÉDIA
-- "Índice dívida/patrimônio líquido da Tesla nos últimos 3 anos" → Use a ferramenta OBTER DEMONSTRAÇÕES FINANCEIRAS (statement_type: "balance", years_back: 3)
-
-**Exemplos de ferramentas múltiplas:**
-- "Analisar o desempenho e a avaliação da Apple" → OBTER INFORMAÇÕES SOBRE AÇÕES + OBTER DADOS SOBRE O PREÇO DAS AÇÕES
-- "Comparar os resultados do primeiro trimestre da Apple e do Google com os índices P/L" → OBTER DEMONSTRAÇÕES FINANCEIRAS + OBTER INFORMAÇÕES SOBRE AÇÕES para ambas
-- "Explicar o EBITDA e mostrar a tendência do EBITDA da Microsoft" → PESQUISAR NA WIKIPÉDIA + OBTER DEMONSTRAÇÕES FINANCEIRAS
+Você possui uma base de conhecimento composta por relatórios de lucros recentes da Amazon, Meta, Nvidia e Netflix. Você também conta com o suporte de dois agentes: o agente da API Financeira e o agente da Busca na Web.
+Use o agente da API Financeira para recuperar métricas financeiras como índice P/L, capitalização de mercado e preço das ações. Use o agente da API Financeira também para definições de termos financeiros.
+Use o agente da Busca na Web para recuperar notícias recentes e informações atuais sobre a empresa, como os atuais líderes executivos.
 ```
 
 Teste o comportamento do agente na seção **Visualização** fazendo a seguinte pergunta de exemplo:

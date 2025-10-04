@@ -6,10 +6,11 @@
 - [Descrição do caso de uso](#use-case-description)
 - [Arquitetura](#Arquitetura)
 - [Pre-requisitos](#pre-requisitos)
-- [Instruções passo a passo para criar agentes](#Instruções-passo-a-passo-para-criar-agentes)
-  - [Implantando agente de RH](#deploying-hr-agent)
-
-
+- [Instruções](#Instruções)
+  - [Abrir Agent Builder](#abrir-agent-builder)
+  - [Ciar Agente de RH](#criar-agente-de-rh)
+  - [Teste o Agenre de RH em Preview](#teste-o-agente-de-rh-em-preview)
+  - [Testar o Agente de RH no Chat](#testar-o-agente-de-rh-no-chat)
     
 ## Descrição do caso de uso
 Este caso de uso visa desenvolver e implementar um agente AskHR utilizando o IBM Watsonx Orchestrate, conforme ilustrado no diagrama de arquitetura fornecido. Este agente capacitará os funcionários a interagir com os sistemas de RH e acessar informações de forma eficiente por meio de IA conversacional.
@@ -20,9 +21,6 @@ Neste laboratório, construiremos um agente de RH no Watsonx Orchestrate, utiliz
 
 <img width="1000" alt="image" src="arch_diagm.png">
 
-
-
-
 ## Pre-requisitos
 
 - Verifique com seu instrutor se **todos os sistemas** estão funcionando antes de continuar.
@@ -30,76 +28,79 @@ Neste laboratório, construiremos um agente de RH no Watsonx Orchestrate, utiliz
 - Confirme que você fez o dowload do arquivo LABS.zip 
 
 
-## Instruções passo a passo para criar agentes:
+## Instruções:
+### Abrir Agent Builder
 
-1. Ao iniciar o watsonx Orchestrate, você será direcionado para esta página. Clique no menu de hambúrguer no canto superior esquerdo:
+- Faça login na IBM Cloud (cloud.ibm.com). Navegue até o menu hambúrguer no canto superior esquerdo, depois até Lista de Recursos. Abra a seção de IA/Machine Learning. Você deve ver um serviço **watsonx Orchestrate**, clique para abrir.
 
-<img width="1000" alt="image" src="hands-on-lab-assets/step1.png">
+  <img width="1000" alt="image" src="../../../environment-setup/assets/cloud-resource-list.png">
 
-2. Clique na seta para baixo ao lado de **Build**.  Em seguida, clique em **Agent Builder**:
+- Clique no botão "Launch watsonx Orchestrate".
 
-<img width="1000" alt="image" src="hands-on-lab-assets/step2.png">
+   <img width="1000" alt="image" src="../../../environment-setup/assets/cloud-wxo.png">
 
-3. Clique em **Create agent +**:
+- Bem-vindo ao watsonx Orchestrate. Abra o menu hambúrguer, clique na seta para baixo ao lado de **Build**. Em seguida, clique em **Agent Builder**:
+
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_1_v2.png">
+
+### Ciar Agente de RH
+1. Clique em **Create agent +**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_2_v2.png">
 
-4. Selecione "Create from scratch":
+2. Selecione **Create from scratch**, de o nome ao seu agente, por exemplo, `Agente de RH`, e preencha o campo **Description** conforme mostrado abaixo:﻿
 
-Nome: Agente de RH
-
-Descrição:
 ```
-Você é um agente que lida com as dúvidas dos funcionários sobre RH. Você fornece respostas curtas e concisas, com no máximo 200 palavras. Você pode ajudar os usuários a verificar os dados do perfil, recuperar o saldo de folgas mais recente, atualizar cargo ou endereço e solicitar folgas. Você também pode responder a perguntas gerais sobre os benefícios da empresa.
+Você é um agente que lida com as dúvidas dos funcionários sobre RH. Você fornece respostas curtas e diretas, com no máximo 200 palavras ou menos. Você pode ajudar os usuários a verificar os seus dados do perfil, recuperar o saldo de folgas mais recente, atualizar cargo ou endereço e solicitar folgas. Você também pode responder a perguntas gerais sobre os benefícios da empresa.
 ```  
 Clique em **Create**:
 
-<img width="1000" alt="image" src="hands-on-lab-assets/hr_step4.png">
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_3_v2.png">
 
 
-5. Selecione "Default" na seção Agent style.
+3. Selecione **Default** na seção **Agent style**.
 
-<img width="1000" alt="image" src="hands-on-lab-assets/step_5_v2.png">
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_5_v3.png">
 
-6. Role a tela para baixo até a seção **Knowledge**. Clique em **Choose knowledge**.
+4. Role a tela para baixo até a seção **Knowledge**. Clique em **Choose knowledge**.
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_6_v3.png">
 
-7. Clique em  **Upload files** e depois **Next**
+5. Clique em  **Upload files** e depois **Next**
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_7_v3.png">
 
-8. Clique e arraste o arquivo de Benefícios para funcionários (Arquivo "Employee-Benefits_ptbr.pdf" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) e clique em **Next**:
+6. Clique e arraste o arquivo de Benefícios para funcionários (Arquivo "Employee-Benefits_ptbr.pdf" dentro da pasta "1. AskRH" gerada após descompactar o LABS.zip) e clique em **Next**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_8_v3.png">  
 
-9. Copie a seguinte descrição na seção Descrição e clique em Salvar:
+7. Copie a seguinte descrição na seção **Description** e clique em **Save**:
 
 ```
 Esta base de conhecimento aborda os benefícios dos funcionários da empresa, incluindo licenças-maternidade, política de animais de estimação, acordos de trabalho flexíveis e pagamento de empréstimos estudantis.
 ``` 
 
-10. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
+8. Role para baixo até a seção **Toolset**. Clique em **Add tool +**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_9_v3.png">
 
-11. Selecione **Import**:
+9. Selecione **Add from file or MCP server**:
 
-<img width="1000" alt="image" src="hands-on-lab-assets/step13.png">
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_10_v4.png">
 
-12. Selecione **Import from file**:
+10. Selecione **Import from file**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_11_v3.png">
 
-13. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (Arquivo "hr.yaml" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) , então clique em **Next**:
+11. Arraste e solte ou clique para carregar o arquivo **hr.yaml** (Arquivo "hr.yaml" dentro da pasta "1. AskRH" gerada após descompactar o LABS.zip) , então clique em **Next**:
 
-<img width="1000" alt="image" src="hands-on-lab-assets/hr_step10.png">    
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_12_v3.png">  
 
-14. Selecione todas as operações e clique em **Done**:
+12. Selecione todas as operações e clique em **Done**:
 
-<img width="1000" alt="image" src="hands-on-lab-assets/hr_step11.png">
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_13_v3.png">
 
-15. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
+13. Role para baixo até a seção **Behavior**. Insira as instruções abaixo no campo **Instructions**:
 
 ```
 Use sua base de conhecimento para responder a perguntas gerais sobre benefícios para funcionários.
@@ -113,42 +114,42 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 
  <img width="1000" alt="image" src="hands-on-lab-assets/hr_step12.png">
 
-16. Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
+14. Ative o botão de alternância para **Chat with documents**. Selecione **None** em **Citations show in webchat**. Ative o botão de **Show agent**. Clique em **Deploy** no canto superior direito para implantar seu agente:
+   <img width="1000" alt="image" src="hands-on-lab-assets/step_14_v3.png">
 
-> IMPORTANTE: Quando o agente perguntar seu nome você deve utilizar qualquer um disponível em na planilha de usuários (Arquivo "users_data.xlsx" dentro da pasta "2. AskRH" gerada após descompactar o LABS.zip) 
+### Teste o Agenre de RH em Preview
+Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
 
-```
-1. Qual é a política para animais de estimação?
-
-2. Mostrar os dados do meu perfil.
-
-3. Gostaria de atualizar meu título.
-
-4. Atualizar meu endereço.
-
-5. Qual é o meu saldo de folgas?
-
-6. Solicitar folgas.
-
+> IMPORTANTE: Quando o agente perguntar seu nome você deve perguntar ao Agente de Suporte lá na página do git.
 
 ```
-
+Qual é a política para animais de estimação? 
+```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13.png">
 
+```
+Mostrar os dados do meu perfil.
+Gostaria de atualizar meu título. 
+```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_2.png">
 
+```
+Atualize meu endereço.
+Qual é o meu saldo de folgas?
+```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_3.png">
 
+```
+Solicitar folgas.
+Mostrar os dados do meu perfil.
+```
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
-17. Depois de validar as respostas, clique em **Deploy** no canto superior direito para implantar seu agente:
-
-<img width="1000" alt="image" src="hands-on-lab-assets/hr_step14.png">
-
-18. Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
+#### Testar o Agente de RH no Chat
+- Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step15.png">
 
-19. Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente:
+- Certificar-se que o **HR Agent** está selecionado. Agora você pode testar seu agente (Pode repetir as mesmas perguntas do teste anterior)
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step16.png">

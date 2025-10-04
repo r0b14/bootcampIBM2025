@@ -407,7 +407,10 @@ Agora que você desenvolveu todos os agentes e ferramentas, nesta seção, você
 
 ![wxo collaborator agents](./images/img39.png) 
 
-37. Na página de configuração do **Agente Order-to-Cash**, role para baixo até a seção **Toolset** ou clique no atalho **Toolset** e, em seguida, clique em **Add agent** para adicionar um agente colaborador.
+37. Na página de configuração do **Agente Order-to-Cash**, role até a seção **Toolset** ou clique no atalho **Toolset** e você utilizará a funcionalidade **Add from local instance** como fez anteriormente e selecionará todas as ferramentas relevantes de ambos os agentes conforme abaixo:
+
+![wxo collaborator agents](./images/img39.1.png) 
+
 
 38. No pop-up, selecione **Add from local instance**. Para referência, o Watsonx Orchestrate oferece suporte a diversas abordagens para adicionar agentes colaboradores.
 
