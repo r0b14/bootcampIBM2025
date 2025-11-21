@@ -24,11 +24,15 @@ O objetivo é simples: te deixar à vontade com o Watson Orchestrate, entendendo
 
 Então, aproveite o conteúdo, explore bastante e, sempre que possível, experimente por conta própria. Bora começar?
 
-<p align="center">
-  <img src="https://i.imgur.com/8gXoH5z.gif" width="120" alt="IMPORTANTE">
+PASSO 1: Clique no botão abaixo para obter as informações necessárias durante a execução dos laboratórios<br>
+<p>
+  <a href="https://bootcampwxo.github.io/bootcampwxo/random.html" target="_blank">
+    <img src="https://img.shields.io/badge/👩‍🎓👨‍🎓 LABS%20-blue?style=for-the-badge" 
+         alt="Dados de Acesso"
+         style="transform: scale(1.5);">
+  </a>
 </p>
 
-PASSO 1: [clique aqui](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
 
 PASSO 2: Escolha o caso de uso e mãos a obra <br>
 
