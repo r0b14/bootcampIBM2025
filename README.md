@@ -26,10 +26,8 @@ Então, aproveite o conteúdo, explore bastante e, sempre que possível, experim
 <br>
 <br>
 <h1 align="center">📍📍📍📍👇👇👇👇👇 IMPORTANTE 👇👇👇📍📍📍📍</h1>
-<br>
-<br>
 
-PASSO 1: [clique aqui](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
+PASSO 1: [CLIQUE AQUI](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
 
 PASSO 2: Escolha o caso de uso e mãos a obra <br>
 
