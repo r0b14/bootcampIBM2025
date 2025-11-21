@@ -23,9 +23,10 @@ Durante o bootcamp, é super importante que você acompanhe o conteúdo com aten
 O objetivo é simples: te deixar à vontade com o Watson Orchestrate, entendendo como usar seus recursos da melhor forma possível — seja em tarefas simples ou em automações mais complexas.
 
 Então, aproveite o conteúdo, explore bastante e, sempre que possível, experimente por conta própria. Bora começar?
-
-
-<span style="font-size: 1800px;">📍📍📍📍👇👇👇👇👇 IMPORTANTE 👇👇👇📍📍📍📍</span>
+<br>
+<br>
+<h1 align="center">📍📍📍📍👇👇👇👇👇 IMPORTANTE 👇👇👇📍📍📍📍</h1>
+<br>
 <br>
 
 PASSO 1: [clique aqui](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
