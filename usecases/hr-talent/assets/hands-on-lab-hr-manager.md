@@ -34,7 +34,7 @@ Este primeiro agente ajudará no processo de recrutamento. Siga estes passos par
 
 1. Abra o Watsonx Orchestrate. Você verá a tela abaixo. Em seguida, clique em **Create an Agent** no canto inferior esquerdo:
 
-<img width="1681" alt="welcome" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/6a7b9866-09ae-4c89-8902-20a8930f0e7a">
+<img alt="Solução" src="assets/hands-on-lab-assets/1welcome.png">
 <br>
 <br>
 
@@ -43,25 +43,25 @@ Este primeiro agente ajudará no processo de recrutamento. Siga estes passos par
 Este agente ajuda a determinar se um conjunto de candidatos corresponde às habilidades especificadas na descrição da vaga.
 ```
 
-<img width="600" alt="create-agent" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/8e821db1-99f1-43ba-a796-cc46ecaae0e1">
+<img alt="Solução" src="assets/hands-on-lab-assets/2create_agent.png">
 <br>
 <br>
 
 3. Depois de clicar em **Create**, você será direcionado para esta tela:
 
-<img width="1720" alt="profile" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/befd62e4-c18d-4973-b2a7-536c207a255a">
+<img alt="Solução" src="assets/hands-on-lab-assets/3talentaquisition.png">
 <br>
 <br>
 
 4. Deslize a tela para baixo e ative a opção **Chat with Documents**:
 
-<img width="713" alt="chat-with-documents" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/ca258ba3-149b-462f-a28c-8e3574707fbf">
+<img alt="Solução" src="assets/hands-on-lab-assets/4scrool.png">
 <br>
 <br>
 
 5. Agora, vamos implantar o agente clicando no botão azul **Deploy**. É assim que você pode implantar um agente no WatsonX Orchestrate com facilidade.
 
-<img width="600" alt="deploy" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/3d079a57-5969-4889-bd04-90a06e28d960">
+<img alt="Solução" src="assets/hands-on-lab-assets/5deploy.png">
 <br>
 <br>
 
@@ -75,14 +75,14 @@ Este agente ajuda a determinar se um conjunto de candidatos corresponde às habi
 - Currículo do Candidato 5 (Arquivo "Candidate 5_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
 - Descrição da vaga (Arquivo "Descricao_Vaga.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
 
-<img width="600" alt="live" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/e4e4480c-4629-430f-aef2-7ebb64c25b26">
+<img alt="Solução" src="assets/hands-on-lab-assets/6upload.png">
 <br>
 <br>
 
 
 7. Você verá uma confirmação do upload dos arquivos da seguinte forma:
 
-<img width="685" alt="upload" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/4849445e-8936-44f4-9915-76850bd0841c">
+<img alt="Solução" src="assets/hands-on-lab-assets/7preview.png">
 <br>
 <br>
 
@@ -99,7 +99,7 @@ Acima, enviei 5 documentos com currículos de candidatos e um documento com a de
 dê-me os nomes de todos os candidatos
 ```
 
-<img width="687" alt="Screenshot 2025-09-25 at 10 44 18 AM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/52594697-ccdc-4835-939e-6d380c7683aa">
+<img alt="Solução" src="assets/hands-on-lab-assets/9test.png">
 <br>
 <br>
 
@@ -110,7 +110,7 @@ dê-me os nomes de todos os candidatos
 Crie uma tabela onde cada linha representa um candidato e cada coluna representa uma habilidade na descrição da vaga. Inclua um emoji de visto se o candidato possuir a habilidade correspondente.
 ```
 
-<img width="685" alt="Screenshot 2025-09-25 at 10 26 30 AM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/8b88bf74-7671-437d-8275-1a63901390e3">
+<img alt="Solução" src="assets/hands-on-lab-assets/10test.png">
 <br>
 <br>
 
@@ -127,20 +127,20 @@ Redija um e-mail pedindo a Emma três horários possíveis para a próxima seman
 
 11. Agora vamos trabalhar no agendamento das entrevistas. Primeiro, vamos adicionar os dados dos entrevistadores. Na prática, esses dados viriam de um banco de dados ou data lake que consulta vários sistemas da organização. Para simplificar, vamos supor que temos um arquivo PDF com a disponibilidade dos entrevistadores e suas habilidades. Podemos usar o Watsonx Orchestrate para adicionar o **Knowledge** dos entrevistadores ao agente. Role para baixo até a seção **Knowledge** e clique em **Choose Knowledge**.
 
-<img width="733" alt="Screenshot 2025-09-25 at 10 58 53 AM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/88c73733-5121-4f27-96d6-cb892c7cb84a">.
+<img alt="Solução" src="assets/hands-on-lab-assets/11knowledge.png">
 <br>
 <br>
 
 
 12. Selecione **Upload Files** na parte inferior, clique **Next**:
 
-<img width="1588" alt="Screenshot 2025-09-29 at 2 24 57 PM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/788f7870-aee1-4a9a-9799-afb0932e4c2c">
+<img alt="Solução" src="assets/hands-on-lab-assets/12upload.png">
 <br>
 <br>
 
 13. Arraste e solte ou carregue o arquivo "Disponibilidade do Entrevistador" (Arquivo "Disponibilidade do Entrevistador.docx" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) . Clique **Next**:
 
-<img width="604" alt="Screenshot 2025-09-29 at 2 25 06 PM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/8c6bc433-b4ff-442b-8204-7164dd94bdaa">
+<img alt="Solução" src="assets/hands-on-lab-assets/113drag.png">
 <br>
 <br>
 
@@ -150,7 +150,7 @@ Agora você precisa definir uma descrição. Ela será usada para determinar qua
 Este documento contém a disponibilidade e as habilidades de diferentes entrevistadores.
 ```
 
-<img width="991" alt="Screenshot 2025-09-29 at 2 27 32 PM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/7c334577-58f8-43f1-ba8f-56c9f5b4f8bd">
+<img alt="Solução" src="assets/hands-on-lab-assets/13description.png">
 <br>
 <br>
 
@@ -161,7 +161,7 @@ Este documento contém a disponibilidade e as habilidades de diferentes entrevis
 mostrar a disponibilidade dos entrevistadores
 ```
 
-<img width="667" alt="Screenshot 2025-09-29 at 11 51 36 AM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/86d72ba9-945b-4d5b-8c46-9ae724936c48">
+<img alt="Solução" src="assets/hands-on-lab-assets/14result.png">
 <br>
 <br>
 
@@ -177,7 +177,7 @@ Quem é o entrevistador mais competente para a descrição da vaga? Mostre-me as
 Redija um e-mail para Emma convidando-a para uma entrevista com Aisha. Inclua a disponibilidade de Aisha no rascunho do e-mail.
 ```
 
-<img width="688" alt="Screenshot 2025-09-29 at 12 14 37 PM" src="https://github.ibm.com/skol/agentic-ai-client-bootcamp/assets/12043/9c4ba3bf-8d52-4e3a-8a49-2307ff71aee6">
+<img alt="Solução" src="assets/hands-on-lab-assets/16result.png">
 <br>
 <br>
 
