@@ -3,10 +3,10 @@
 
 ## Índice
 
-- [Descrição do caso de uso](#-Descrição-do-caso-de-uso)
-- [Agente de aquisição de talentos](#-Agente-de-aquisição-de-talentos)
-- [Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes.](#-Automatize-o-processo-de-recrutamento-de-talentos-usando-fluxos-de-trabalho-baseados-em-agentes.)
-- [Agente de revisão de casos de RH](#-Agente-de-revisão-de-casos-de-RH)
+- [Descrição do caso de uso](#Descrição-do-caso-de-uso)
+- [Agente de aquisição de talentos](#Agente-de-aquisição-de-talentos)
+- [Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes](#Automatize-o-processo-de-recrutamento-de-talentos-usando-fluxos-de-trabalho-baseados-em-agentes)
+- [Agente de revisão de casos de RH](#Agente-de-revisão-de-casos-de-RH)
     
 ## Descrição do caso de uso
 
@@ -181,7 +181,7 @@ Redija um e-mail para Emma convidando-a para uma entrevista com Aisha. Inclua a 
 <br>
 <br>
 
-## 🤖 Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes.
+## 🤖 Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes
 
 Até agora, você criou um agente utilizando o recurso **Chat with documents** do Watsonx Orchestrate para fazer o upload de currículos, descrições de vagas e agendamentos de entrevistas. Nesse caso, o LLM do agente realiza todo o trabalho pesado, enquanto a função de Luisa é fornecer a mensagem/consulta adequada.
 
