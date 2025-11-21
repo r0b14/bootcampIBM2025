@@ -1,7 +1,6 @@
 # 🤖✨ Watson Orchestrate — Tutorial "Hello World"
 
-Bem-vindo ao seu primeiro tutorial com o **Watson Orchestrate**!  
-Este README foi criado em estilo **colorido, educacional e interativo**, ideal para workshops, bootcamps e laboratórios práticos.
+
 
 > 🔵 **Link oficial do tutorial (referência):**  
 > https://developer.watson-orchestrate.ibm.com/tutorials/tutorial_1_hello_world
@@ -21,30 +20,8 @@ Este README foi criado em estilo **colorido, educacional e interativo**, ideal p
 - [🚀 Próximos Passos](#-próximos-passos)
 - [📝 Créditos](#-créditos)
 
----
-
 ## 📘 Visão Geral
-
-Este tutorial ensina como criar uma **skill personalizada** no Watson Orchestrate — a famosa **Hello World**.
-
-Ao final, você será capaz de:
-
-✨ Criar uma skill  
-✨ Implementar lógica simples  
-✨ Testar no ambiente do Orchestrate  
-✨ Integrar ao agente e mandar ele executar sua automação  
-
----
-
-## 🎯 Objetivos
-
-- Aprender a criar uma skill do zero  
-- Entender o fluxo básico de automação  
-- Enviar e receber dados dentro da skill  
-- Executar a skill via agente usando linguagem natural  
-- Construir base para skills mais avançadas
-
----
+Os passos a seguir orientam você a disponibilizar seu agente no Criador de Agentes.
 
 ## 🧰 Pré-requisitos
 
@@ -57,84 +34,51 @@ Antes de começar:
 
 ---
 
-## 🚀 Passo 1 — Criar a Skill Hello World
+## 🚀 Passo a Passo — Hello World
 
-1. Acesse o painel do Watson Orchestrate.  
-2. Clique em **Skills** → **Create New Skill**.  
-3. Preencha as informações iniciais, como nome e descrição.  
-4. Escolha entradas e saídas da skill.
-
-Exemplo de configuração inicial:
-
-```jsonc
-{
-  "skill": "hello_world",
-  "description": "Minha primeira skill de teste",
-  "inputs": [],
-  "outputs": ["message"]
-}
+1. Em seu diretório, crie uma pasta com o nome hello-world .
+2. Abra um editor de texto, como o Visual Studio Code.
+3. Para criar o agente, copie o seguinte código:
+<br>
 ```
-
-> 💡 **Dica:** Use descrições claras — elas ajudam o agente a entender quando usar sua skill.
-
----
-
-## 🔧 Passo 2 — Implementar a Lógica da Skill
-
-Agora, vamos adicionar o comportamento da skill.  
-A lógica do “Hello World” é simples:
-
-```python
-def hello_world():
-    return "Hello World! Sua automação está funcionando!"
+spec_version: v1
+kind: native
+name: greeter
+description: An agent that greets you using the output from its tool
+instructions: Always run the tool "Greeting" when the user types Greeting in the chat. 
+llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+style: default
+collaborators: []
+tools: 
+- greeting
 ```
-
-Esta função será executada sempre que o agente chamar a skill.
-
----
-
-## ▶️ Passo 3 — Testar a Skill
-
-Abra o painel de testes e siga estes passos:
-
-1. Clique em **Test**  
-2. Execute a skill  
-3. Veja o resultado no painel lateral  
-4. Ajuste o código, se necessário  
-
-Retorno esperado:
-
-```json
-{
-  "message": "Hello World! Sua automação está funcionando!"
-}
+<br>
+ 
+4. Cole o código no editor de texto e salve o arquivo na greeter.yamlpasta * hello-world* .
+5. Para criar a ferramenta, copie o seguinte código:
+<br>
 ```
+#greetings.py
+from ibm_watsonx_orchestrate.agent_builder.tools import tool
 
-> 💡 **Se o retorno aparecer corretamente, sua skill está funcionando!**
+@tool
+def greeting() -> str:
+    """
+    Greeting for everyone   
+    """
 
----
+    greeting = "Hello World"
+    return greeting
 
-## 🤖 Passo 4 — Integrar com o Agente
+<br>
+6. Cole o código no editor de texto e salve o arquivo na greetings.pypasta * hello-world* .
+7. Abra o terminal que você usa normalmente.
+8. Navegue até a pasta. Por exemplo, cd ~/Desktop/hello-world.
+9. Execute o comando **orchestrate tools import -k python -f tools/greetings.py**
+10. Execute o comando **orchestrate agents import -f greeter.yaml**
+11. Execute o comando **orchestrate chat start**
 
-Agora que sua skill está criada e testada, vamos executá-la pelo agente:
 
-1. Clique em **Deploy**  
-2. Abra a interface do agente  
-3. Envie comandos em linguagem natural
-
-Exemplos:
-
-```
-Execute a skill Hello World.
-```
-
-```
-Rodar minha skill Hello World.
-```
-
-O agente interpretará sua intenção e executará sua skill automaticamente.
-
----
 
 ## 🧪 Exemplos de Uso
 
