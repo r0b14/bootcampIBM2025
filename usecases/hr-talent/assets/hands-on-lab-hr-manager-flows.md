@@ -1,542 +1,543 @@
 
-# 🧑‍💼 Automating Talent Acquisition with Agentic Workflows
+# 🧑‍💼 Automatizando a aquisição de talentos com fluxos de trabalho agenciados
 
-## Table of Contents
+## Índice
 
-- [Use Case description](#use-case-description)
-- [Pre-requisites](#pre-requisites)
-- [Talent acquisition agent with agentic workflows](#-talent-acquisition-agent-with-agentic-workflows)
-     - [Create a Talent Agent](#create-a-new-agent)
-     - [Step 1: Create an agentic workflow and configure inputs and outputs](#step-1-create-an-agentic-workflow-and-configure-inputs-and-outputs)
-     - [Step 2: User activity to collect number of candidates](#step-2-user-activity-to-collect-number-of-candidates)
-     - [Step 3: Code block to store number of candidates](#step-3-code-block-to-store-number-of-candidates)
-     - [Step 4: For each loop to upload candidate resumes](#step-4-for-each-loop-to-upload-candidates-resumes)
-     - [Step 5: Display message to upload a resume](#step-5-display-message-to-upload-a-resume)
-     - [Step 6: Resume file upload](#step-6-file-upload)
-     - [Step 7: Document extractor for resumes](#step-7-document-extractor-for-resumes)
-     - [Step 8: Store candidate's name and skills](#step-8-store-candidates-name-and-skills-for-later)
-     - [Step 9: Display a message to upload a job description](#step-9-display-a-message-to-upload-a-job-description)
-     - [Step 10: Upload the job description](#step-10-upload-the-job-description)
-     - [Step 11: Document extractor for job skills](#step-11-document-extractor-for-job-skills)
-     - [Step 12: Generative prompt - match candidates to job](#step-12-generative-prompt---match-candidates-skills-to-job-skills)
-     - [Step 13: Display match summary](#step-13-display-match-summary---output-of-generative-prompt)
-     - [Update the agent behavior](#update-agent-behavior)
-     - [Test the agent](#test-the-agent)
-- [Pulling it all together](#pulling-it-all-together)
+- [Descrição do Caso de Uso](#descrição-do-caso-de-uso)
+- [Pré-requisitos](#pré-requisitos)
+- [Agente de Aquisição de Talentos com fluxos de trabalho](#-agente-de-aquisição-de-talentos-com-fluxos-de-trabalho)
+     - [Criar um novo agente de Talentos](#criar-um-novo-agente)
+     - [Etapa 1: Crie um fluxo de trabalho baseado em agentes e configure as entradas e saídas](#etapa-1-crie-um-fluxo-de-trabalho-baseado-em-agentes-e-configure-as-entradas-e-saídas)
+     - [Etapa 2: Atividade do usuário para coletar o número de candidatos](#etapa-2-atividade-do-usuário-para-coletar-o-número-de-candidatos)
+     - [Etapa 3: Bloco de código para armazenar o número de candidatos](#etapa-3-bloco-de-código-para-armazenar-o-número-de-candidatos)
+     - [Etapa 4: Para cada iteração faça o upload dos currículos dos candidatos.](#etapa-4-para-cada-iteração-faça-o-upload-dos-currículos-dos-candidatos.)
+     - [Etapa 5: Exibir mensagem para enviar um currículo](#etapa-5-exibir-mensagem-para-enviar-um-currículo)
+     - [Etapa 6: Envio de arquivo](#etapa-6-envio-de-arquivo)
+     - [Etapa 7: Extrator de documentos para currículos](#etapa-7-extrator-de-documentos-para-currículos)
+     - [Etapa 8: Armazene o nome e as habilidades do candidato para uso posterior.](#etapa-8-armazene-o-nome-e-as-habilidades-do-candidato-para-uso-posterior)
+     - [Etapa 9: Exibir uma mensagem para enviar a descrição da vaga](#etapa-9-exibir-uma-mensagem-para-enviar-a-descrição-da-vaga)
+     - [Etapa 10: Faça o upload da descrição da vaga](#etapa-10-faça-o-upload-da-descrição-da-vaga)
+     - [Etapa 11: Extrator de documentos para habilidades da vaga](#etapa-11-extrator-de-documentos-para-habilidades-da-vaga)
+     - [Etapa 12: Solicitação generativa - relacionar as habilidades dos candidatos às habilidades da vaga](#etapa-12-solicitação-generativa---relacionar-as-habilidades-dos-candidatos-às-habilidades-da-vaga)
+     - [Etapa 13: Exibir resumo da partida - saída do prompt generativo](#etapa-13-exibir-resumo-da-partida---saída-do-prompt-generativo)
+     - [Atualizar o comportamento do agente](#atualizar-o-comportamento-do-agente)
+     - [Teste o agente](#teste-o-agente)
+- [Reunindo tudo](#reunindo-tudo)
 
 
-## Use Case Description
+## Descrição do Caso de Uso
 
-In the [first part of the HR Talent lab](./hands-on-lab-hr-manager.md) you used the **Chat with documents** feature to upload several resumes and a job description.  You then prompted the agent to generate a table comparing candidates' skills to job required skills. In this case the agent's internal LLM does all the work, all that is required from the user is providing the right prompt/query.  However, sometimes it may not be obvious what the right prompt is as HR Managers are not prompt engineers.  Additionally, we may want to program the agent to run some additional steps, e.g. automatically reach out to the selected candidate, ask them to select an interview time, automatically process the response and add it to the calendar. In this case we may want to create an **agentic workflow**. 
+Na [primeira parte do laboratório de Talentos de RH](./hands-on-lab-hr-manager.md), você usou o recurso **Chat with documents** para carregar vários currículos e uma descrição de vaga. Em seguida, você solicitou ao agente que gerasse uma tabela comparando as habilidades dos candidatos com as habilidades exigidas para a vaga. Nesse caso, o LLM interno do agente realiza todo o trabalho; tudo o que é necessário do usuário é fornecer a solicitação/consulta correta. No entanto, às vezes pode não ser óbvio qual é a solicitação correta, já que os gerentes de RH não são especialistas em programação de prompts. Além disso, podemos querer programar o agente para executar algumas etapas adicionais, como entrar em contato automaticamente com o candidato selecionado, pedir que ele escolha um horário para a entrevista, processar automaticamente a resposta e adicioná-la ao calendário. Nesse caso, podemos querer criar um **agentic workflow**.
 
-An agentic workflow represents a sequence of steps that utilizes conditional controls and activities. Agentic workflows allow us to create sequences of tasks, as well as conditions, branches and loops.  We can use a variety of nodes, including small code blocks, user input, document processing nodes to extract data from documents, and generative prompts to create and configure LLM prompts with inputs and outputs.
+Um fluxo de trabalho agêntico representa uma sequência de etapas que utiliza controles e atividades condicionais. Os fluxos de trabalho agênticos permitem criar sequências de tarefas, bem como condições, ramificações e loops. Podemos usar uma variedade de nós, incluindo pequenos blocos de código, entrada do usuário, nós de processamento de documentos para extrair dados de documentos e prompts generativos para criar e configurar prompts LLM com entradas e saídas.
 
-Rather than handling each step individually, agents can start an angetic workflow to manage the entire process from beginning to end. Agentic workflows are ideal for tasks that require coordination across systems or multiple decision points.
+Em vez de lidar com cada etapa individualmente, os agentes podem iniciar um fluxo de trabalho agêntico para gerenciar todo o processo do início ao fim. Os fluxos de trabalho agênticos são ideais para tarefas que exigem coordenação entre sistemas ou múltiplos pontos de decisão.
 
-For example, an agentic workflow can be created to handle employee onboarding: collecting information, creating accounts, sending welcome emails, and notifying internal teams. Once built, this agentic workflow can be reused across departments, triggered by agents whenever a new employee joins —- no need to manually coordinate each step.
+Por exemplo, um fluxo de trabalho agêntico pode ser criado para lidar com a integração de novos funcionários: coletar informações, criar contas, enviar e-mails de boas-vindas e notificar as equipes internas. Uma vez criado, esse fluxo de trabalho agético pode ser reutilizado em todos os departamentos, acionado pelos agentes sempre que um novo funcionário for contratado — sem a necessidade de coordenar manualmente cada etapa.
 
-By using agentic workflows, business users gain:
+Ao usar fluxos de trabalho agéticos, os usuários corporativos obtêm:
 
-- Confidence that tasks are completed correctly and consistently.
-- Speed through automation of repetitive steps.
-- Visibility into how processes run and where bottlenecks occur.
-- Scalability to apply the same logic across teams, regions, or products.
+- Confiança de que as tarefas são concluídas de forma correta e consistente.
 
-## Pre-requisites
+- Agilidade por meio da automação de etapas repetitivas. - Visibilidade de como os processos são executados e onde ocorrem os gargalos.
+- Escalabilidade para aplicar a mesma lógica em equipes, regiões ou produtos.
 
-If you haven't yet as part of the earlier steps of the HR Manager lab, download the following files: 
+## Pré-requisitos
 
-[Candidate 1.pdf](../data/Candidate%201.pdf)
+Você vai precisar dos arquivos baixados durante o laboratório de Gerente de RH:
 
-[Candidate 2.pdf](../data/Candidate%202.pdf)
+- Currículo do Candidato 1 (Arquivo "Candidate 1_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
+- Currículo do Candidato 2 (Arquivo "Candidate 2_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
+- Currículo do Candidato 3 (Arquivo "Candidate 3_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
+- Currículo do Candidato 4 (Arquivo "Candidate 4_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
+- Currículo do Candidato 5 (Arquivo "Candidate 5_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
+- Descrição da vaga (Arquivo "Descricao_Vaga.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip) 
 
-[Candidate 3.pdf](../data/Candidate%203.pdf)
+## 🥇 Agente de Aquisição de Talentos com fluxos de trabalho
 
-[Job Description.pdf](../data/Job%20Description.pdf)
-
-## 🥇 Talent Acquisition Agent with agentic workflows 
-
-In this part of the lab we will implement the following workflow: 
+Nesta parte do laboratório, implementaremos o seguinte fluxo de trabalho:
 
 ![alt text](./hands-on-lab-assets/flow_to_build.jpeg)
 
-We will now walk you through creating the above workflow step by step.  We will first create a separate agent to experiment. 
+Agora, vamos orientá-lo passo a passo na criação do fluxo de trabalho acima. Primeiro, criaremos um agente separado para experimentação.
 
-### Create a new agent
-
-Open the Agent Builder in watsonx Orchestrate, if you aren't there already -- click on **Build->Agent Builder** in the main hamburger menu. 
+### Criar um novo agente
+ 
+Abra o Construtor de Agentes no Watsonx Orchestrate, caso ainda não esteja aberto -- clique em ***Build->Agent Builder** no menu principal (ícone de hambúrguer).
 
 ![alt text](./hands-on-lab-assets/open_agent_builder.png)
 
-Create a new agent:
+Criar um novo agente:
 
 ![alt text](./hands-on-lab-assets/create_new_agent.png)
 
-Select **Create from scratch**, name it **Talent Agent**, and give it a short description. Descriptions are used to route a user query to the right agent. You can use the description below:
+Selecione **Create from scratch**, dê o nome de **Agente de Talentos** e adicione uma breve descrição. As descrições são usadas para direcionar a consulta do usuário ao agente correto. Você pode usar a descrição abaixo:
 ```
-This agent helps match candidates to a job based on their skills
+Este agente ajuda a encontrar candidatos para vagas com base em suas habilidades.
 ```
 ![alt text](./hands-on-lab-assets/agent_description.png)
 
-After clicking **Create**, you will be taken to this screen:
+Após clicar em **Create**, você será direcionado para esta tela:
 
 ![alt text](./hands-on-lab-assets/talent_agent_intro.png)
 
-For this agent, we will use the **llama-3-405b-instruct** model. You can select it in the **Model** drop-down:
+Para este agente, usaremos o modelo **llama-3-405b-instruct**. Você pode selecioná-lo no menu suspenso **Model**:
 
 ![alt text](./hands-on-lab-assets/agent_change_model.png)
 
-Feel free to experiment with the other (vision) model too, but this one worked better for our use case.
+Sinta-se à vontade para experimentar também o outro modelo (de visão), mas este funcionou melhor para o nosso caso de uso.
 
-We will leave all the other settings at default values for now.  Scroll down to the **Toolset** section. This is where we will be adding our flow (agentic workflow).  Click on **Add Tool**:
+Vamos manter todas as outras configurações com os valores padrão por enquanto. Role para baixo até a seção **Toolset**. É aqui que adicionaremos nosso fluxo (fluxo de trabalho com agentes). Clique em **Add Tool**.
 
 ![alt text](./hands-on-lab-assets/add_tool.png)
 
-Select **Create an agentic workflow**:
+Selecione **Create an agentic workflow**:
 
 ![alt text](./hands-on-lab-assets/create_workflow.png)
 
-### Step 1: Create an agentic workflow and configure inputs and outputs
+### Etapa 1: Crie um fluxo de trabalho baseado em agentes e configure as entradas e saídas
 
-First, we will edit the flow description, input, and outputs.  Click on the pencil next to the name of the flow in the top left corner: 
+Primeiro, vamos editar a descrição do fluxo, as entradas e as saídas. Clique no ícone de lápis ao lado do nome do fluxo no canto superior esquerdo:
 
 ![alt text](./hands-on-lab-assets/edit_flow_description.png)
+Altere o nome para **Combinar candidatos** e a descrição para:
 
-Change the name to **Match candidates**, change description to: 
+``` 
+Extrai habilidades dos currículos dos candidatos, extrai habilidades da descrição da vaga e gera uma tabela resumo mostrando quais candidatos possuem quais habilidades exigidas e desejáveis ​​para a vaga.
 
 ```
-Extracts skills from candidates' resumes, extracts skills from a job description, and generates a summary table showing which candidates have which skills required and preferred for the job.
-```
-and click on the **Add output** button to specify the output of the flow: 
+e clique no botão  **Add output** para especificar a saída do fluxo: 
 
 ![alt text](./hands-on-lab-assets/flow_description.png)
 
-This is where we will configure the variable that will store the output of the whole flow, returned to the agent after the flow is done running.  Select **String** for the type of variable: 
+Aqui configuraremos a variável que armazenará a saída de todo o fluxo, retornada ao agente após a conclusão da execução do fluxo. Selecione **String** para o tipo de variável:
 
 ![alt text](./hands-on-lab-assets/select_string_output.png)
 
-Give it a name e.g. **match_summary** and click **Add**: 
+Dê o nome **match_summary** e clique em **Add**: 
 
 ![alt text](./hands-on-lab-assets/match_summary_var.png)
 
-After you click on **Save**, your flow show look similar to: 
+Após clicar em **Save**, seu fluxo de trabalho ficará semelhante a este:
 
 ![alt text](./hands-on-lab-assets/flow_start.png)
 
-The flow has two nodes only for now - the start node with 0 inputs and 0 variables configured, and the end node with 1 variable configured. You can validate that your output variable was added successfully by clicking on the end node: 
+Por enquanto, o fluxo possui apenas dois nós: o nó inicial, com 0 entradas e 0 variáveis ​​configuradas, e o nó final, com 1 variável configurada. Você pode verificar se a variável de saída foi adicionada com sucesso clicando no nó final.
 
 ![alt text](./hands-on-lab-assets/output_node.png)
 
 
-We will next configure a couple flow variables that we can use througout our flow.  We will need two: 
+Em seguida, configuraremos algumas variáveis ​​de fluxo que poderemos usar ao longo do nosso fluxo. Precisaremos de duas:
 
-- *num_candidates* - a list that represents a range of integers *0* to *n* where *n* is the number of candidates To upload and process multiple candidate resumes, we will use a **For each** node.  In order to do this, we can iteratate over *num_candidates*
-- *candidates* - this is a string variable that will hold extracted candidates' names and corresponding skills. We will need it so we can use it in a generative prompt node
+- *num_candidates* - uma lista que representa um intervalo de números inteiros de *0* a *n*, onde *n* é o número de candidatos. Para carregar e processar vários currículos de candidatos, usaremos um nó **For each**. Para isso, podemos iterar sobre *num_candidates*.
+- *candidates* - esta é uma variável de string que armazenará os nomes dos candidatos extraídos e suas respectivas habilidades. Precisaremos dela para usá-la em um nó de prompt generativo.
 
-Click on the start node and select **Edit** flow variables: 
+Clique no nó inicial e selecione **Edit** variáveis ​​de fluxo.
 
 ![alt text](./hands-on-lab-assets/edit_flow_variables.png)
 
-Add flow variable: 
+Adicionar variável de fluxo:
 
 ![alt text](./hands-on-lab-assets/add_flow_var.png)
 
-and select **Integer**: 
+e selecione **Integer**: 
 
 ![alt text](./hands-on-lab-assets/integer_var.png)
 
-Enter the name of the variable, *num_candidates* and a description e.g: 
+Insira o nome da variável, *num_candidates*, e uma descrição, por exemplo:
 
 ```
-list of candidates, enum
+lista de candidatos, enum
 ```
-Check the **List of Integer** option since we will have a list, and click on **Add** to add the variable.
+Habilite a opção **List of Integer**  já que teremos uma lista, clique em **Add** para adicionar a variável.
 
-Add another variable: 
+Adicione outra variável:
 
 ![alt text](./hands-on-lab-assets/add_another_var.png)
 
-This time make it a String.  Give it the name *candidates* and a simple description e.g.: 
+Desta vez, crie uma string. Dê o nome *candidatos* e uma descrição simples, por exemplo:
 
 ```
-candidate names and skills
+Nomes e habilidades dos candidatos
 ```
 
-Specify the default (starting) value: "" and click **Add**:
+Especifique o valor padrão (starting): "" e clique em **Add**:
 
 ![alt text](./hands-on-lab-assets/candidates_var.png)
 
-Your flow show now look like this: 
+Seu fluxo de trabalho agora está assim:
 
 ![alt text](./hands-on-lab-assets/start_vars_defined.png)
 
-### Step 2: User activity to collect number of candidates
+### Etapa 2: Atividade do usuário para coletar o número de candidatos
 
-We will now add our first user activity.  The first activity we are going to create will be to ask the user how many candidates they would like to evaluate for the job.  Hover over the arrow connecting the start node to the end node and click on the **+** sign: 
+Agora vamos adicionar nossa primeira atividade de usuário. A primeira atividade que vamos criar será perguntar ao usuário quantos candidatos ele gostaria de avaliar para a vaga. Passe o cursor sobre a seta que conecta o nó inicial ao nó final e clique no sinal de **+**:
 
 ![alt text](./hands-on-lab-assets/add_user_activity1.png)
 
-Click on **User activity**:
+Clique em **User activity**:
 
 ![alt text](./hands-on-lab-assets/select_user_activity.png)
 
-Hover over the arrow from Start to End **inside User activity 1**.  Click on **+**, then on **Collect from user**, then on **Number**: 
+Passe o cursor sobre a seta que vai do Início ao Fim **dentro da User activity 1**.  Clique em **+**, depois em **Collect from user**, depois em **Number**: 
 
 ![alt text](./hands-on-lab-assets/collect_number.png)
 
-Click on **Number 1**, then on the pencil icon to edit the question to display to the user: 
+Clique em **Number 1**, em seguida, clique no ícone de lápis para editar a pergunta que será exibida ao usuário:
 
-```
-How many candidates would you like to evaluate?
+``` 
+Quantos candidatos você gostaria de avaliar?
+
 ```
 
 ![alt text](./hands-on-lab-assets/collect_number2.png)
 
-Your flow should now look like this: 
+Seu fluxo agora deve estar assim:
 
 ![alt text](./hands-on-lab-assets/number_collected.png)
 
-### Step 3: Code block to store number of candidates
+### Etapa 3: Bloco de código para armazenar o número de candidatos
 
-We will now define a node to update the *num_candidates* variable: 
+Agora vamos definir um nó para atualizar a variável *num_candidates*:
 
-Hover over the arrow connecting the user activity to the end node. Click on the **+** sign and then on **Code block**: 
+Passe o cursor sobre a seta que conecta a atividade do usuário ao nó final. Clique no sinal de **+** e depois em **Code block***:
 
 ![alt text](./hands-on-lab-assets/add_code_block.png)
 
-Click on the new code block node, and open code editor: 
+Clique no novo nó de bloco de código e abra o editor de código:
 
 ![alt text](./hands-on-lab-assets/open_code_editor.png)
 
 Enter the folowing code into the editor: 
 
-```
-numc = flow["User activity 1"]["How many candidates would you like to evaluate?"].output.value
+``` 
+numc = flow["User activity 1"]["Quantos candidatos você gostaria de avaliar?"].output.value
 flow.private.num_candidates = list(range(0, numc))
 ```
 
-And click on the **X** to close the editor: 
+E clique no **X** para fechar o editor:
 
 ![alt text](./hands-on-lab-assets/enter_code.png)
 
-Click on the code block again and rename it using the Edit button (pencil):
+Clique novamente no bloco de código e renomeie-o usando o botão Editar (lápis):
 
 ![alt text](./hands-on-lab-assets/edit_code_block_name.png)
 
-Name it **store candidate list** and click **V** to save.  Your flow should now look like the following: 
+Dê o nome **armazenar lista de candidatos** e clique **V** para salvar.  Seu fluxo agora deve estar semelhante ao seguinte:
 
 ![alt text](./hands-on-lab-assets/flow_with_code_block.png)
 
-### Step 4: For each loop to upload candidates resumes
+### Etapa 4: Para cada iteração faça o upload dos currículos dos candidatos.
 
-We will next create a **for-each loop** to upload each resume, extract the name of the candidate and their skills, and store all this info in the *candidates* variable. 
+Nós vamos criar um **for-each loop** Para fazer o upload de cada currículo, extrair o nome do candidato e suas habilidades e armazenar todas essas informações na variável *candidatos*.
 
-Hover over the arrow connecting the code block to the end node and click on the **+** sign, then select **For each**: 
+Posicione o cursor sobre a seta que conecta o bloco de código ao nó final e clique no sinal de **+**, depois selecione **For each***:
 
 ![alt text](./hands-on-lab-assets/create_for_each.png)
 
-### Step 5: Display message to upload a resume
+### Etapa 5: Exibir mensagem para enviar um currículo
 
-Inside the **For each** node, create a **User activity** by hovering over the arrow inside the **For each** node and clicking on the **+** sign. Next, hover over the inside of the **User activity**, click on **+**, select **Display to user**, then **Message**:
+Dentro do nó **For each**, crie uma **User activity** passando o cursor sobre a seta dentro do nó **For each** e clicando no sinal de **+**. Em seguida, passe o cursor sobre o interior da **AUser activity**, clique em **+**, selecione **isplay to user** e, em seguida, **Message**.
 
 ![alt text](./hands-on-lab-assets/add_display_message.png)
 
-Next click on **Message** and edit the **Output message**:
+Em seguida, clique em **Message** e edite a **Output message**:
 
 ```
-Please upload a candidate's resume
+Solicite que o usuário envie o currículo do candidato
 ```
 
-This is what will be displayed to the user to ask them to upload a resume.
+Esta é a mensagem que será exibida ao usuário para solicitar o envio de um currículo.
 
-At the same time change the node name to: 
+Ao mesmo tempo, altere o nome do nó para:
 
 ```
-Prompt user to upload resume
+Solicitar ao usuário que envie o currículo
 ```
 
 ![alt text](./hands-on-lab-assets/upload_resume_message.png)
 
 
-### Step 6: File upload
+### Etapa 6: Envio de arquivo
 
-Add another **User Activity**:
+Adicione outra **User Activity**:
 
 ![alt text](./hands-on-lab-assets/add_another_user_activity.png)
 
-This time it will be a **File Upload** activity: 
+Desta vez será uma atividade de **File Upload**:
 
 ![alt text](./hands-on-lab-assets/create_file_upload.png)
 
-Click on the new *File upload** node and rename it to **Upload resume**: 
+Clique no novo nó *File upload** e renomeie para **Upload de currículo**: 
 
 ![alt text](./hands-on-lab-assets/rename_file_upload.png)
 
-### Step 7: Document extractor for resumes
+### Etapa 7: Extrator de documentos para currículos
 
-Next we will create a document extraction node to extract the candidate's name and skills from their resume. 
+Em seguida, criaremos um nó de extração de documentos para extrair o nome e as habilidades do candidato do seu currículo.
 
-Still inside the **For all** loop, hover over the last arrow and click on **+** to create a new **Document extractor** node: 
+Ainda dentro do loop **For all**, passe o cursor sobre a última seta e clique em **+** para criar um novo nó de **Document extractor**:
 
 ![alt text](./hands-on-lab-assets/create_doc_extractor.png)
 
-Click on the **Document extractor** node and then **Edit fields**: 
+Clique no nó **Document extractor** node e depois **Edit fields**: 
 
 ![alt text](./hands-on-lab-assets/edit_doc_extractor_fields.png)
 
-We will now upload one of the resumes as a sample to train the document extractor.  Drag and drop the [Candidate2.pdf](../data/Candidate%202.pdf) file you downloaded earlier in the lab: 
+Agora, vamos carregar um dos currículos como exemplo para treinar o extrator de documentos. Arraste e solte o arquivo **Currículo do Candidato 2** (Arquivo "Candidate 2_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip)  que você baixou anteriormente no laboratório:
 
-Once the document is done uploading, you will see the following screen. Click on **Add field** to start adding fields we want to extract and train the document extractor on: 
+Assim que o documento for carregado, você verá a seguinte tela. Clique em **Add field** para começar a adicionar os campos que queremos extrair e usar para treinar o extrator de documentos:
 
 ![alt text](./hands-on-lab-assets/doc_extractor_show.png)
 
-Enter **Name** for the name of the field and hit Enter.  The document extractor will try to extract the name from the resume and will display it once ready: 
+Entre **Nome** para o nome do campo e pressione Enter. O extrator de documentos tentará extrair o nome do currículo e o exibirá assim que estiver pronto:
 
 ![alt text](./hands-on-lab-assets/candidate_name.png)
 
-Next we need to add another field **Skills**. Add one more field and name it **Skills**. Once you hit Enter, the document extractor will populate the field from the document: 
+Em seguida, precisamos adicionar outro campo: **Habilidades**. Adicione mais um campo e nomeie-o como **Habilidades**. Depois de pressionar Enter, o extrator de documentos preencherá o campo com os dados do documento.
 
 ![alt text](./hands-on-lab-assets/candidate_skills.png)
 
-Rename the document extractor node to **Resume extractor** by clicking on it and editing it's name
+Renomeie o nó do extrator de documentos para **Extrator de currículo** clicando nele e editando o nome.
 
-Your **For each** loop should now look like this: 
+Seu loop **For each** deverá agora ter este aspeto:
 
 ![alt text](./hands-on-lab-assets/for_each_after_extractor.png)
 
-### Step 8: Store candidate's name and skills for later
+### Etapa 8: Armazene o nome e as habilidades do candidato para uso posterior
 
-The last activity we need to create in the **For each** loop is another code block that stores the candidate's name and skills after each iteration:
+A última atividade que precisamos criar no loop **For each** é outro bloco de código que armazena o nome e as habilidades do candidato após cada iteração:
 
 ![alt text](./hands-on-lab-assets/store_candidate_info.png)
 
-Click on the code block and open the code editor. Enter the following in the code editor: 
+Clique no bloco de código e abra o editor de código. Digite o seguinte no editor de código:
 
 ```
-flow.private.candidates += "Name: " + str(flow["For each 1"]["Resume extractor"].output.name) + "\n\nSkills: " + str(flow["For each 1"]["Resume extractor"].output.skills) + "\n\n"
+flow.private.candidates += "Nome: " + str(flow["For each 1"]["Extrator de currículo"].output.nome) + "\n\nHabilidades: " + str(flow["For each 1"]["Extrator de currículo"].output.habilidades) + "\n\n"
 ```
-Rename the code block to **Update candidates**. The **For each** should now look like this: 
+Renomeie o bloco para **Atualizar Candidatos**. O **For each** deverá agora ter este aspeto:
 
 ![alt text](./hands-on-lab-assets/for_each_final.png)
 
-### Step 9: Display a message to upload a job description
+### Etapa 9: Exibir uma mensagem para enviar a descrição da vaga
 
-Next we will ask the user to upload a job description.  First we will display a message to the user, then we will add a file upload activity. 
+Em seguida, pediremos ao usuário que carregue uma descrição da vaga. Primeiro, exibiremos uma mensagem para o usuário e, depois, adicionaremos uma atividade de upload de arquivo.
 
-**Below** the **For each** loop, click on the arrow connecting to the end node and add a **User activity**: 
+**Abaixo** do loop **For each**, clique na seta que conecta ao nó final e adicione uma **User activity**:
 
 ![alt text](./hands-on-lab-assets/add_user_activity_job.png)
 
-Click inside the user activity and select **Display to user** then **Message**: 
+Clique dentro da atividade do usuário e selecione **Display to user** e, em seguida, **Message**:
 
 ![alt text](./hands-on-lab-assets/display_to_user_job_upload.png)
 
-Update the **Output message** to: 
+Atualize a **Output message** para: 
 
 ```
-Please upload the job description
+Por favor, faça o upload da descrição da vaga.
 ```
 
-And change the **Display message** (name of the node in the flow) to: 
+E altere a **Display message** (nome do nó no fluxo) para: 
 
 ```
-Prompt user to upload job description
+Solicitar ao usuário que carregue a descrição do cargo
 ```
 
 ![alt text](./hands-on-lab-assets/configure_display_to_user_job_upload.png)
 
-### Step 10: Upload the job description
+### Etapa 10: Faça o upload da descrição da vaga
 
-Add another **User activity** right before the end node.  This time make it of type **File upload**: 
+Adicione outra **User activity** rlogo antes do nó final. Desta vez, faça-o do tipo **File upload**: 
 
 ![alt text](./hands-on-lab-assets/file_upload_job.png)
 
-Click on the newly created file upload node and change its' name to: 
+Clique no nó de upload de arquivos recém-criado e altere o nome dele para:
 
 ```
-Upload job description
+Carregar descrição da vaga
 ```
 
 ![alt text](./hands-on-lab-assets/change_file_upload_job_node_name.png)
 
-### Step 11: Document extractor for job skills
+### Etapa 11: Extrator de documentos para habilidades da vaga
 
-Next we will create another document extractor node to extract required and preferred skills from the job description. 
+Em seguida, criaremos outro nó extrator de documentos para extrair as habilidades necessárias e desejáveis ​​da descrição da vaga.
 
-Add a **Document extractor** node before the end of the flow and rename it as **Extract job skills**: 
+Adicione um nó **Document extractor** antes do final do fluxo e renomeie-o como **Extrair habilidades da vaga**:
 
 ![alt text](./hands-on-lab-assets/extract_job_skills.png)
 
-Edit the fields of this document extractor node and drag and drop [the job description file](../data/Job%20Description.pdf) that you downloaded earlier: 
+Edite os campos deste nó extrator de documentos e arraste e solte a **Descrição da vaga** (Arquivo "Descricao_Vaga.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip):
 
 ![alt text](./hands-on-lab-assets/job_file_drag_drop.png)
 
-Once the document has been processed, you will see the following screen: 
+Após o processamento do documento, você verá a seguinte tela:
 
 ![alt text](./hands-on-lab-assets/job_desc_doc_proc.png)
 
-Add two fields, similar to what you did for the resume extractor. This time, however, add fields **required** and **preferred** to extract required and preferred skills: 
+Adicione dois campos, semelhantes aos que você adicionou ao extrator de currículos. Desta vez, porém, adicione os campos **necessárias** e **desejáveis** para extrair as habilidades obrigatórias e desejáveis:
 
-Close the extractor node once done. 
+Feche o nó do extrator quando terminar.
 
-### Step 12: Generative prompt - match candidates' skills to job skills
+### Etapa 12: Solicitação generativa - relacionar as habilidades dos candidatos às habilidades da vaga
 
-We are finally almost at the end of the flow. We still need to implement a Generative prompt.  This prompt will take as input the value of *candidates* variable, which is a string that contains by now all candidate names and their skills.  It will also take as input the required and preferred skills just extracted from the job description. The prompt will compare the skills of each candidate to the skills required by the job and generate a table which summarizes how well candidate skills map to the job description.
+Estamos quase no fim do fluxo. Ainda precisamos implementar um prompt generativo. Este prompt receberá como entrada o valor da variável *candidatos*, que é uma string contendo, até o momento, os nomes de todos os candidatos e suas habilidades. Também receberá como entrada as habilidades necessárias e desejáveis, extraídas da descrição da vaga. O prompt comparará as habilidades de cada candidato com as habilidades exigidas pela vaga e gerará uma tabela que resume o quão bem as habilidades dos candidatos se encaixam na descrição da vaga.
 
-Add a **Generate prompt** node at the end of the flow (before the end node): 
+Adicione um nó **Generate prompt** node no final do fluxo (antes do nó final):
 
 ![alt text](./hands-on-lab-assets/generative_prompt.png)
 
-Rename the node to **Match candidate skills to job skills** and edit **Prompt settings**: 
+Renomeio o nó para **Adequar as competências do candidato às competências da vaga.** e edite o **Prompt settings**: 
 
 ![alt text](./hands-on-lab-assets/rename_prompt_node.png)
 
-For system prompt enter the following: 
+Para o prompt do sistema, digite o seguinte:
 
-```
-You are a helpful assistant who can match candidates skills to job requirements.
-```
-
-For user prompt enter: 
-
-```
-Make a table where each row is a candidate and each column is a skill in the job description. Do not invent any candidates. Have the check emoji if the candidate does have the corresponding skill. Mark columns for required job skills with *. Include the candidate's name in each row.
-
-Candidate names and skills: 
-Required job skills: 
-Preferred job skills:
+``` 
+Você é um assistente prestativo que pode encontrar candidatos com as habilidades certas para as vagas.
 ```
 
-In order to work, our generative prompt will need to take **as input** a string that contains candidate names and skills extracted earlier in the flow. It will also need two strings for skills (required and preferred) from the job description itself. Therefore, we need to create three _String_ input varilables that will hold these values and that we can reference in the user prompt as variables. 
+Para o prompt do usuário, digite:
 
-We can also provide a sample test value for each variable so we can run the prompt directly in the generative prompt editor and double check that the output is as expected, without having to quit and run the whole flow. 
+```
+Crie uma tabela onde cada linha representa um candidato e cada coluna representa uma habilidade descrita na vaga. Não invente candidatos. Inclua um emoji de visto se o candidato possuir a habilidade correspondente. Marque as colunas com um asterisco (*) indicando as habilidades necessárias para a vaga. Inclua o nome do candidato em cada linha.
 
-Add the following _String_ input variables: *candidates*, *job_required*, and *job_preferred* and assign some test values e.g.: 
+Nomes e habilidades dos candidatos:
+Habilidades necessárias para a vaga:
+Habilidades desejáveis ​​para a vaga:
+```
+
+Para funcionar, nosso prompt generativo precisará receber **como entrada** uma string contendo os nomes e habilidades dos candidatos, extraídos anteriormente no fluxo. Também precisará de duas strings para as habilidades (obrigatórias e desejáveis) da própria descrição da vaga. Portanto, precisamos criar três variáveis ​​de entrada do tipo _String_ que armazenarão esses valores e que poderemos referenciar no prompt do usuário como variáveis.
+
+Também podemos fornecer um valor de teste de exemplo para cada variável, para que possamos executar o prompt diretamente no editor de prompts generativos e verificar se a saída está correta, sem precisar encerrar e executar todo o fluxo.
+
+Adicione as seguintes variáveis ​​de entrada do tipo _String_: *candidates*, *job_required* e *job_preferred* e atribua alguns valores de teste, por exemplo:
 
 ![alt text](./hands-on-lab-assets/create_new_var_gp.png)
 
-Fill in the name of the var and add a simple description: 
+Insira o nome da variável e adicione uma breve descrição:
 
 ![alt text](./hands-on-lab-assets/create_candidates_var_gp.png)
 
-Edit the var to add a test value: 
+Edite a variável para adicionar um valor de teste:
 
 ![alt text](./hands-on-lab-assets/add_test_value.png)
 
-Paste the following text to add the value: 
+Cole o seguinte texto para adicionar o valor:
 
 ```
-Name: Jane Smith
-Skills: Java, Javascript
+Nome: Jane Smith
+Habilidades: Java, Javascript
 
-Name: John Doe
-Skills: Java, Python, Javascript, ML
+Nome: John Doe
+Habilidades: Java, Python, Javascript, Aprendizado de Máquina
 ```
 
-Your _candidates_ variable show now look like this:
+A sua variável _candidates_ agora está assim:
 
 ![alt text](./hands-on-lab-assets/prompt_candidates_var.png)
 
-Follow the steps above to add two more _String_ variables, _job_required_ and _job_preferred_: 
+Siga os passos acima para adicionar mais duas variáveis ​​do tipo _String_, _job_required_ e _job_preferred_:
 
 ![alt text](./hands-on-lab-assets/job_reqs.png)
 
-Finally reference these variables in your prompt by clicking the **X** sign in the user prompt area: 
+Por fim, faça referência a essas variáveis ​​no seu prompt clicando no sinal **X** na área de prompts do usuário:
 
 ![alt text](./hands-on-lab-assets/select_vars.png)
 
-Your prompt should now look like this: 
+Seu prompt agora deve estar assim:
 
 ![alt text](./hands-on-lab-assets/generative_prompt_finished.png)
 
-Click on **Generate response** to run the prompt on the test values you provided and observe the results returned: 
+Clique em **Generate response** Para executar o comando com os valores de teste fornecidos e observar os resultados retornados:
 
 ![alt text](./hands-on-lab-assets/gen_prompt_test.png)
 
-As you can see, the result is a table which compares each candidate's skills with the job requirements.  This is exactly what we were looking for, so we have validated that our generative prompt works and can move on to the next step.
+Como você pode ver, o resultado é uma tabela que compara as habilidades de cada candidato com os requisitos da vaga. Isso é exatamente o que estávamos procurando, então validamos que nosso prompt generativo funciona e podemos prosseguir para a próxima etapa.
 
-Close the prompt definition now, click on the Generative prompt node you just created and **Edit data mapping**: 
+Feche a definição do prompt agora, clique no nó "Prompt generativo" que você acabou de criar e **Edite o mapeamento de dados**:
 
 ![alt text](./hands-on-lab-assets/edit_data_mapping.png)
 
-We now need to map data collected earlier in the flow to the inputs of the generative prompt.
+ Agora precisamos mapear os dados coletados anteriormente no fluxo para as entradas do prompt generativo.
 
- Click on the **variable** icon in the *candidates* row: 
+Clique no ícone da **variável** na linha *candidates*:
 
 ![alt text](./hands-on-lab-assets/prompt_edit_candidates_input.png)
 
-In the editor select **Flow variables -> candidates**: 
+No editor, selecione **Flow variables -> candidatos**: 
 
 ![alt text](./hands-on-lab-assets/select_candidates_fv.png)
 
-For *job_preferred*, also select the **variable icon** and choose **Extract job skills -> preferred**
+Para *job_preferred*, também selecione **ícone de variável** e escolha **Extract job skills -> preferred**
 
 ![alt text](./hands-on-lab-assets/select_job_preferred.png)
 
-Similarly, for *job_required* select the variable icon and chooose **Extract job skills -> required**
+Da mesma forma, para *job_required*, selecione o ícone da variável e escolha **Extract job skills -> required**
 
 ![alt text](./hands-on-lab-assets/select_job_required.png)
 
-### Step 13: Display match summary - output of generative prompt
+### Etapa 13: Exibir resumo da partida - saída do prompt generativo
 
-Finally, create one last **User activity** node to display the output of the generative prompt: 
+Por fim, crie um último nó **User activity** para exibir a saída do prompt generativo:
 
 ![alt text](./hands-on-lab-assets/display_output.png)
 
-Update the node name to **Show summary** and click on **Select variable** to select the output message: 
+Altere o nome do nó para **Mostrar resumo** e clique em **Select variable** para selecionar a mensagem de saída:
 
 ![alt text](./hands-on-lab-assets/edit_output_node.png)
 
-In the editor select the generative prompt node name, then select the corresponding output variable *value*:
+No editor, selecione o nome do nó de prompt generativo e, em seguida, selecione o valor da variável de saída correspondente:
 
 ![alt text](./hands-on-lab-assets/select_prompt_output_var.png)
 
-We are finally done defining the flow.  Click on **Done** to close the flow. 
+Finalmente terminamos de definir o fluxo. Clique em **Done** para fechar o fluxo.
 
-### Update Agent Behavior
+### Atualizar o comportamento do agente
 
-Before testing the agent, let's complete the **Behavior** section. Use the following instructions: 
 
-```
-When asked to match a candidate to job or to recommend the best candidate for a job, call the 'Match candidates' tool.  All other questions should be answered based on the context in the chat.
+Antes de testar o agente, vamos concluir a seção **Behavior**. Siga as instruções abaixo:
+
+``` Quando solicitado a encontrar um candidato adequado para uma vaga ou a recomendar o melhor candidato para uma vaga, utilize a ferramenta 'Combinar candidatos'. Todas as outras perguntas devem ser respondidas com base no contexto do chat.
+
 ```
 
 ![alt text](./hands-on-lab-assets/behavior.png)
 
-### Test the agent
+### Teste o agente
 
-Test your agent by providing two candidate resumes.  Enter the following query in chat: 
+Teste seu agente fornecendo dois currículos de candidatos. Digite a seguinte consulta no chat:
 
 ```
-recommend a candidate for a job
+recomendar um candidato para uma vaga
 ```
 
-The agent will ask you how many candidates you would like to evaluate.  Answer: 2
+O agente perguntará quantos candidatos você gostaria de avaliar. Resposta: 2
 
-You will then be asked to upload a candidate's resume. You can upload any candidate's resume, for example [Candidate 3.pdf](../data/Candidate%203.pdf).  Note you may be asked to review the extraction results - if the extractor's confidence is below 95%, human validation will be required.  This behavior can be easily configured within the document extractor node. The same is true for any other uploaded documents.
+Em seguida, você será solicitado a enviar o currículo de um candidato. Você pode enviar o currículo de qualquer candidato, por exemplo **Currículo do Candidato 3** (Arquivo "Candidate 3_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip). Observe que você poderá ser solicitado a revisar os resultados da extração. Se a confiança do extrator for inferior a 95%, será necessária a validação humana. Esse comportamento pode ser facilmente configurado no nó do extrator de documentos. O mesmo se aplica a quaisquer outros documentos carregados.
 
-You will then be asked to upload the second resume.  You can upload another candidate's resume, for exmaple [Candidate 1.pdf](../data/Candidate%201.pdf). 
+Em seguida, você será solicitado a enviar o segundo currículo. Você pode enviar o currículo de outro candidato, por exemplo **Currículo do Candidato 1** (Arquivo "Candidate 1_ptBR.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip).
 
-You will finally be asked to upload a job description.  You can use [Job Description.pdf](../data/📄%20Job%20Description.pdf). 
+Por fim, você será solicitado a enviar uma descrição da vaga. Você pode usar o **Descrição da vaga** (Arquivo "Descricao_Vaga.pdf" dentro da pasta "7. Talentos de RH" gerada após descompactar o LABS.zip).
 
-The results should look similar to the following: 
+Os resultados devem ser semelhantes aos seguintes:
 
 ![alt text](./hands-on-lab-assets/table_output.png)
 
-As you can see, the columns marked with * are skills required by the job.  Other skills are preferred.
-Each candidate row shows which skills the candidate has.
+Como você pode ver, as colunas marcadas com * são habilidades exigidas para o cargo. Outras habilidades são desejáveis.
+Cada linha de candidato mostra quais habilidades o candidato possui.
 
-The agent summarizes by telling us who the recommended candidate is: 
+O agente resume, informando-nos quem é o candidato recomendado:
 
 ![alt text](./hands-on-lab-assets/recommended_candidate.png)
 
-## Pulling it all together
+## Reunindo tudo
 
-In this part of the lab we automated the process of extracting skills from resumes and the job description and summarizing how well the candidates' skills match the skills required and preferred for the job.  We used **document processing** nodes to define the fields to be extracted from documents and to train the document processor. We then fed the output of the document processing nodes as input into the **generative prompt** node which composed the right prompt for the LLM to summarize how well candidate skills match the job requirements.
-We could easily expand this workflow with additional nodes and branches, for example to send an email to the highest-ranked candidates, to ask them to pick an interview slot, and to confirm their response was received. Running these tasks as a workflow allows for a more deterministic way to handle repetitive tasks, so that the agent can drive the process and involve the HR Manager know whenever their input is needed.
+Nesta parte do laboratório, automatizamos o processo de extração de habilidades de currículos e da descrição da vaga, resumindo o quão bem as habilidades dos candidatos correspondem às habilidades exigidas e desejáveis ​​para o cargo. Usamos nós de **document processing** para definir os campos a serem extraídos dos documentos e para treinar o processador de documentos. Em seguida, alimentamos a saída dos nós de processamento de documentos como entrada para o nó de **generative prompt**, que compôs o prompt correto para o LLM resumir o quão bem as habilidades do candidato correspondem aos requisitos da vaga.
 
-As you noticed when you tested the flow, depending on how the confidence thresholds are set up in the document processing nodes, human verification can be requested to make sure field data is extracted correctly.  
+Poderíamos facilmente expandir esse fluxo de trabalho com nós e ramificações adicionais, por exemplo, para enviar um e-mail aos candidatos mais bem classificados, solicitando que escolham um horário para entrevista e confirmando o recebimento da resposta. Executar essas tarefas como um fluxo de trabalho permite uma maneira mais determinística de lidar com tarefas repetitivas, para que o agente possa conduzir o processo e envolver o gerente de RH sempre que sua contribuição for necessária.
 
-Combining agentic workflows with regular tools and individual tasks in an agent provides the greatest flexibility. A user can chat with the agent and invoke individual tasks as needed.  For more complex, multi-step processes, agentic workflows are a powerful tool that can manage the entire process from beginning to end.
+Como você observou ao testar o fluxo, dependendo de como os limites de confiança são configurados nos nós de processamento de documentos, a verificação humana pode ser solicitada para garantir que os dados do campo sejam extraídos corretamente.
 
+A combinação de fluxos de trabalho com agentes, ferramentas convencionais e tarefas individuais em um agente proporciona a maior flexibilidade. O usuário pode conversar com o agente e invocar tarefas individuais conforme necessário. Para processos mais complexos e com várias etapas, os fluxos de trabalho com agentes são uma ferramenta poderosa que pode gerenciar todo o processo do início ao fim.
 
