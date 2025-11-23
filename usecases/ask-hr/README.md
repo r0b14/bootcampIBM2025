@@ -1,14 +1,6 @@
-# 🧑‍💼 AskHR
-
-<img alt="AskHR" src="assets/hr_landscape.jpg">
-
-Um dos grandes desafios para qualquer organização é gerenciar as operações de RH. Conforme a empresa cresce, fica cada vez mais difícil acessar informações rapidamente e executar tarefas com facilidade.
-
-Com a chegada dos sistemas baseados em agentes e o poder dos modelos de raciocínio, isso muda: <b>Agora é possível ter um único ponto de acesso para realizar praticamente todas as operações de RH de forma simples e integrada. </b>
-
-## Sumário
+# Sumário
+- [Sumário](#sumário)
 - [🧑‍💼 AskHR](#-askhr)
-  - [Sumário](#sumário)
   - [🤔 O Problema](#-o-problema)
   - [🎯 Objetivo](#-objetivo)
   - [📈 Valor de Negócio](#-valor-de-negócio)
@@ -17,6 +9,14 @@ Com a chegada dos sistemas baseados em agentes e o poder dos modelos de raciocí
     - [Componentes da Arquitetura](#componentes-da-arquitetura)
   - [🎥 Demonstração](#-demonstração)
   - [👩‍💻👨‍💻 Laboratório prático passo a passo](#-laboratório-prático-passo-a-passo)
+
+# 🧑‍💼 AskHR
+
+<img alt="AskHR" src="assets/hr_landscape.jpg">
+
+Um dos grandes desafios para qualquer organização é gerenciar as operações de RH. Conforme a empresa cresce, fica cada vez mais difícil acessar informações rapidamente e executar tarefas com facilidade.
+
+Com a chegada dos sistemas baseados em agentes e o poder dos modelos de raciocínio, isso muda: <b>Agora é possível ter um único ponto de acesso para realizar praticamente todas as operações de RH de forma simples e integrada. </b>
 
 ## 🤔 O Problema
 
