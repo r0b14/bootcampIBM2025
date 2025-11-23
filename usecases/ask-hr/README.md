@@ -6,6 +6,18 @@ Um dos grandes desafios para qualquer organização é gerenciar as operações 
 
 Com a chegada dos sistemas baseados em agentes e o poder dos modelos de raciocínio, isso muda: <b>Agora é possível ter um único ponto de acesso para realizar praticamente todas as operações de RH de forma simples e integrada. </b>
 
+## Sumário
+- [🧑‍💼 AskHR](#-askhr)
+  - [Sumário](#sumário)
+  - [🤔 O Problema](#-o-problema)
+  - [🎯 Objetivo](#-objetivo)
+  - [📈 Valor de Negócio](#-valor-de-negócio)
+  - [Arquitetura](#arquitetura)
+      - [Capacidades principais do agente AskHR:](#capacidades-principais-do-agente-askhr)
+    - [Componentes da Arquitetura](#componentes-da-arquitetura)
+  - [🎥 Demonstração](#-demonstração)
+  - [👩‍💻👨‍💻 Laboratório prático passo a passo](#-laboratório-prático-passo-a-passo)
+
 ## 🤔 O Problema
 
 A <b>TechCorp Inc.</b>, líder global em tecnologia com mais de 100 mil colaboradores, enfrentava um grande desafio na gestão das operações de RH. Com o crescimento acelerado, ficou cada vez mais difícil lidar com dados de perfil, solicitações de férias e gestão da força de trabalho de forma eficiente. 
@@ -36,37 +48,39 @@ A arquitetura é baseada no <b>watsonx Orchestrate</b>, permitindo que o agente 
 
 #### Capacidades principais do agente AskHR:
 
-1. Automatizar tarefas rotineiras de RH, como consultar saldo de férias, solicitar folgas e atualizar dados dos colaboradores.
+1. Automatizar tarefas rotineiras de RH, como: consultar saldo de férias, solicitar folgas e atualizar dados.
 
 2. Oferecer uma experiência simples e intuitiva, permitindo que os funcionários interajam com os sistemas de RH por meio de uma interface amigável.
 
 3. Garantir segurança e precisão, usando raciocínio avançado e ferramentas para buscar ou atualizar informações de forma confiável.
 
-4. Integra-se facilmente aos sistemas internos, utilizando conectores OpenAPI para uma conexão sem complicações.
+4. Integra-se facilmente aos sistemas internos, utilizando conectores OpenAPI (em json e/ou yaml) para uma conexão sem complicações.
 
-5. Aproveitar o poder do watsonx Orchestrate, coordenando fluxos, raciocínio inteligente e tarefas web para oferecer uma experiência completa de RH com IA.
+5. Aproveitar o poder do <b>watsonx Orchestrate</b>, coordenando fluxos, raciocínio inteligente e tarefas web para oferecer uma experiência completa de RH com IA.
 
 <img alt="AskHR" src="assets/arch_diagm.png">
 
 ### Componentes da Arquitetura
 
-- **Agente de RH e Aplicativo (IBM watsonx Orchestrate)**: O agente de RH atua como o orquestrador central, gerenciando as interações com o usuário e delegando tarefas para as ferramentas apropriadas no aplicativo de RH.
+<b>Agente de RH e Aplicativo (IBM watsonx Orchestrate)</b>: O agente de RH funciona como o orquestrador central, gerenciando as interações com os usuários e delegando tarefas para as ferramentas certas dentro do aplicativo.
 
-Ele possui uma coleção de ferramentas reutilizáveis, um agente RAG alimentado por OpenAPI e descrições de metadados. Cada ferramenta é projetada para executar uma tarefa específica relacionada a RH, como:  
-Verificação de saldos de folgas  
-Envio de solicitações de folga  
-Atualização de dados pessoais (cargo, endereço residencial)
+Ele conta com uma coleção de ferramentas reutilizáveis, um agente RAG baseado em OpenAPI e descrições de metadados. Cada ferramenta é criada para executar uma tarefa específica, como: <b>Consultar saldo de férias, Solicitar folgas e Atualizar dados pessoais (cargo, endereço, etc.)</b> <br>
 
-O agente RAG recupera informações relevantes de documentos para responder às consultas dos usuários.
+<b>O agente RAG</b> é responsável por buscar informações relevantes em documentos para responder às perguntas dos usuários.
 
-- **Sistema de Gestão de Capital Humano (HCM)**: O aplicativo de RH se comunica com o sistema HCM subjacente para buscar ou atualizar dados dos funcionários, garantindo sincronização e precisão em tempo real.
+- Sistema de Gestão de Capital Humano (HCM): A aplicação de RH se conecta ao sistema HCM para consultar ou atualizar dados dos colaboradores, garantindo sincronização e precisão em tempo real.
 
 ## 🎥 Demonstração
+
+
 [▶️ Assistir à demonstração do Ask HR](https://bucket-wxo.s3.us-south.cloud-object-storage.appdomain.cloud/ashHR_demo_new_version.mp4)
 
-> [!IMPORTANTE]  
-> Este laboratório usa um simulador para um sistema de Gestão de Capital Humano. No entanto, isso pode ser facilmente substituído por qualquer sistema real em produção, como Workday ou outros.
+<h2> IMPORTANTE</h2 >
 
-## 📄 Laboratório prático passo a passo
+Este laboratório usa um simulador para um sistema de Gestão de Capital Humano. No entanto, isso pode ser facilmente substituído por qualquer sistema real em produção, como Workday ou outros.¹
 
-Por favor, veja as instruções passo a passo [aqui](assets/hands-on-lab-askHR.md) sobre como você pode implementar este caso de uso.
+¹ O Watsonx Orchestrate é compatível com sistemas externos como Workday e SuccessFactors, Service Now, SalesForce. [Clique aqui](https://www.ibm.com/br-pt/products/watsonx-orchestrate/integrations) para saber mais
+
+## 👩‍💻👨‍💻 Laboratório prático passo a passo
+
+👉 [Clique aqui](assets/hands-on-lab-askHR.md) para executar as instruções passo a passo aqui e implemente este caso de uso agora mesmo. 
