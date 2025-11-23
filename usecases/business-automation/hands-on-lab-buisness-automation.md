@@ -1,24 +1,24 @@
 # 👨🏻‍💻 Caso de uso: Automação de negócios
 
 ## Índice
-- [Arquitetura](#-arquitetura)
-- [Descrição do caso de uso](#Descrição-do-caso-de-uso)
-- [Pré-requisitos](#pre-requisites)
-- [Laboratório de Agentes - watsonx.ai](#agent-lab---watsonxai)
-  - [Agente de comparação](#Agente-de-Comparação)
-    - [Setup](#setup)
-    - [Configuração](#Configuração)
-    - [Tools](#tools)
-    - [Salvando e implantando](#Salvando-e-Implantando)
-- [Integrando o agente do watsonx.ai como um agente externo no watsonx Orchestrate](#Integrando-o-agente-do-watsonx.ai-como-um-Agente-Externo-no-watsonx-Orchestrate)
-- [Agente orquestrate](#orchestrate-agent)
-  - [Agente de Produto](#Agente-de-Produto)
-- [Experimente agentes em ação](#Experimente-agentes-em-ação)
+- [👨🏻‍💻 Caso de uso: Automação de negócios](#-caso-de-uso-automação-de-negócios)
+  - [Índice](#índice)
+  - [Arquitetura](#arquitetura)
+  - [Descrição do caso de uso](#descrição-do-caso-de-uso)
+  - [Pré requesitos](#pré-requesitos)
+  - [Agent Lab - watsonx.ai](#agent-lab---watsonxai)
+    - [Agente de Comparação](#agente-de-comparação)
+      - [Setup](#setup)
+      - [Configuração](#configuração)
+      - [Tools](#tools)
+      - [Salvando e Implantando](#salvando-e-implantando)
+  - [Integrando o agente do watsonx.ai como um Agente Externo no watsonx Orchestrate](#integrando-o-agente-do-watsonxai-como-um-agente-externo-no-watsonx-orchestrate)
+  - [Orchestrate Agent](#orchestrate-agent)
+    - [Agente de Produto](#agente-de-produto)
+  - [Experimente agentes em ação](#experimente-agentes-em-ação)
 
 
-
-
-## 🏛 Arquitetura  
+## Arquitetura  
 
 <img width="900" alt="image" src="assets/Business_Automation_Architecture.png">
 
@@ -26,10 +26,9 @@
 
 O departamento de vendas da ABC Motor Corp, uma grande empresa automotiva, ao preparar propostas de vendas, dedicava muito tempo para entender as características dos produtos concorrentes e compará-los com os seus próprios produtos. A ABC Motor Corp precisa de um sistema automatizado de análise competitiva para ajudar suas equipes de vendas a identificar e posicionar seus produtos rapidamente em relação aos concorrentes. Tradicionalmente, a coleta de insights sobre a concorrência exigia extensa pesquisa manual, o que a tornava ineficiente e propensa a informações desatualizadas. Portanto, o objetivo deste caso de uso é criar um sistema habilitado para IA que suporte a análise competitiva e a pesquisa de mercado do cliente.
 
-## Pre-requisites
+## Pré requesitos
 
 - Tenha certeza de ter baixado o arquivo LABS.zip
-
 
 ## Agent Lab - watsonx.ai
 
@@ -151,8 +150,13 @@ Este agente foi projetado para pesquisar um produto específico e recuperar seus
    ![Create from scratch](assets/product_scratch.png)
 
 
-4. Após a criação do agente, altere o modelo e escolha o estilo
+4. Após a criação do agente, altere o modelo do tipo instruct e escolha o estilo `Default`
 ![Create Agent](assets/wxo_product_config_1.png)
+
+- <b>Welcome Message:</b> Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
+<br>
+- <b>Quick start Prompts:</b> Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
+<br>
 
 5. Role para baixo até a seção knowledge e clique no botão Choose knowledge.
 ![Choose knowledge](assets/BAP_5_K.png)

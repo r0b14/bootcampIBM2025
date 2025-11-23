@@ -3,10 +3,13 @@
 
 ## Índice
 
-- [Descrição do caso de uso](#descrição-do-caso-de-uso)
-- [Agente de aquisição de talentos](#agente-de-aquisicao-de-talentos)
-- [Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes](#automatize-processo-de-recrutamento)
-- [Agente de revisão de casos de RH](#agente-de-revisao-de-casos-de-rh)
+- [🧑‍💼 Agente Gerente de RH](#-agente-gerente-de-rh)
+  - [Índice](#índice)
+  - [Descrição do caso de uso](#descrição-do-caso-de-uso)
+  - [Agente de aquisição de talentos](#agente-de-aquisição-de-talentos)
+  - [Automatize o processo de recrutamento de talentos usando fluxos de trabalho baseados em agentes](#automatize-o-processo-de-recrutamento-de-talentos-usando-fluxos-de-trabalho-baseados-em-agentes)
+  - [Agente de revisão de casos de RH](#agente-de-revisão-de-casos-de-rh)
+  - [🛠️ Vamos juntar tudo.](#️-vamos-juntar-tudo)
 
 
 ## Descrição do caso de uso
@@ -48,10 +51,19 @@ Este agente ajuda a determinar se um conjunto de candidatos corresponde às habi
 <br>
 <br>
 
-3. Depois de clicar em **Create**, você será direcionado para esta tela:
+3. Após clicar em **Create**, você será direcionado para esta tela:
 
 <img alt="Solução" src="hands-on-lab-assets/images/3talentaquisition.png">
 <br>
+<br>
+
+- Em <b>Profile</b>, temos a descrição que definimos enquanto criavamos um novo agente, não é necessário fazer nenhuma mudança.
+<br>
+- Em <b>Agente style</b> mantenha como `Default`
+<br>
+- Em <b>Welcome Message:</b> Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
+<br>
+- Em <b>Quick start Prompts:</b> Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
 <br>
 
 4. Deslize a tela para baixo e ative a opção **Chat with Documents**:

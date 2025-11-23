@@ -37,13 +37,14 @@ PASSO 2: Escolha o caso de uso e mãos a obra <br>
 [4. Order to Cash (O2C)](usecases/order-to-cash/README.md)<br>
 
 OPCIONAIS<br>
+
 [5. Agente de Sinistros de seguros](usecases/autoclaim-insurance/README.md)<br>
 [6. Automação de negócios para análise competitiva](usecases/business-automation/README.md)<br>
 [7. RH - Aquisição de novos talentos](usecases/hr-talent/README.md)<br>
 <br>
 <br>
 
-# 🤖 Pró-code Experience - Desenvolvedores
+# 🤖 Pró code Experience - Desenvolvedores
 [Clique aqui](usecases/ADK/README.md) para criar agentes utilizando o IBM watsonx Orchestrate Agent Development Kit (ADK)
 
 

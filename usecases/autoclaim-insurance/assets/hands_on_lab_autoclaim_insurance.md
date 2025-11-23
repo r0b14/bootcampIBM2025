@@ -2,19 +2,19 @@
 
 ## Índice
 
-- [Automatize o processamento de reivindicações de seguro com a IA da Agentic](#automate-insurance-claim-processing-with-agentic-ai)
-  - [Índice](#table-of-contents)
-  - [Descrição do caso de uso](#use-case-description)
-  - [Arquitetura](#architecture)
+- [Automatize o processamento de reivindicações de seguros com a IA da Agentic](#automatize-o-processamento-de-reivindicações-de-seguros-com-a-ia-da-agentic)
+  - [Índice](#índice)
+  - [Descrição do caso de uso](#descrição-do-caso-de-uso)
+  - [Arquitetura](#arquitetura)
   - [Implementação](#implementação)
     - [Pre-requisitos](#pre-requisitos)
     - [Open Agent Builder](#open-agent-builder)
-    - [Agente de Informação](#igente-de-informação)
+    - [Agente de Informação](#agente-de-informação)
       - [Crie o Agente de Informação](#crie-o-agente-de-informação)
       - [Teste o Agente de Informação](#teste-o-agente-de-informação)
-    - [Agente de sinitro de clientes](#agente-de-sinistro-de-clientes)
-      - [Crie o Agente de sinitro de clientes](#crie-o-agente-de-sinistro-de-clientes)
-      - [Teste o Agente de sinitro de clientes](#teste-o-agente-de-sinistro-de-clientes)
+    - [Agente de sinitro de clientes](#agente-de-sinitro-de-clientes)
+      - [Crie o agente de sinitro de clientes](#crie-o-agente-de-sinitro-de-clientes)
+      - [Teste o Agente de sinitro de clientes](#teste-o-agente-de-sinitro-de-clientes)
     - [Agente Processador de sinistros](#agente-processador-de-sinistros)
       - [Crie o Agente Processador de sinistros](#crie-o-agente-processador-de-sinistros)
       - [Teste o Agente Processador de sinistros](#teste-o-agente-processador-de-sinistros)
@@ -155,7 +155,15 @@ O agente de Reclamações do Cliente permitirá que os clientes consultem o stat
 
 <img width="1000" alt="image" src="./screenshots_hands_on_lab/customer/customer-2.png">
 
-- Escolha o estilo do agente. Mantenha-o como `default`. Keep Voice Modality as `No voice configuration`.
+- Escolha o estilo do agente. Mantenha-o como `default`. 
+
+- Em <b>Welcome Message:</b> Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
+<br>
+
+- Em <b>Quick start Prompts:</b> Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
+<br>
+
+- Em `Keep Voice Modality` escolha ou mantenha `No voice configuration`.
 
 <img width="1000" alt="image" src="./screenshots_hands_on_lab/customer/customer-3.png">
 <img width="1000" alt="image" src="./screenshots_hands_on_lab/customer/customer-4.png">
