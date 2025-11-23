@@ -1,6 +1,15 @@
-# 🧑‍💼 Gestão de Agente de RH
+# Sumário
 
-`Chat with documents` `RAG` `Flows` `Intelligent Document Processing` `Multi-agent orchestration`
+- [Sumário](#sumário)
+  - [🧑‍💼 Gestão de Agente de RH](#-gestão-de-agente-de-rh)
+  - [🤔 O Problema](#-o-problema)
+  - [🎯 Objetivo](#-objetivo)
+  - [📈 Valor para o Negócio](#-valor-para-o-negócio)
+  - [Arquitetura](#arquitetura)
+  - [🎥 Demo](#-demo)
+  - [👩‍💻👨‍💻 Laboratório prático passo a passo](#-laboratório-prático-passo-a-passo)
+
+## 🧑‍💼 Gestão de Agente de RH
 
 <img alt="Agente de RH" src="assets/hands-on-lab-assets/recutamento.png">
 
@@ -30,20 +39,19 @@ Luisa gostaria de tornar seu processo de contratação mais eficiente.
 
 Neste laboratório, você automatizará muitas das tarefas tediosas relacionadas ao recrutamento de talentos na organização de Luisa, além de fornecer uma ferramenta de IA para ajudar Luisa a revisar relatórios de possíveis violações das Diretrizes de Conduta Empresarial da empresa.
 
-
 ## 📈 Valor para o Negócio
 
 Luisa e sua equipe seriam capazes de economizar centenas de horas gastas digitalizando currículos e descrições de cargos manualmente aproveitando a Agentic AI. Além disso, Luisa economizará algum tempo combinando quais seções potenciais do BCG (Diretrizes de Conduta Empresarial) podem ser violadas em cada um dos casos que ela está analisando.
 
-## 🏛️ A Solução
+## Arquitetura
 
 <img alt="Solução" src="assets/hands-on-lab-assets/solucao.png">
 
 ## 🎥 Demo
 
-Coming soon
+Em desenvolvimento...
 
+## 👩‍💻👨‍💻 Laboratório prático passo a passo
 
-## 📄 Laboratório prático passo a passo
+👉 [Clique aqui](assets/hands-on-lab-hr-manager.md) para implementar este caso de uso.
 
-Por favor, encontre as instruções passo a passo [aqui](assets/hands-on-lab-hr-manager.md) sobre como você pode implementar este caso de uso.
