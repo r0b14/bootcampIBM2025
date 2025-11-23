@@ -3,16 +3,19 @@
 
 ## Índice
 
-- [Descrição do caso de uso](#use-case-description)
-- [Arquitetura](#Arquitetura)
-- [Pre-requisitos](#pre-requisitos)
-- [Instruções](#Instruções)
-  - [Abrir Agent Builder](#abrir-agent-builder)
-  - [Ciar Agente de RH](#criar-agente-de-rh)
-  - [Teste o Agenre de RH em Preview](#teste-o-agente-de-rh-em-preview)
-  - [Testar o Agente de RH no Chat](#testar-o-agente-de-rh-no-chat)
+- [🧑‍💼 AskHR: Automatize tarefas de RH com a IA da Agentic](#-askhr-automatize-tarefas-de-rh-com-a-ia-da-agentic)
+  - [Índice](#índice)
+  - [Descrição do caso de uso](#descrição-do-caso-de-uso)
+  - [Arquitetura](#arquitetura)
+  - [Pre-requisitos](#pre-requisitos)
+  - [Instruções:](#instruções)
+    - [Abrir Agent Builder](#abrir-agent-builder)
+    - [Ciar Agente de RH](#ciar-agente-de-rh)
+    - [Teste o Agente de RH em Preview](#teste-o-agente-de-rh-em-preview)
+      - [Testar o Agente de RH no Chat](#testar-o-agente-de-rh-no-chat)
     
 ## Descrição do caso de uso
+
 Este caso de uso visa desenvolver e implementar um agente AskHR utilizando o IBM Watsonx Orchestrate, conforme ilustrado no diagrama de arquitetura fornecido. Este agente capacitará os funcionários a interagir com os sistemas de RH e acessar informações de forma eficiente por meio de IA conversacional.
 
 Neste laboratório, construiremos um agente de RH no Watsonx Orchestrate, utilizando ferramentas e conhecimento externo para se conectar a um Sistema de Gestão de Capital Humano simulado. Este agente recupera informações relevantes de documentos para responder às consultas dos usuários e permite que eles visualizem e gerenciem seus perfis.
@@ -44,6 +47,7 @@ Neste laboratório, construiremos um agente de RH no Watsonx Orchestrate, utiliz
    <img width="1000" alt="image" src="hands-on-lab-assets/step_1_v2.png">
 
 ### Ciar Agente de RH
+
 1. Clique em **Create agent +**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/step_2_v2.png">
@@ -57,10 +61,40 @@ Clique em **Create**:
 
    <img width="1000" alt="image" src="hands-on-lab-assets/step_3_v2.png">
 
+Na próxima página:
+
+Em `Model`, mantenha o modelo padrão, não é necessário alterar </b>
 
 3. Selecione **Default** na seção **Agent style**.
 
-   <img width="1000" alt="image" src="hands-on-lab-assets/step_5_v3.png">
+<img width="1000" alt="image" src="hands-on-lab-assets/step_5_v3.png">
+
+Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo.
+
+<b>Essa mensagem é opcional. Você pode escrever algo como:</b> 
+
+`Olá! Sou o Agente de RH da empresa X`
+
+Ou simplesmente deixar em branco.
+
+<img width="1000" alt="image" src="hands-on-lab-assets/step_6-1_v4.png">
+
+A seguir,podemos definir mensagens de atalho. Essas mensagens serão exibidas para o usuário como botões na interface, funcionando como atalhos para ações.
+
+Por exemplo:
+
+`marcação de férias`
+
+`consultar saldo de férias`
+
+`atualização de endereço`
+
+Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.
+
+Esse passo também é opcional.
+Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b> Não é necessário sair da página. </b>
+
+<img width="1000" alt="image" src="hands-on-lab-assets/step_6-2_v4.png">
 
 4. Role a tela para baixo até a seção **Knowledge**. Clique em **Choose knowledge**.
 
@@ -117,7 +151,8 @@ Quando o usuário solicitar folga, converta as datas para o formato AAAA-MM-DD. 
 14. Ative o botão de alternância para **Chat with documents**. Selecione **None** em **Citations show in webchat**. Ative o botão de **Show agent**. Clique em **Deploy** no canto superior direito para implantar seu agente:
    <img width="1000" alt="image" src="hands-on-lab-assets/step_14_v3.png">
 
-### Teste o Agenre de RH em Preview
+### Teste o Agente de RH em Preview
+
 Teste seu agente no chat de pré-visualização à direita, fazendo as seguintes perguntas e validando as respostas. Elas devem ser semelhantes às mostradas nas capturas de tela abaixo:
 
 > IMPORTANTE: Quando o agente perguntar seu nome você deve perguntar ao Agente de Suporte lá na página do git.
@@ -146,6 +181,7 @@ Mostrar os dados do meu perfil.
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step13_4.png">
 
 #### Testar o Agente de RH no Chat
+
 - Clique no menu de hambúrguer no canto superior esquerdo e depois clique em **Chat**:
 
 <img width="1000" alt="image" src="hands-on-lab-assets/hr_step15.png">
