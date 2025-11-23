@@ -1,56 +1,53 @@
 # 🤖 Agentes de IA em Ação
-# <img src="docs/images/DistritoFederal.png" width="173" height="115"> 02 de Dezembro
 
 
+<h2 style="display: flex; align-items: center; gap: 10px; margin: 0;">
+  <img src="docs/images/DistritoFederal.png" width="60" height="40" style="vertical-align: middle;">
+  02 de Dezembro
+</h2>
 
 ![alt text](/agentic-bootcamp.png)
 
+Neste bootcamp, você vai aprender a criar e implantar agentes de Inteligência Artificial (Agentic AI) aplicados a casos reais de negócio.
 
-Neste bootcamp, você criará e implantará agentes de Inteligência Artificial (Agentic AI) utilizando casos de uso de negócio.  
+🚀 Entenda os conceitos por trás dos fluxos de trabalho do Agentic AI.
 
-🚀 Você aprenderá os conceitos por trás dos fluxos de trabalho do Agentic AI.  
+🚀 Explore o IBM Watsonx e ferramentas open source para prototipar rapidamente, com pouco código.
 
-🚀 Você aproveitará o IBM WatsonX e ferramentas de código aberto para prototipação rápida low-code de fluxos de trabalho de Agentic AI.  
-
-🚀 Você aprenderá como implantar um aplicativo Agentic AI e as considerações de confiança necessárias para entrar em produção.  
-
+🚀  Descubra como colocar um aplicativo Agentic AI em produção, incluindo práticas para garantir confiança e segurança.
 
 ## IMPORTANTE
-Este material foi criado com muito cuidado e atenção para te ajudar a entender como o IBM Watson Orchestrate funciona de verdade. A ideia aqui é mostrar, de forma prática e objetiva, quais são os principais recursos da ferramenta, como ela se integra com outras plataformas e, claro, quais os benefícios reais que você pode obter com ela no dia a dia.
 
-Durante o bootcamp, é super importante que você acompanhe o conteúdo com atenção. Cada passo, cada exemplo e cada explicação foram pensados para que você não só veja o que está sendo feito, mas realmente entenda o que está acontecendo por trás das ações dentro da ferramenta.
+Este material foi preparado com cuidado para te ajudar a entender como o <b>IBM watsonx Orchestrate</b> funciona na prática. A ideia é mostrar, de forma simples e objetiva, os principais recursos da ferramenta, como ela se conecta a outras plataformas e, claro, os benefícios que você pode aproveitar no dia a dia.
 
-O objetivo é simples: te deixar à vontade com o Watson Orchestrate, entendendo como usar seus recursos da melhor forma possível — seja em tarefas simples ou em automações mais complexas.
+Durante o bootcamp, vale acompanhar tudo com atenção. Cada passo, exemplo e explicação foi pensado para que você não apenas veja o que está acontecendo, mas entenda o que está por trás das ações dentro da ferramenta.
 
-Então, aproveite o conteúdo, explore bastante e, sempre que possível, experimente por conta própria. Bora começar?
-<br>
-<br>
+Nosso objetivo é claro: Deixar você à vontade com o <b>watsonx Orchestrate</b>, sabendo como usar seus recursos da melhor forma, seja para tarefas simples ou automações mais complexas.
+
+Então, aproveite o conteúdo, explore bastante e, sempre que puder, teste por conta própria. <b>Bora começar?</b>
+
 <h1 align="center">📍📍📍📍👇👇👇👇👇 IMPORTANTE 👇👇👇📍📍📍📍</h1>
 
-PASSO 1: [CLIQUE AQUI](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
-<br>
-PASSO 2: Escolha o caso de uso e mãos a obra <br>
+<b>PASSO 1:</b> [CLIQUE AQUI](https://bootcampwxo.github.io/bootcampwxo/random.html) para obter as informações necessárias durante a execução dos laboratórios<br>
+
+<b>PASSO 2:</b> Escolha o caso de uso e mãos a obra <br>
 
 [1. AskRH](usecases/ask-hr/README.md)<br>
 [2. Agente Financeiro](usecases/banking-financial-research-analyst/README.md)<br>
 [3. Banking Backoffice](usecases/banking-backoffice/README.md)<br>
 [4. Order to Cash (O2C)](usecases/order-to-cash/README.md)<br>
 
-OPCIONAIS<br>
+<b>OPCIONAIS</b>
 
 [5. Agente de Sinistros de seguros](usecases/autoclaim-insurance/README.md)<br>
 [6. Automação de negócios para análise competitiva](usecases/business-automation/README.md)<br>
 [7. RH - Aquisição de novos talentos](usecases/hr-talent/README.md)<br>
-<br>
-<br>
 
-# 🤖 Pró code Experience - Desenvolvedores
+## 🤖 Pró code Experience - Desenvolvedores
+
 [Clique aqui](usecases/ADK/README.md) para criar agentes utilizando o IBM watsonx Orchestrate Agent Development Kit (ADK)
 
-
-<br><br>
-⚠️ Este repositório é público apenas para fins de visualização.
-A clonagem, redistribuição ou modificação não autorizada deste código é expressamente proibida.
+⚠️⚠️⚠️ <b>Este repositório é público apenas para fins de visualização.A  clonagem, redistribuição ou modificação não autorizada deste código é expressamente proibida.</b> ⚠️⚠️⚠️
 
 
 
