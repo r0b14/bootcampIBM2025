@@ -1,18 +1,16 @@
-# 🤖✨ Watson Orchestrate — Tutorial "Hello World"
+# 🤖 watsonx Orchestrate — Tutorial "Hello World"
 
-> 🔵 **Link oficial do tutorial (referência):**  
-> https://developer.watson-orchestrate.ibm.com/tutorials/tutorial_1_hello_world
-
-
+> **Link oficial do tutorial (referência):** https://developer.watson-orchestrate.ibm.com/tutorials/tutorial_1_hello_world
 
 ## 📘 Visão Geral
+
 Os passos a seguir orientam você a disponibilizar seu agente no Criador de Agentes.
 
-## 🧰 Pré-requisitos
+## 🧰 Pré requisitos
 
-Antes de começar:
+Antes de começar você deve ter:
 
-- Conta ativa no **Watson Orchestrate Developer**
+- Conta ativa no **Watsonx Orchestrate Developer**
 - Navegador moderno
 - VM com o ADK.
 - Vontade de aprender 😄
@@ -66,4 +64,4 @@ def greeting() -> str:
 
 ## 🧪 Testando seu agente
 
-Após a configuração, você pode digitar “Saudação” na janela de bate-papo e continuar interagindo com seu agente.
+Após a configuração, você pode digitar “Saudação” na janela de bate papo e continuar interagindo com seu agente.
