@@ -51,9 +51,6 @@ O agente RAG recupera informações relevantes de documentos para responder às 
 ## 🎥 Demonstração
 [▶️ Assistir à demonstração do Ask HR](https://bucket-wxo.s3.us-south.cloud-object-storage.appdomain.cloud/ashHR_demo_new_version.mp4)
 
-
-
-
 > [!IMPORTANTE]  
 > Este laboratório usa um simulador para um sistema de Gestão de Capital Humano. No entanto, isso pode ser facilmente substituído por qualquer sistema real em produção, como Workday ou outros.
 
