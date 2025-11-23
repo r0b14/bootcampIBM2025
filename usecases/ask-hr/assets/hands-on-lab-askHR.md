@@ -7,7 +7,7 @@
   - [Índice](#índice)
   - [Descrição do caso de uso](#descrição-do-caso-de-uso)
   - [Arquitetura](#arquitetura)
-  - [Pre-requisitos](#pre-requisitos)
+  - [Pré requisitos](#pré-requisitos)
   - [Instruções:](#instruções)
     - [Abrir Agent Builder](#abrir-agent-builder)
     - [Ciar Agente de RH](#ciar-agente-de-rh)
@@ -24,7 +24,7 @@ Neste laboratório, construiremos um agente de RH no Watsonx Orchestrate, utiliz
 
 <img width="1000" alt="image" src="arch_diagm.png">
 
-## Pre-requisitos
+## Pré requisitos
 
 - Verifique com seu instrutor se **todos os sistemas** estão funcionando antes de continuar.
 - Confirme se você tem acesso ao ambiente techzone correto para este laboratório.
