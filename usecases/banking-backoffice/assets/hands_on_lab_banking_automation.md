@@ -821,10 +821,12 @@ Este Agente Orchestrator atua como um ponto central de encaminhamento para consu
 #### Teste e implante o Agente Orquestrador do Banco GFM
 
 Na janela de visualização à direita, teste com as seguintes consultas:
+
 ```
 O que é um cheque especial no cartão?
 Qual é o saldo da minha conta? IBAN DE89320895326389021994
 ```
+
 Clique em `Deploy`
 
 ![Agent Deploy](./bank_orch_ag_imgs/i8.png)
@@ -837,7 +839,7 @@ Na página de **Deploy Agent**, clique em `Deploy`
 
 Clique no ícone de hambúrguer no canto superior esquerdo da janela  **watsonx Orchestrate**, e selecione **Chat**. No canto superior direito, você deve ver apenas um Agente chamado "Orquestrador do Bando GFM".
 
-  ![Select Orchestrator Agent](./bank_orch_ag_imgs/i9.png)
+![Select Orchestrator Agent](./bank_orch_ag_imgs/i9.png)
 
 Na janela de bate papo, teste com as seguintes consultas:
 
