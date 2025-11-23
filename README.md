@@ -6,7 +6,7 @@
   02 de Dezembro
 </h2>
 
-<img src="/agentic-bootcamp-v3.png" style="width: 600px; height: 400px;" />
+<img src="/agentic-bootcamp-v3.png" width="600" height="400" style="display:block; margin-left:auto; margin-right:auto;" />
 
 Neste bootcamp, você vai aprender a criar e implantar agentes de Inteligência Artificial (Agentic AI) aplicados a casos reais de negócio.
 
