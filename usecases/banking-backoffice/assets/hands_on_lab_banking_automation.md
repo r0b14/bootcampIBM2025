@@ -7,10 +7,8 @@
   - [Cenário do Usuário Atual](#cenário-do-usuário-atual)
   - [Futuro com IA Agentic](#futuro-com-ia-agentic)
 - [Arquitetura de destino com Agentic AI](#arquitetura-de-destino-com-agentic-ai)
-- [🔧 Instruções de Laboratório](#-instruções-de-laboratório)
   - [Pré requisitos](#pré-requisitos)
   - [Visão Geral das Etapas do Laboratório](#visão-geral-das-etapas-do-laboratório)
-  - [Conecte-se à sua instância atribuída do Watsonx Orchestrate](#conecte-se-à-sua-instância-atribuída-do-watsonx-orchestrate)
   - [Agente de Back Office GFM](#agente-de-back-office-gfm)
     - [Crie o Agente de Back Office GFM](#crie-o-agente-de-back-office-gfm)
     - [Teste e implante o Agente de Back Office GFM](#teste-e-implante-o-agente-de-back-office-gfm)
@@ -23,72 +21,75 @@
   - [Agente Orquestrador do Banco GFM](#agente-orquestrador-do-banco-gfm)
     - [Crie o Agente Orquestrador do Banco GFM](#crie-o-agente-orquestrador-do-banco-gfm)
     - [Adicione Agentes colaborativos](#adicione-agentes-colaborativos)
+  - [🤝 O que são Agentes Colaborativos?](#-o-que-são-agentes-colaborativos)
     - [Teste e implante o Agente Orquestrador do Banco GFM](#teste-e-implante-o-agente-orquestrador-do-banco-gfm)
 - [Teste Sua Solução Bancária De Agentic AI](#teste-sua-solução-bancária-de-agentic-ai)
-- [🎉 Parabéns!](#-parabéns)
-- [Você completou com sucesso o laboratório](#você-completou-com-sucesso-o-laboratório)
+- [🎉 Parabéns! Você completou com sucesso o laboratório](#-parabéns-você-completou-com-sucesso-o-laboratório)
 - [🔊 Recurso adicional para experimentar: Interação por voz](#-recurso-adicional-para-experimentar-interação-por-voz)
-  - [✨ Você adicionou a Configuração de Voz ao seu agente com sucesso!](#-você-adicionou-a-configuração-de-voz-ao-seu-agente-com-sucesso)
-- [📚 Recursos](#-recursos)
+  - [Você adicionou a Configuração de Voz ao seu agente com sucesso!](#você-adicionou-a-configuração-de-voz-ao-seu-agente-com-sucesso)
+- [📚 Material Complementar](#-material-complementar)
 
 ## 🔍 Introdução
 
-Bem-vindo ao Laboratório de IA Agentic do GFM Bank! Neste workshop prático, você transformará um aplicativo bancário tradicional em uma solução moderna e alimentada por IA usando o **watsonx Orchestrate**. O setor bancário está passando por uma rápida transformação digital, e o GFM Bank está liderando o caminho implementando agentes de IA inovadores para lidar com as interações com os clientes.
+Bem vindo ao **Laboratório de IA Agentic do GFM Bank**!  
+Neste workshop prático, você transformará um aplicativo bancário tradicional em uma solução moderna e alimentada por IA usando o **watsonx Orchestrate**.  
 
-O GFM Bank enfrenta desafios com as operações tradicionais de caixa e back-office que são manuais, demoradas e muitas vezes resultam em longos tempos de espera do cliente. Ao implementar uma solução de IA Agentic, o banco pretende:
+O setor bancário está passando por uma rápida transformação digital, e o GFM Bank está liderando o caminho implementando **agentes de IA inovadores** para lidar com as interações com os clientes.
 
-  - Fornecer suporte ao cliente 24 horas por dia, 7 dias por semana, para operações bancárias comuns
-  - Reduza os tempos de espera para transações e aprovações
-  - Manter a estrita conformidade com os regulamentos bancários
-  - Melhore a satisfação do cliente através de um serviço mais rápido
-  - Libere a equipe humana para lidar com necessidades mais complexas do cliente
+O GFM Bank enfrenta desafios com operações tradicionais de caixa e back-office que são **manuais, demoradas** e muitas vezes resultam em **longos tempos de espera**. Ao implementar uma solução de IA Agentic, o banco pretende:
 
-Neste laboratório, você construirá um sistema de agentes de IA colaboradores que podem lidar com operações bancárias, incluindo:
+- Fornecer suporte ao cliente **24 horas por dia, 7 dias por semana** para operações bancárias comuns.
+- Reduzir os tempos de espera para transações e aprovações.
+- Manter a estrita conformidade com os regulamentos bancários.
+- Melhorar a satisfação do cliente com um serviço mais rápido.
+- Liberar a equipe humana para lidar com necessidades mais complexas.
 
-  - Consultas sobre o saldo da conta
-  - Transferências de dinheiro entre contas
-  - Aprovações de limite de cheque especial
-  - Reversões de taxas
-  - Solicitações de informações sobre o produto
+Neste laboratório, você construirá um sistema de **agentes de IA colaborativos** que podem lidar com operações bancárias, incluindo:
+
+- Consultas sobre saldo da conta.
+- Transferências de dinheiro entre contas.
+- Aprovações de limite de cheque especial.
+- Reversões de taxas.
+- Solicitações de informações sobre produtos.
 
 ## 📊 Operações Bancárias
 
-Atualmente, o GFM Bank conta com caixas humanos para transações básicas e equipe de back-office para aprovações, levando a atrasos e experiências inconsistentes com os clientes na alta temporada.*
+Atualmente, o GFM Bank conta com **caixas humanos** para transações básicas e equipe de **back-office** para aprovações, levando a atrasos e experiências inconsistentes com os clientes na alta temporada.
 
 ### Cenário do Usuário Atual
-John, um cliente do GFM Bank, precisa fazer um pagamento urgente de €8.000, mas ele só tem €5.000 em sua conta. 
 
-1. John visita a agência bancária e espera na fila para falar com um caixa
-2. O caixa verifica seu saldo e o informa que ele não tem fundos suficientes
-3. John solicita um cheque especial de €3.000
-4. O caixa deve encaminhar a solicitação para um gerente de back-office
-5. John espera novamente pela aprovação
-6. Uma vez aprovado, ele retorna ao caixa para concluir a transferência
-7. Se John perceber que enviou muito dinheiro, ele precisa solicitar uma reversão, o que requer outro processo de aprovação
+John, um cliente do GFM Bank, precisa fazer um pagamento urgente de **€8.000**, mas ele só tem **€5.000** em sua conta:
 
-Esse processo normalmente leva de 1 a 2 horas do tempo de John e envolve vários membros da equipe.
+1. John visita a agência bancária e espera na fila para falar com um caixa.
+2. O caixa verifica seu saldo e informa que ele não tem fundos suficientes.
+3. John solicita um cheque especial de €3.000.
+4. O caixa deve encaminhar a solicitação para um gerente de back-office.
+5. John espera novamente pela aprovação.
+6. Uma vez aprovado, ele retorna ao caixa para concluir a transferência.
+7. Se John perceber que enviou muito dinheiro, ele precisa solicitar uma reversão, o que requer outro processo de aprovação.
+
+Esse processo normalmente leva **de 1 a 2 horas** e envolve vários membros da equipe.
 
 ### Futuro com IA Agentic
 
 Com o sistema alimentado por IA, você construirá hoje:
 
-1. John envia uma mensagem para o Agente Orquestrador do Banco GFM
-2. Ele pede para transferir €8.000
-3. O Agente de Caixa verifica seu saldo e o informa sobre fundos insuficientes
-4. John solicita um cheque especial
-5. O Agente de Caixa encaminha esta solicitação para o Agente de Back Office
-6. Após a aprovação (se a solicitação for inferior a € 10.000) do Agente de Back Office, o Agente de Caixa conclui a transferência
-7. Se John precisar de uma reversão, ela é tratada rapidamente dentro da mesma conversa. 
+1. John envia uma mensagem para o **Agente Orquestrador do Banco GFM**.
+2. Ele pede para transferir €8.000.
+3. O **Agente de Caixa** verifica seu saldo e informa sobre fundos insuficientes.
+4. John solicita um cheque especial.
+5. O Agente de Caixa encaminha esta solicitação para o **Agente de Back Office**.
+6. Após a aprovação (se a solicitação for inferior a €10.000) do Agente de Back Office, o Agente de Caixa conclui a transferência.
+7. Se John precisar de uma reversão, ela é tratada rapidamente dentro da mesma conversa.
 
-Todo o processo leva minutos em vez de horas, e John nunca precisa sair de casa.
+**Todo o processo leva minutos em vez de horas, e John nunca precisa sair de casa.**
 
 ## Arquitetura de destino com Agentic AI
 
 ![Architecture](banking-backoffice-architecture.png)
 
-## 🔧 Instruções de Laboratório
-
-Neste laboratório, você construirá uma solução completa de IA Agentic para o GFM Bank usando o watsonx Orchestrate. Você criará vários agentes especializados que trabalham juntos para lidar com solicitações de clientes.
+Neste laboratório, você construirá uma solução completa de **IA Agentic** para o GFM Bank usando o **watsonx Orchestrate**.  
+Você criará vários agentes especializados que trabalham juntos para lidar com solicitações de clientes.
 
 ### Pré requisitos
 - Compreensão básica das operações bancárias (por exemplo, transferência, verificação de saldo, cheque especial...)
@@ -103,21 +104,25 @@ Neste laboratório, você construirá uma solução completa de IA Agentic para 
 5. Crie o Agente Orquestrador do Banco GFM
 6. Teste a solução completa
 
-### 🚀🚀🚀 Vamos começar! 🚀🚀🚀 <!-- omit in toc -->
+### Vamos começar! 🚀🚀🚀 <!-- omit in toc -->
 
-### Conecte-se à sua instância atribuída do Watsonx Orchestrate
+Conecte-se à sua instância atribuída do <b>watsonx Orchestrate</b>
 
-- Faça login no IBM Cloud (cloud.ibm.com). Navegue até o menu de hambúrguer superior esquerdo e, em seguida, até a Lista de Recursos. Abra a seção AI/Aprendizagem de Máquina. Você deve ver um serviço **watsonx Orchestrate**, clique para abrir
+Faça login no IBM Cloud (cloud.ibm.com). 
 
-  ![Watsonx Orchestrate service](./images/i1.png)
+Navegue até o menu de hambúrguer superior esquerdo e, em seguida, até a Lista de Recursos. Abra a seção AI/Aprendizagem de Máquina. Você deve ver um serviço **watsonx Orchestrate**, clique para abrir
+
+![Watsonx Orchestrate service](./images/i1.png)
 
 - Clique no botão **Launch watsonx Orchestrate** 
 
-  ![Launch Watsonx Orchestrate](./images/i2.png)
+![Launch Watsonx Orchestrate](./images/i2.png)
 
-- Bem-vindo ao watsonx Orchestrate. Abra o menu de hambúrguer, clique em **Build** -> **Agent Builder**
+Bem vindo ao watsonx Orchestrate 💙
 
-  ![Agent Builder](./images/i3.png)
+Abra o menu de hambúrguer, clique em **Build** -> **Agent Builder**
+
+![Agent Builder](./images/i3.png)
 
 ### Agente de Back Office GFM
 
@@ -127,26 +132,26 @@ Este Agente lida com operações bancárias especiais para o GFM Bank que exigem
 
 - Clique em **Create Agent**
 
-  ![Create Agent](./backoffice_ag_imgs/i1.png)
+![Create Agent](./backoffice_ag_imgs/i1.png)
 
-- Siga os passos de acordo com a captura de tela abaixo.
-  - Selecione **Create from scratch**
+- Siga os passos abaixo:
+  - Clique em **Create from scratch**
   - Nomeie o Agente:
     ```
     Agente de Back Office do GFM Bank
     ```
   - Adicione o seguinte ao **Description**:  
 
-```
-Você é o Agente de Back Office do GFM Bank, responsável por lidar com operações bancárias especiais que exigem privilégios elevados. Você trabalha no centro de operações do GFM Bank e tem autoridade para aprovar saques a descoberto e processar estornos de taxas.
+    ```
+    Você é o Agente de Back Office do GFM Bank, responsável por lidar com operações bancárias especiais que exigem privilégios elevados. Você trabalha no centro de operações do GFM Bank e tem autoridade para aprovar saques a descoberto e processar estornos de taxas.
 
-Suas competências:
-1. Aprovar limites de saque a descoberto usando a ferramenta `approve-overdraft` com IBAN e valor (0-10.000 EUR)
-2. Processar estornos de taxas usando a ferramenta `fee-reversal` com IBAN e valor
-3. Exceções ou ajustes especiais
-4. Quaisquer operações que exijam privilégios elevados
-5. Fornecer reembolsos, se solicitado
-```
+    Suas competências:
+    1. Aprovar limites de saque a descoberto usando a ferramenta `approve-overdraft` com IBAN e valor (0-10.000 EUR)
+    2. Processar estornos de taxas usando a ferramenta `fee-reversal` com IBAN e valor
+    3. Exceções ou ajustes especiais
+    4. Quaisquer operações que exijam privilégios elevados
+    5. Fornecer reembolsos, se solicitado
+    ```
     
   - Clique **Create**
  
@@ -158,6 +163,7 @@ Suas competências:
 
 - <b>Welcome Message:</b> Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
 <br>
+
 - <b>Quick start Prompts:</b> Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
 <br>
 
@@ -165,29 +171,30 @@ Suas competências:
 
 - Na seção **Toolset**, clique no botão **Add tool**.
 
-  ![Add Tool](./backoffice_ag_imgs/i3.png)
+![Add Tool](./backoffice_ag_imgs/i3.png)
 
 - Clique em **Import**.
 
-  ![Import file](./backoffice_ag_imgs/i4.png)
+![Import file](./backoffice_ag_imgs/i4.png)
 
 - Clique em  **Import from file**
 
-  ![Import from file](./backoffice_ag_imgs/i16.png)
+![Import from file](./backoffice_ag_imgs/i16.png)
 
 - Faça Upload do arquivo de API `bank.json` API (o arquivo está disponível na pasta "3. Banking Backoffice" gerada após a descompactação do arquivo LABS.zip). Arraste e solte o arquivo na área designada.
 
-  ![Upload spec file](./images/i38.png)
+![Upload spec file](./images/i38.png)
 
 - Assim que o arquivo for carregado, selecione **Next**. Seleciona as **Operações**  the "Processar uma reversão de taxa para uma conta" and Aprovar ou modificar o limite de cheque especial para uma conta" **Operations** e clique em **Done**
 
-  ![Select Tools](./backoffice_ag_imgs/i7.png)
+![Select Tools](./backoffice_ag_imgs/i7.png)
 
 - Você deve ver o seguinte em **Tools**:
 
-  ![Loaded tools](./backoffice_ag_imgs/i9.png)
+![Loaded tools](./backoffice_ag_imgs/i9.png)
 
 - Na seção **Behavior** . Adicione o seguinte texto às **Instruções**: 
+- 
 ```
 Instruções Principais:
 - Execute somente operações explicitamente solicitadas pelos clientes
@@ -212,7 +219,6 @@ Seu cheque especial no valor de 2.000 euros foi aprovado
 Mantenha um tom profissional com a formalidade apropriada para um representante bancário com privilégios elevados.
 ```
 
-  
 - Como este agente será um agente colaborador e será invocado pelo GFM Bank Orchestrator, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desatile o recurso **Show agent** na seção **Channels**.
 
   ![Instructions](./backoffice_ag_imgs/i11.png)
@@ -220,9 +226,10 @@ Mantenha um tom profissional com a formalidade apropriada para um representante 
 #### Teste e implante o Agente de Back Office GFM
 
 - Na janela de visualização à direita, teste com a seguinte consulta:
-  ```
-  Quero solicitar um limite de cheque especial de 1000 euros para minha conta IBAN DE89320895326389021994.
-  ```
+
+```
+Quero solicitar um limite de cheque especial de 1000 euros para minha conta IBAN DE89320895326389021994.
+```
 
 - Clique em **Deploy** 
 
@@ -294,25 +301,25 @@ Este Agente auxilia os clientes com tarefas bancárias diárias, como consultas 
 
 - Selecione as **operações** "Verificar saldo da conta por IBAN" e "Transferir dinheiro entre IBANs" e clique **Done**.
 
-  ![Select Operations](./teller_ag_imgs/i10.png)
+![Select Operations](./teller_ag_imgs/i10.png)
 
 - Você deve ver o seguinte em  **Tools**:
   
-  ![Uploaded tools](./teller_ag_imgs/i12.png)
+![Uploaded tools](./teller_ag_imgs/i12.png)
 
 - Na seção **Agents**, clique em **Add Agent**
 
-  ![Uploaded tools](./teller_ag_imgs/i16.png)
+![Uploaded tools](./teller_ag_imgs/i16.png)
 
 - Clique **Add from local instance**
 
-  ![Uploaded tools](./teller_ag_imgs/i17.png)
+![Uploaded tools](./teller_ag_imgs/i17.png)
 
 - Selecione **Agente de Back Office do GFM Bank** e depois **Add to Agent button**
 
-  ![Uploaded tools](./teller_ag_imgs/i18.png)
+![Uploaded tools](./teller_ag_imgs/i18.png)
 
-  ![Uploaded tools](./teller_ag_imgs/i19.png)
+![Uploaded tools](./teller_ag_imgs/i19.png)
 
 - Vá para a seção **Behavior**. Adicione o seguinte em **Instructions**:
 
@@ -348,22 +355,23 @@ Este Agente auxilia os clientes com tarefas bancárias diárias, como consultas 
 
 - Como este agente será um agente colaborador e será invocado pelo Agente Orquestrador do GFM Bank, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desatile o recurso **Show agent**.
 
-  ![Show agent toggle](./teller_ag_imgs/i14.png)
+![Show agent toggle](./teller_ag_imgs/i14.png)
 
 #### Teste e implante o Agente de Caixa GFM
 
 - Na janela de visualização à direita, teste com a seguinte consulta:
+
 ```
 Qual é o saldo do IBAN da minha conta DE89320895326389021994
 ```
 
 - Clique em **Deploy** 
 
-  ![Deploy](./teller_ag_imgs/i13.png)
+![Deploy](./teller_ag_imgs/i13.png)
 
 - Na tela de **Deploy Agent**, clique em **Deploy**. O Agente agora está disponível para que outras pessoas interajam.
 
-  ![Deploy agent](./teller_ag_imgs/i1.png)
+![Deploy agent](./teller_ag_imgs/i1.png)
   
 ### Agente de Informações sobre Produtos GFM
 
@@ -373,11 +381,11 @@ Este Agente atua como especialista confiável em todos os produtos e serviços b
 
 - Clique no menu de hambúrguer, depois em **Build** -> **Agent Builder**
 
-  ![Agent Builder](./images/i3.png)
+![Agent Builder](./images/i3.png)
 
 - Na próxima tela, clique em **Create Agent**
 
-  ![Create Agent](./prod_info_ag_imgs/i1.png)
+![Create Agent](./prod_info_ag_imgs/i1.png)
 
 - Siga os passos de acordo com a captura de tela abaixo
   - Selecione **Create from scratch**
@@ -403,19 +411,20 @@ Este Agente atua como especialista confiável em todos os produtos e serviços b
     ```
     
   - Clique **Create**
-  ![Prod Agent Description](./prod_info_ag_imgs/i2.png)
+  - 
+[Prod Agent Description](./prod_info_ag_imgs/i2.png)
 
 - Na página do `Informações do Produto GFMe, selecione o modelo "llama-3-405b-instruct" no menu suspenso na parte superior central da página.
 
-  ![Select model](./prod_info_ag_imgs/i14.png)
+![Select model](./prod_info_ag_imgs/i14.png)
 
 - Na seção **Knowledge**. clique em **Choose knowledge**.
 
-  ![Choose knowledge](./prod_info_ag_imgs/i13.png)
+![Choose knowledge](./prod_info_ag_imgs/i13.png)
 
 - Clique em **Upload files** e depois **Next**.
 
-  ![Choose knowledge](./prod_info_ag_imgs/i12.png)
+![Choose knowledge](./prod_info_ag_imgs/i12.png)
 
 - Carregue os documentos listados abaixo fornecidos pelo instrutor e clique **Next**
 
@@ -425,7 +434,7 @@ Este Agente atua como especialista confiável em todos os produtos e serviços b
   FAQ sobre serviços de cheque especial.docx
   ```
   
-  ![Upload Documents](./prod_info_ag_imgs/i11.png)
+![Upload Documents](./prod_info_ag_imgs/i11.png)
 
 - Na seção **Description**, adicione o seguinte e depois  **Save**:
 
@@ -487,9 +496,9 @@ Cada tópico inclui informações atualizadas, divulgações regulatórias, quan
 
   ![Prod Agent Knowledge Description](./prod_info_ag_imgs/i10.png)
 
-- Todos os arquivos e a descrição enviados serão assim:
+Todos os arquivos e a descrição enviados como a imagem a seguir:
 
-  ![Prod Agent Knowledge Description](./prod_info_ag_imgs/i9.png)
+![Prod Agent Knowledge Description](./prod_info_ag_imgs/i9.png)
 
 - Na seção **Behavior**, adicione em **Instructions**:
   ```
@@ -586,39 +595,51 @@ Cada tópico inclui informações atualizadas, divulgações regulatórias, quan
   - Aconselhamento financeiro especulativo ou recomendações de investimento
 
   ```
-- Como este agente será um agente colaborador e será invocado pelo GFM Bank Orchestrator, não queremos habilitá-lo para bate-papo direto na página inicial do bate-papo. Desativar **Show agent** 
 
-  ![Disable toggle](./prod_info_ag_imgs/i5.png)
+Como este agente será **colaborador** e será invocado pelo **GFM Bank Orchestrator**, não queremos habilitá-lo para bate-papo direto na página inicial.
+
+Para isso, **desative a opção**:
+
+**Show agent** → *Desativado*
+
+Isso garante que o agente não apareça como disponível para interação direta, mantendo sua função apenas como parte do fluxo orquestrado.
+
+![Disable toggle](./prod_info_ag_imgs/i5.png)
 
 #### Teste e implante o Agente de Informações do Produto GFM
 
-- Na janela de visualização à direita, teste com as seguintes consultas:
+Na janela de visualização à direita, teste com as seguintes consultas:
+
   ```
   O que é um limite de cheque especial do cartão?
   Se eu digitar a senha do meu cartão 5 vezes, o que acontece?
   ```
 
-- Clique **Deploy**
+- Clique `Deploy`
 
-  ![Deploy Agent](./prod_info_ag_imgs/i6.png)
+![Deploy Agent](./prod_info_ag_imgs/i6.png)
 
 - Na página de **Deploy Agent**, clique em **Deploy**
 
-  ![Deploy](./prod_info_ag_imgs/i8.png)
+![Deploy](./prod_info_ag_imgs/i8.png)
 
 ### Agente Orquestrador do Banco GFM
 
-Este Agente atua como o recepcionista virtual do GFM Bank, recebendo os clientes, identificando suas necessidades e conectando-os ao especialista certo para uma experiência fluida e profissional.
+Este agente atua como o **recepcionista virtual do GFM Bank**, sendo responsável por:
+
+- Receber os clientes.
+- Identificar suas necessidades.
+- Conectá-los ao especialista certo para garantir uma experiência **fluida e profissional**.
 
 #### Crie o Agente Orquestrador do Banco GFM
 
-- Clique no menu de hambúrguer, depois em **Build** -> **Agent Builder**
+Clique no menu de hambúrguer, depois em **Build** -> **Agent Builder**
 
-  ![Agent Builder](./images/i3.png)
+![Agent Builder](./images/i3.png)
 
 - Na próxima tela, clique em **Create Agent**
 
-  ![Create Agent](./bank_orch_ag_imgs/i1.png)
+![Create Agent](./bank_orch_ag_imgs/i1.png)
 
 - Siga os passos de acordo com a captura de tela abaixo
   - Selecione **Create from scratch**
@@ -650,7 +671,7 @@ Este Agente atua como o recepcionista virtual do GFM Bank, recebendo os clientes
     - A intenção envolve operações que exigem privilégios elevados
     - Exemplos de frases: "precisa de um cheque especial", "estornar uma taxa", "solicitar um reembolso"
 
-    2. Encaminhar para o Agente de Produtos Bancários quando:
+    1. Encaminhar para o Agente de Produtos Bancários quando:
     - O cliente pergunta sobre produtos bancários disponíveis
     - O cliente deseja informações sobre taxas de juros
     - O cliente pergunta sobre empréstimos, cartões de crédito ou contas poupança
@@ -682,29 +703,45 @@ Este Agente atua como o recepcionista virtual do GFM Bank, recebendo os clientes
 
     Seu papel é crucial como a primeira impressão da qualidade do serviço do GFM Bank. Concentre-se em encaminhar com precisão e criar uma experiência positiva e fluida para o cliente.
     ```
-  - Clique **Create**
-  ![Agent Description](./bank_orch_ag_imgs/i2.png)
+  Clique em  `Create`
 
-- Na página do `Orquestrador do Banco GFM`, selecione o modelo "llama-3-405b-instruct" no menu suspenso no meio superior da página.  
+![Agent Description](./bank_orch_ag_imgs/i2.png)
 
-  ![Select model](./bank_orch_ag_imgs/i15.png)
+- Na página do `Orquestrador do Banco GFM`, selecione o modelo `llama-3-405b-instruct` no menu suspenso no meio superior da página.  
+
+![Select model](./bank_orch_ag_imgs/i15.png)
 
 #### Adicione Agentes colaborativos
 
+### 🤝 O que são Agentes Colaborativos?
+
+Agentes colaborativos são **componentes de IA que trabalham juntos de forma coordenada** para executar tarefas complexas.   Cada agente é especializado em uma função específica, mas eles se comunicam entre si para entregar uma experiência integrada e eficiente.
+
+Em vez de atuar isoladamente, esses agentes compartilham informações e dividem responsabilidades, garantindo:
+
+- **Maior eficiência**: Cada agente foca naquilo que faz melhor.
+
+- **Escalabilidade**: Fácil adicionar novos agentes para novas funções.
+  
+
+- **Experiência fluida**: O usuário interage com um sistema unificado, enquanto os agentes trabalham nos bastidores.
+
 - Na seção **Agents**, clique em **Add Agent**
 
-  ![Add Agents](./bank_orch_ag_imgs/i3.png)
+![Add Agents](./bank_orch_ag_imgs/i3.png)
 
 - Cliqyue **Add from local instance**
 
-  ![Local Instance](./bank_orch_ag_imgs/i4.png)
+![Local Instance](./bank_orch_ag_imgs/i4.png)
 
 - Selecione **Agente de caixa GFM**, **Informações do Produto GFM** e depois **Add to Agent button**
   
-  ![Select Agents](./bank_orch_ag_imgs/i12.png)
-  ![Add to Agent](./bank_orch_ag_imgs/i13.png)
+![Select Agents](./bank_orch_ag_imgs/i12.png)
 
-- Na seção **Behavior** adicione o seguinte em **Instructions**:
+![Add to Agent](./bank_orch_ag_imgs/i13.png)
+
+Na seção **Behavior** adicione o seguinte em **Instructions**:
+  
 ```
 Responda a todas as consultas iniciais dos clientes na agência virtual do banco
 Ative quando os clientes iniciarem uma nova conversa ou sessão
@@ -761,26 +798,26 @@ Este Agente Orchestrator atua como um ponto central de encaminhamento para consu
 
 #### Teste e implante o Agente Orquestrador do Banco GFM
 
-- Na janela de visualização à direita, teste com as seguintes consultas:
+Na janela de visualização à direita, teste com as seguintes consultas:
 ```
 O que é um cheque especial no cartão?
 Qual é o saldo da minha conta? IBAN DE89320895326389021994
 ```
-- Clique em **Deploy** 
+Clique em `Deploy`
 
-  ![Agent Deploy](./bank_orch_ag_imgs/i8.png)
+![Agent Deploy](./bank_orch_ag_imgs/i8.png)
 
-- Na página de **Deploy Agent**, clique em **Deploy**
+Na página de **Deploy Agent**, clique em `Deploy`
 
-  ![Deploy](./bank_orch_ag_imgs/i11.png)
+![Deploy](./bank_orch_ag_imgs/i11.png)
 
 ## Teste Sua Solução Bancária De Agentic AI
 
-- Clique no ícone de hambúrguer no canto superior esquerdo da janela  **watsonx Orchestrate**, e selecione **Chat**. No canto superior direito, você deve ver apenas um Agente chamado "Orquestrador do Bando GFM".
+Clique no ícone de hambúrguer no canto superior esquerdo da janela  **watsonx Orchestrate**, e selecione **Chat**. No canto superior direito, você deve ver apenas um Agente chamado "Orquestrador do Bando GFM".
 
   ![Select Orchestrator Agent](./bank_orch_ag_imgs/i9.png)
 
-- Na janela de bate-papo, teste com as seguintes consultas:
+Na janela de bate papo, teste com as seguintes consultas:
 
 ```
 Qual é o saldo da minha conta (IBAN DE89320895326389021994)?
@@ -795,22 +832,30 @@ Quero transferir 4.000 euros do IBAN DE89320895326389021994 para o IBAN DE899298
 Ah, cometi um erro. Você pode estornar meu pagamento anterior de 4.000 euros para o meu IBAN DE89320895326389021994?
 ```
 
-  ![Text Queries](./images/i36.png)
+![Text Queries](./images/i36.png)
 
-- Exemplo da funcionalidade do **Back Office Agent** em **Agent de Caixa**
+Exemplo da funcionalidade do **Back Office Agent** em **Agent de Caixa**
 
-  ![Text Queries](./bank_orch_ag_imgs/i14.png)
+![Text Queries](./bank_orch_ag_imgs/i14.png)
 
-## 🎉 Parabéns!
-## Você completou com sucesso o laboratório
 
-Você criou com sucesso uma solução de IA Agentic para o GFM Bank usando o  **watsonx Orchestrate**! Seu sistema agora pode lidar com consultas de clientes, fornecer informações sobre produtos, processar transações e gerenciar solicitações de cheque especial e reversões - tudo sem intervenção humana.
+## 🎉 Parabéns! Você completou com sucesso o laboratório
 
-Este laboratório demonstra como os agentes de IA podem transformar as operações bancárias:
-  - Reduzindo o tempo de espera para os clientes
-  - Fornecendo assistência bancária 24 horas por dia, 7 dias por semana
-  - Garantir a aplicação consistente das políticas bancárias
-  - Liberando a equipe humana para tarefas mais complexas
+Você criou uma solução de **IA Agentic** para o **GFM Bank** usando o **watsonx Orchestrate**!  
+Agora, seu sistema é capaz de:
+
+- Lidar com consultas de clientes.
+- Fornecer informações sobre produtos.
+- Processar transações.
+- Gerenciar solicitações de cheque especial e reversões — tudo **sem intervenção humana**.
+
+Como os agentes de IA podem **transformar as operações bancárias**:
+
+- **Reduzindo o tempo de espera** para os clientes.
+- Fornecendo **assistência bancária 24 horas por dia, 7 dias por semana**.
+- Garantindo a **aplicação consistente das políticas bancárias**.
+- Liberando a equipe humana para **tarefas mais complexas e de maior valor**.
+ 
 
 ## 🔊 Recurso adicional para experimentar: Interação por voz
 
@@ -820,17 +865,17 @@ Você pode gravar e interagir com agentes usando sua voz!
 
 > **Os dados necessários para esta configuração estão disponíveis na página de dados de labs do git.**
 
-- Abra o menu hambúrguer, clique em **Manage**->**Voice**.
+Abra o menu hambúrguer, clique em **Manage**->**Voice**.
 
-  ![Manage voice](./images/v1.png)
+![Manage voice](./images/v1.png)
 
-- Clique em **Create voice configuration**
+Clique em **Create voice configuration**
 
-  ![Voice configuration create](./images/v2.png)
+![Voice configuration create](./images/v2.png)
 
-- Na aba **Details**, insira um nome para a configuração de voz ex.: `GFM Voice WxO Voice` e clique em **Next**.
+Na aba **Details**, insira um nome para a configuração de voz ex.: `GFM Voice WxO Voice` e clique em **Next**.
 
-  ![Voice configuration create](./images/v3.png)
+![Voice configuration create](./images/v3.png)
 
 - Se estiver habilitando **Speech to Text**, na aba **Speech to Text**:
 
@@ -839,7 +884,7 @@ Você pode gravar e interagir com agentes usando sua voz!
   - Selecione o modelo de linguagem **Speech to Text**.
   - Clique **Next**
 
-  ![Voice configuration get APIKEY and URL](./images/v4.png)
+![Voice configuration get APIKEY and URL](./images/v4.png)
 
 - Se estiver habilitando **Text to Speech**, na aba **Text to Speech**:
 
@@ -850,34 +895,36 @@ Você pode gravar e interagir com agentes usando sua voz!
   - Defina a velocidade e a tonalidade da voz.
   - Clique **Finish**.
 
-  ![Voice configuration get APIKEY and URL](./images/v5.png)
+![Voice configuration get APIKEY and URL](./images/v5.png)
 
 - Você deve ver o  **Voice Configuration** criado.
 
-  ![Created voice configuration](./images/v6.png)
+![Created voice configuration](./images/v6.png)
 
-  Para mais informações sobre como habilitar o Voice em **Agent Builder**, verifique [Voice Configuration](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/base?topic=agents-configuring-voice-preview)
+> Para mais informações sobre como habilitar o Voice em **Agent Builder**, verifique [Voice Configuration](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/base?topic=agents-configuring-voice-preview)
 
-- Para adicionar ao seu agente a **Voice Configuration**, va em **Build**->**Agent Builder**
+Para adicionar ao seu agente a **Voice Configuration**, va em **Build**->**Agent Builder**
 
-  ![Agent builder](./images/v7.png)  
+![Agent builder](./images/v7.png)  
 
-- Selecione o **Agente Orquestrador do Banco GFM** para adicionar a **Voice Configuration**
+Selecione o **Agente Orquestrador do Banco GFM** para adicionar a **Voice Configuration**
 
-  ![Select agent voice](./images/v8.png)
+![Select agent voice](./images/v8.png)
 
-- Abaixo da seção **Voice modality**, selecione o recem criado **Voice assistant**
+Abaixo da seção **Voice modality**, selecione o recem criado **Voice assistant**
 
-  ![Select voice configuration](./images/v9.png)
+![Select voice configuration](./images/v9.png)
 
-### ✨ Você adicionou a Configuração de Voz ao seu agente com sucesso!
+### Você adicionou a Configuração de Voz ao seu agente com sucesso!
+
 Agora você pode testar a configuração de voz com os prompts na página de preview!
+
 Exemplo de pergunta(fala): `Como posso evitar taxas do cheque especial?`
 
-
-## 📚 Recursos
+## 📚 Material Complementar
 
 Para mais informações sobre Watsonx Orchestrate e Agentic AI:
+
 - [Documentação do Watsonx Orchestrate](https://www.ibm.com/products/watsonx-orchestrate)
 - [Guia de Agentic AI da IBM](https://www.ibm.com/think/ai-agents)
 - [Transformação de IA da Indústria Bancária](https://www.ibm.com/industries/banking-financial-markets)
