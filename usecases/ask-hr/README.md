@@ -2,36 +2,49 @@
 
 <img alt="AskHR" src="assets/hr_landscape.jpg">
 
-Um dos principais desafios enfrentados por qualquer grande organização é a gestão das operações de RH. À medida que as empresas crescem, torna-se cada vez mais difícil obter informações rapidamente e executar tarefas com facilidade. Com o advento dos sistemas Agentes e o poder dos modelos de raciocínio, torna-se mais fácil ter um único ponto de entrada para realizar praticamente todas as operações de RH.
+Um dos grandes desafios para qualquer organização é gerenciar as operações de RH. Conforme a empresa cresce, fica cada vez mais difícil acessar informações rapidamente e executar tarefas com facilidade.
+
+Com a chegada dos sistemas baseados em agentes e o poder dos modelos de raciocínio, isso muda: <b>Agora é possível ter um único ponto de acesso para realizar praticamente todas as operações de RH de forma simples e integrada. </b>
 
 ## 🤔 O Problema
 
-A TechCorp Inc., uma líder global em TI com uma força de trabalho de 100.000 funcionários, enfrentou um grande desafio na gestão de suas crescentes operações de RH. À medida que a empresa se expandia, ela teve dificuldades para lidar eficientemente com os dados de perfil dos funcionários, solicitações de folga e gestão da força de trabalho. Os sistemas de RH tradicionais já não eram suficientes para acompanhar a escala e complexidade. Com várias ferramentas de fornecedores sendo usadas para diferentes operações de RH, torna-se difícil integrá-las todas e oferecer uma experiência fluida ao usuário.
+A <b>TechCorp Inc.</b>, líder global em tecnologia com mais de 100 mil colaboradores, enfrentava um grande desafio na gestão das operações de RH. Com o crescimento acelerado, ficou cada vez mais difícil lidar com dados de perfil, solicitações de férias e gestão da força de trabalho de forma eficiente. 
+
+Os sistemas tradicionais já não davam conta da escala e da complexidade. Além disso, diferentes ferramentas de fornecedores eram usadas para tarefas específicas, tornando a integração complicada e prejudicando a experiência do usuário.
 
 ## 🎯 Objetivo
 
-Com este caso de uso, planejamos enfrentar o desafio adotando uma plataforma de nível empresarial, o watsonx, equipada com capacidades Agentes.  
-Neste laboratório, veremos como as ferramentas pré-construídas do watsonx Orchestrate podem se conectar a ferramentas de gestão de RH como Workday, SuccessFactors etc., ou criar ferramentas personalizadas para se conectar facilmente a esses sistemas. Com insights orientados por agentes, vamos ajudar a TechCorp a acelerar a recuperação de informações, reduzir a sobrecarga administrativa e garantir uma força de trabalho mais eficiente e eficaz.
+Com este caso de uso, vamos enfrentar o desafio adotando uma plataforma empresarial: <b>watsonx Orchestrate</b>, com recursos de agentes inteligentes e ferrammentas e integrações pdoerosas.
+
+Neste laboratório, você vai ver como as ferramentas pré construídas do <b>watsonx Orchestrate</b> podem se integrar a sistemas de gestão de RH¹ podem permitir a criação de ferramentas personalizadas para conectar facilmente esses sistemas.
+
+Com insights orientados por agentes, vamos ajudar a TechCorp a acelerar a busca por informações, reduzir tarefas administrativas e tornar a gestão da força de trabalho muito mais eficiente.
+
+¹ O Watsonx Orchestrate é compatível com sistemas externos como Workday e SuccessFactors, Service Now, SalesForce. [Clique aqui](https://www.ibm.com/br-pt/products/watsonx-orchestrate/integrations) para saber mais
 
 ## 📈 Valor de Negócio
 
-O uso de um sistema com suporte de IA para otimizar o processo de RH pode ter impactos multidimensionais, como tempo de resolução mais rápido, maior satisfação do usuário, aumento da receita e redução da exaustão dos funcionários, o que, em última análise, impacta positivamente o valor do seu negócio. Por outro lado, aproveitar as capacidades Agentes trará seu próprio conjunto adicional de valores, como maior segurança de dados e respostas mais fundamentadas, sem alucinações, melhorando assim a experiência da marca.
+Usar um sistema com suporte de IA para otimizar processos de RH pode gerar impactos em várias frentes: redução do tempo de resposta, maior satisfação dos usuários, aumento da produtividade e até diminuição da sobrecarga dos colaboradores. Tudo isso contribui para agregar valor ao negócio.
 
-## 🏛️ Arquitetura
+Além disso, aproveitar as capacidades de agentes traz benefícios adicionais, como mais segurança nos dados e respostas mais precisas, sem riscos de alucinação, garantindo uma experiência confiável e fortalecendo a imagem da marca.
 
-Para simplificar as interações dos funcionários com os sistemas de RH, projetamos um agente AskHR orientado por IA usando o IBM watsonx. Esta solução aproveita um modelo de orquestração multiagente que garante raciocínio inteligente, execução de ações fluida e uma experiência responsiva para os funcionários. A arquitetura é construída com o watsonx Orchestrate, permitindo que o agente de RH gerencie uma ampla gama de consultas e solicitações relacionadas a RH de forma eficiente.
+## Arquitetura
+
+Para simplificar a interação dos colaboradores com os sistemas de RH, criamos o AskHR, um agente inteligente desenvolvido com o IBM watsonx. Essa solução utiliza um modelo de orquestração multiagente, garantindo raciocínio avançado, execução fluida de ações e uma experiência ágil para os usuários.
+
+A arquitetura é baseada no <b>watsonx Orchestrate</b>, permitindo que o agente gerencie uma ampla variedade de consultas e solicitações de RH de forma eficiente e integrada.
 
 #### Capacidades principais do agente AskHR:
 
-1. Automatiza tarefas rotineiras de RH, como verificar saldo de folgas, solicitar tempo livre e atualizar dados dos funcionários.
+1. Automatizar tarefas rotineiras de RH, como consultar saldo de férias, solicitar folgas e atualizar dados dos colaboradores.
 
-2. Permite interação natural entre os funcionários e os sistemas de RH de backend por meio de uma interface de aplicativo intuitiva.
+2. Oferecer uma experiência simples e intuitiva, permitindo que os funcionários interajam com os sistemas de RH por meio de uma interface amigável.
 
-3. Usa raciocínio e ferramentas para buscar ou atualizar informações com segurança e confiabilidade.
+3. Garantir segurança e precisão, usando raciocínio avançado e ferramentas para buscar ou atualizar informações de forma confiável.
 
-4. Integra-se perfeitamente com sistemas internos usando conectores OpenAPI.
+4. Integra-se facilmente aos sistemas internos, utilizando conectores OpenAPI para uma conexão sem complicações.
 
-5. Este sistema aproveita o watsonx Orchestrate para coordenação, raciocínio avançado e tarefas baseadas na web, oferecendo uma experiência abrangente de suporte de RH com IA.
+5. Aproveitar o poder do watsonx Orchestrate, coordenando fluxos, raciocínio inteligente e tarefas web para oferecer uma experiência completa de RH com IA.
 
 <img alt="AskHR" src="assets/arch_diagm.png">
 
