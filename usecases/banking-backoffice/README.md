@@ -67,6 +67,6 @@ O **GFM Bank Agentic AI System**, criado com o **IBM Watsonx Orchestrate**, tem 
 
 ![Arquitetura](banking-backoffice-architecture.png)
 
-## 📝 Laboratório prático passo a passo
+## 👩‍💻👨‍💻 Laboratório prático passo a passo
 
 👉 [Clique aqui](/usecases/banking-backoffice/assets/hands_on_lab_banking_automation.md) para acessar as instruções detalhadas aqui e começar agora mesmo!
