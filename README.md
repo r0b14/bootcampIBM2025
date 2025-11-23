@@ -3,10 +3,10 @@
   <br />
   <span style="font-size: 2rem; font-weight: bold;">Agentes de IA em Ação com watsonx Orchestrate</span>
 </p>
-
+<br>
 <h2 style="display: flex; align-items: center; gap: 10px; margin: 0;">
   <img src="docs/images/fortaleza.jpg" width="35" height="30" style="vertical-align: middle;">
-  02 de Dezembro
+  25 de Novembro
 </h2>
 
 <img src="/agentic-bootcamp-v3.png" width="600" height="400" style="display:block; margin-left:auto; margin-right:auto;" />
