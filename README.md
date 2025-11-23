@@ -1,9 +1,9 @@
-<p align="center">
+<h3 align="center">
   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOkcNbMCZRZtz0U_JxAvafT3HFwkkdJhKalA&s" width="50" style="vertical-align: middle;" />
   <br />
   <span style="font-size: 3rem; font-weight: bold;"><b> Agentes de IA em Ação com watsonx Orchestrate</b> </span>
-</p>
-<br>
+</h3>
+
 <h2 style="display: flex; align-items: center; gap: 10px; margin: 0;">
   <img src="docs/images/fortaleza.jpg" width="35" height="30" style="vertical-align: middle;">
   25 de Novembro
