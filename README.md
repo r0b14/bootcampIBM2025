@@ -5,12 +5,12 @@
 </h3>
 
 <h2 style="display: flex; align-items: center; gap: 10px; margin: 0;">
-  <img src="docs/images/fortaleza.jpg" width="35" height="30" style="vertical-align: middle;">
+  <img src="docs/images/Fortaleza_img.jpg" width="35" height="30" style="vertical-align: middle;">
   25 de Novembro
 </h2>
 
-<img src="/agentic-bootcamp-v3.png" width="600" height="400" style="display:block; margin-left:auto; margin-right:auto;" />
-
+<img src="/agentic-bootcamp-v_nt.png" width="600" height="400" style="display:block; margin-left:auto; margin-right:auto;" />
+<br>
 Neste bootcamp, você vai aprender a criar e implantar agentes de Inteligência Artificial (Agentic AI) aplicados a casos reais de negócio.
 
 🚀 Entenda os conceitos por trás dos fluxos de trabalho do Agentic AI.
