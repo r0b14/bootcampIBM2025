@@ -4,6 +4,7 @@
 - [👨🏻‍💻 Caso de uso: Agente Analista Financeiro](#-caso-de-uso-agente-analista-financeiro)
   - [Sumário](#sumário)
   - [Descrição do caso de uso](#descrição-do-caso-de-uso)
+    - [🎯 Objetivo](#-objetivo)
   - [Arquitetura  ](#arquitetura--)
   - [Pré requisitos](#pré-requisitos)
   - [watsonx Orchestrate](#watsonx-orchestrate)
@@ -20,7 +21,7 @@
 
 A **Blue Aurum Financial** planeja implementar um **Agente de Pesquisa Financeira com IA** para apoiar sua equipe de analistas, acelerando pesquisas e identificando oportunidades de investimento de alto valor.
 
-🎯 Objetivo
+### 🎯 Objetivo
 
 Criar uma solução baseada em agentes que auxilie os analistas nas seguintes tarefas:
 
@@ -81,11 +82,11 @@ Nesta seção, você percorrerá o processo de criação de um agente de IA no <
 
 7 - A página Gerenciar agentes vai mostrar todos os agentes que já foram criados. À medida que você cria mais e mais agentes de IA capazes de raciocinar e agir, a página Gerenciar agentes será preenchida com esses agentes. 
 
-Clique no botão **Create agent** (anotado com seta vermelha) para começar a construir seu primeiro agente.
+Clique no botão `Create agent +` para começar a construir seu primeiro agente.
 
 ![wxo create agent](images/wxo-create-agent-manage-agents-empty.png) 
 
-8 - Na página de Criar um agente, selecione **Create from scratch**, forneça um **Name** e uma **Description** para o agente e clique **Create** 
+8 - Na página de Criar um agente, selecione **Create from scratch**, forneça um **Nome** e uma **Descrição* para o agente.
 
 <b>Nome</b>
 
@@ -101,11 +102,15 @@ Agente especializado em pesquisa financeira utilizando conhecimento interno e bu
 ```
 A descrição em linguagem natural de um agente é importante, pois é utilizada pela solução agêntica para encaminhar as mensagens do usuário ao agente certo e qualificado para atender à solicitação. Para mais detalhes, consulte o [Compreendendo o atributo de descrição do Agente de IA](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-creating#understanding-the-description-attribute-for-ai-agent) documentation.
 
+
+Clique em `Create`
+
+![wxo financial research agent](images/wxo-financial-research-agent.png) 
+
 O <b> watsonx Orchestrate</b> permite a criação de um agente do zero ou a partir de um modelo, o que envolve navegar por um catálogo de agentes existentes e usar atributos de outro agente como modelo para o novo agente. <b>Neste laboratório, você criará agentes do zero.</b>
 
 *Observação: é recomendável revisar o blog [O que são agentes de IA?](https://www.ibm.com/think/topics/ai-agents) para obter algumas informações básicas sobre como os agentes de IA funcionam.*
 
-![wxo financial research agent](images/wxo-financial-research-agent.png) 
 
 Na próxima página temos algumas opções para configurar o agente.
 
@@ -123,32 +128,35 @@ A página do Agente de Pesquisa Financeira é dividida em duas partes:
 
 <b>Observação:</b> para obter mais detalhes, consulte a documentação [Escolhendo um estilo de raciocínio para seu agente](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/base?topic=agents-choosing-reasoning-style-your-agent) para entender a diferença e como ela afeta o comportamento do agente.
 
-`Model`: Nessa opção você pode escolher o modelo de base de Inteligência Artificial generativa que trabalhará no seu agente, você pode manter como padrão ou alterar para outras opções disponíveis.
+<b>Model</b>: Nessa opção você pode escolher o modelo de base de Inteligência Artificial generativa que trabalhará no seu agente, você pode manter como padrão ou alterar para outras opções disponíveis.
 
-`Welcome Message:` Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
+<b>Welcome Message</b>: Ainda durante a etapa de definição do tipo de agente, você também pode configurar uma mensagem de boas vindas que será exibida na interface para o usuário, como mostrado na imagem abaixo. Essa etapa é opcional e você pode definir algo como: Bem vindo ao Agente X
 
-`Quick start Prompts` Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
+<b>Quick start Prompts</b>: Esse passo também é opcional. Nessa sessão podemos definir atalhos para o usuário, essas mensagens serão exibidas para o usuário como botões na interface. Você pode criar esses botões clicando em `Add prompt +` e removê-los clicando no ícone de lixeira.  Para que essas opções apareçam na telinha de preview do lado direito da tela, use o ícone de restart para atualizar a interface. <b>Não é necessário sair da página.</b>
 
-`<b>Knowledge:` A seção **Knowledge** é onde você pode adicionar conhecimento ao agente. Adicionar conhecimento aos agentes desempenha um papel crucial no aprimoramento de suas capacidades de conversação, fornecendo-lhes as informações necessárias para gerar respostas precisas e contextualmente relevantes para casos de uso específicos. Você pode enviar arquivos diretamente para o agente ou conectar-se a uma instância do <b>Milvus</b>, </b>Elasticsearch, AstraDB ou algum outro banco de dados vetorial da sua preferência, como um repositório de conteúdo. Por meio dessa interface de  **Knowledge**, você pode habilitar seus agentes de IA para implementar o padrão de Geração Aumentada de Recuperação (RAG), um padrão de IA muito popular para fundamentar respostas em uma fonte confiável de dados, como uma base de conhecimento empresarial.
+<b>Knowledge</b>: A seção **Knowledge** é onde você pode adicionar conhecimento ao agente. Adicionar conhecimento aos agentes desempenha um papel crucial no aprimoramento de suas capacidades de conversação, fornecendo-lhes as informações necessárias para gerar respostas precisas e contextualmente relevantes para casos de uso específicos. Você pode enviar arquivos diretamente para o agente ou conectar-se a uma instância do <b>Milvus</b>, </b>Elasticsearch, AstraDB ou algum outro banco de dados vetorial da sua preferência, como um repositório de conteúdo. Por meio dessa interface de  **Knowledge**, você pode habilitar seus agentes de IA para implementar o padrão de Geração Aumentada de Recuperação (RAG), um padrão de IA muito popular para fundamentar respostas em uma fonte confiável de dados, como uma base de conhecimento empresarial.
    
 *Observação: para obter mais detalhes, consulte a documentação [Adicionando conhecimento aos agentes](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-knowledge).*
 
-`Toolset` Enquanto **Knowledge** é como você capacita agentes com uma base de conhecimento confiável, **Toolset** é como você capacita agentes a agir, fornecendo a eles *Tools* e *Agents*. Os agentes podem realizar tarefas usando **Tools** ou delegar tarefas a outros **Agents** que sejam profundamente qualificados nessas tarefas.
+<b>Toolset</b>: Enquanto **Knowledge** é como você capacita agentes com uma base de conhecimento confiável, **Toolset** é como você capacita agentes a agir, fornecendo a eles *Tools* e *Agents*. Os agentes podem realizar tarefas usando **Tools** ou delegar tarefas a outros **Agents** que sejam profundamente qualificados nessas tarefas.
 
 *Observação: Para obter mais detalhes, consulte as seções [Adicionando ferramentas a um agente](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-tools) e [Adicionando agentes para orquestração](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-orchestration) da documentação.*
    
-`Behavior`: Essa sessão de configuração do agente é onde você fornece instruções ao agente para definir como ele responde às solicitações e situações do usuário. Você pode configurar regras que determinam quando e como o agente deve agir. Essas regras ajudam o agente a se comportar de maneira previsível e consistente, proporcionando uma experiência perfeita ao usuário.
+<b>Behavior</b>: Essa sessão de configuração do agente é onde você fornece instruções ao agente para definir como ele responde às solicitações e situações do usuário. Você pode configurar regras que determinam quando e como o agente deve agir. Essas regras ajudam o agente a se comportar de maneira previsível e consistente, proporcionando uma experiência perfeita ao usuário.
 
 <b>Observação:</b> Para obter mais detalhes, consulte a documentação [Adicionando instruções aos agentes](https://www.ibm.com/docs/en/watsonx/watson-orchestrate/current?topic=agents-adding-instructions).
 
-Por fim, após concluir a configuração do seu agente e testar seu desempenho, você pode **Implantar** o agente (indicado pela seta vermelha) para disponibilizá-lo no canal selecionado. No momento, o principal canal suportado é a página inicial do *Chat* que você acessa ao iniciar o watsonx Orchestrate pela primeira vez. O produto adicionará suporte a canais adicionais onde você poderá implantar seu(s) agente(s).
+
+Após concluir a configuração e testar o desempenho do seu agente, você pode **implantá-lo** para disponibilizá-lo no canal selecionado.
+
+- **Canal atual:** A página inicial do **Chat**, acessada quando você inicia o **watsonx Orchestrate** pela primeira vez.
 
 ![wxo create agent config](images/wxo-create-agent-config.png) 
 
 10 - Na página de configuração do agente, revise a *Descrição* do agente na seção **Profile** e mantenha-a como está (sem necessidade de edição). Em seguida, role para baixo até a seção **Knowledge** ou clique no atalho **Knowledge**. Clique no botão Choose knowledge.
 ![Choose knowledge](../business-automation/assets/BAP_5_K.png)
 
-11 - Após clicar no botão Choose knowledge, uma janela _pop up_ será exibida. Selecione `Upload Files` e clique em `Next.`
+11 - Após clicar no botão `Choose knowledge`, uma janela _pop up_ será exibida. Selecione `Upload Files` e clique em `Next.`
 
 ![Choose knowledge](../business-automation/assets/BAP_5_K_2.png)
 
@@ -170,9 +178,7 @@ Este conhecimento aborda todos os detalhes sobre os relatórios de lucros das em
 ```
 ![Choose knowledge](images/wxo-agent-config-knowledge-description.png)
 
-Aguarde alguns instantes enquanto o watsonx Orchestrate faz o _upload_ desses documentos PDF na base de conhecimento do agente. Após a conclussão você deve ver esses arquivos PDF listados na seção de conhecimento.
-
-Aguarde para confirmar que os arquivos foram carregados corretamente antes de prosseguir para as próximas etapas do laboratório.
+Aguarde alguns instantes enquanto o <b>watsonx Orchestrate</b> faz o _upload_ desses documentos PDF na base de conhecimento do agente. Após a conclussão você deve ver esses arquivos PDF listados na seção de conhecimento.
 
 ![Choose knowledge](images/wxo-agent-config-knowledge-summary.png)
 
