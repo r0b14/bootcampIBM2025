@@ -26,7 +26,7 @@ Os sistemas tradicionais já não davam conta da escala e da complexidade. Além
 
 ## 🎯 Objetivo
 
-Com este caso de uso, vamos enfrentar o desafio adotando uma plataforma empresarial: <b>watsonx Orchestrate</b>, com recursos de agentes inteligentes e ferrammentas e integrações pdoerosas.
+Com este caso de uso, vamos enfrentar o desafio adotando uma plataforma empresarial: <b>watsonx Orchestrate</b>, com recursos de agentes inteligentes e ferramentas e integrações poderosas.
 
 Neste laboratório, você vai ver como as ferramentas pré construídas do <b>watsonx Orchestrate</b> podem se integrar a sistemas de gestão de RH¹ podem permitir a criação de ferramentas personalizadas para conectar facilmente esses sistemas.
 
